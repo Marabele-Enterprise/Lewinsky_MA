@@ -1,0 +1,22 @@
+[18-Mar-2015 23:39:28 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:39:29 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:39:33 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:39:33 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:41:11 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:41:11 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:42:50 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:42:51 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:43:03 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:43:04 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:44:57 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:44:58 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:45:28 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:45:29 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:45:54 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:45:54 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:52:53 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:52:53 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:52:53 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[18-Mar-2015 23:52:54 UTC] PHP Parse error:  syntax error, unexpected 'define' (T_STRING) in /home/f0894051/public_html/medi/application/config/config.php on line 126
+[19-Mar-2015 00:00:54 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'f0894051_rebel_db.ms_action_log' doesn't exist in /home/f0894051/public_html/medi/application/models/generic_model.php on line 348
+[19-Mar-2015 12:24:25 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'f0894051_rebel_db.ms_action_log' doesn't exist in /home/f0894051/public_html/medi/application/models/generic_model.php on line 348
