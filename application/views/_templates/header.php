@@ -46,7 +46,7 @@
 						<li><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts" >Patients</a></li>
 						<li><a href="<?php echo URL; ?>index/doctors" class="" >Doctors</a></li>
 						<li><a href="<?php echo URL; ?>index/medical_aids" class="" >Medical Aids</a></li>
-						<li><a href="<?php echo URL; ?>index/tarif_codes" class="" >Tarif Codes</a></li>
+						<li><a href="<?php echo URL; ?>index/tariff_codes" class="" >Tariff Codes</a></li>
 						<li><a href="<?php echo URL; ?>index/diagnosis" class="" >Diagnosis</a></li>
 						<li><a href="<?php echo URL; ?>index/messages" class="" >Messages</a></li>
 						<!--li class="dropdown">

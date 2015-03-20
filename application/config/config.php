@@ -20,7 +20,8 @@ ini_set("display_errors", 1);
  * if you are using a (different) port, then put this in here, like http://mydomain:8888/subfolder/
  * Note: The trailing slash is important!
  */
-define('URL', 'http://medi.marabele.com/');
+//define('URL', 'http://medi.marabele.com/'); //online
+define('URL', 'http://localhost/lewinsky_ma/'); //localhost
 define('UPLOAD_URL', '/public/uploads/');
 define('SITENAME', 'MediSuit');
 define('PREFIX', 'ms_');
@@ -95,9 +96,14 @@ define('COOKIE_DOMAIN', 'leanbiz.com');
  */
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'f0894051_rebel_db');
-define('DB_USER', 'f0894051_user');
-define('DB_PASS', '11247143');
+
+//define('DB_NAME', 'f0894051_rebel_db'); //online_db
+//define('DB_USER', 'f0894051_user'); //online_db_user
+//define('DB_PASS', '11247143'); //online_db_pswd
+
+define('DB_NAME', 'medisuit_db'); //local_db
+define('DB_USER', 'root'); //local_db_user
+define('DB_PASS', ''); //local_db_pswd
 
 /**
  * Configuration for: Hashing strength

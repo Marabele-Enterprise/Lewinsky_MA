@@ -36,9 +36,63 @@ class Index extends Controller
      * Handles what happens when user moves to URL/index/services, which is the same like URL/index or in this
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */
+    function patients()
+    {
+	   $this->view->render('index/patients');
+    }
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function doctors()
+    {
+	   $this->view->render('index/doctors');
+    }
+
+    /**
+     * Handles what happens when user moves to URL/index/services, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function medical_aids()
+    {
+       $this->view->render('index/medical_aids');
+    }
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function tariff_codes()
+    {
+       $this->view->render('index/tariff_codes');
+    }
+
+    /**
+     * Handles what happens when user moves to URL/index/services, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function diagnosis()
+    {
+       $this->view->render('index/diagnosis');
+    }
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function messages()
+    {
+       $this->view->render('index/messages');
+    }
+
+    /**
+     * Handles what happens when user moves to URL/index/services, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
     function services()
     {
-	$this->view->render('index/services');
+       $this->view->render('index/services');
     }
 
     /**
@@ -47,24 +101,7 @@ class Index extends Controller
      */
     function portfolio()
     {
-	$this->view->render('index/portfolio');
-    }
+       $this->view->render('index/portfolio');
+    }            
     
-    /**
-     * Handles what happens when user moves to URL/index/index, which is the same like URL/index or in this
-     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
-     */
-    function blog()
-    {
-	$this->view->render('blog/blog');
-    }
-
-    /**
-     * Handles what happens when user moves to URL/index/contact, which is the same like URL/index or in this
-     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
-     */
-    function contact()
-    {
-	$this->view->render('index/contact');
-    }
 }
