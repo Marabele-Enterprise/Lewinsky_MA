@@ -25,6 +25,9 @@ class Application
      */
     public function __construct()
     {
+	Session::init();
+	Session::set('session_id', $this->generateRandomString(15));
+	
         $this->splitUrl();
 
         // check for controller: is the url_controller NOT empty ?
@@ -71,6 +74,10 @@ class Application
             $controller = new Index();
             $controller->index();
         }
+    }
+    
+    private function generateRandomString($length = 10) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
     /**

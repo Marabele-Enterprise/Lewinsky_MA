@@ -14,7 +14,7 @@ class Auth
 
         // if user is still not logged in, then destroy session, handle user as "not logged in" and
         // redirect user to login page
-        if (!isset($_SESSION['user_logged_in'])) {
+        if (!Session::get('user_logged_in')) {
             Session::destroy();
             header('location: ' . URL . 'login');
             // to prevent fetching views via cURL (which "ignores" the header-redirect above) we leave the application

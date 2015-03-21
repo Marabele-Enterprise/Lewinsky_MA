@@ -11,7 +11,10 @@ class Index extends Controller
      */
     function __construct()
     {
-            parent::__construct();
+	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+	
+	parent::__construct();
     }
 
     /**
@@ -20,9 +23,9 @@ class Index extends Controller
      */
     function index()
     {
-	    $this->view->render('index/index');
-        Session::init();
-        Session::set('session_id', $this->generateRandomString(15));
+	//Session::set('session_id', $this->generateRandomString(15));
+	
+	$this->view->render('index/index');
     }
 
     function generateRandomString($length = 10) {

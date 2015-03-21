@@ -11,6 +11,9 @@ class Scrum extends Controller
      */
     function __construct()
     {
+	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+	
             parent::__construct();
 	    $this->generic_model = $this->loadModel('Generic');
     }

@@ -16,6 +16,9 @@ class Generic extends Controller
      
     public function __construct()
     {
+	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+	
         parent::__construct();
 
         // VERY IMPORTANT: All controllers/areas that should only be usable by logged-in users
