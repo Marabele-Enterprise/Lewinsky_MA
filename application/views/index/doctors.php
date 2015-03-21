@@ -26,7 +26,8 @@
 			-->
 			<div class="thumbnail">
 				<table class="table table-bordered">
-					<tr class="active"><td><b>Title</b></td><td class="generic" data-field="title_initials" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
+					<tr><td><b>Initials</b></td><td class="generic" data-field="initials" data-set="innertext"></td></tr>
 					<tr><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
 					<tr><td><b>DRPR</b></td><td class="generic" data-field="drpr" data-set="innertext"></td></tr>
@@ -60,9 +61,15 @@
 					<div class="modal-body">
 						<div id="feedback"></div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="title">Title &#38; Initials</label>
+							<label class="col-xs-2 control-label" for="title">Title</label>
 							<div class="col-xs-10">
-								<input type="text" id="title_initials" name="title_initials" placeholder="Title &#38; Initials" class="form-control" />
+								<input type="text" id="title" name="title" placeholder="Title" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="initials">Initials</label>
+							<div class="col-xs-10">
+								<input type="text" id="initials" name="initials" placeholder="Initials" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -121,9 +128,15 @@
 						<div class="modal-body doctorsEditDesign">
 							<div id="feedback"></div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="title">Title &#38; Initials</label>
+								<label class="col-xs-2 control-label" for="title">Title</label>
 								<div class="col-xs-10">
-									<input type="text" id="title_initials" name="title_initials" placeholder="Title &#38; Initials" class="form-control generic" data-field="title_initials" data-set="value" />
+									<input type="text" id="title" name="title" placeholder="Title" class="form-control generic" data-field="title" data-set="value" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="initials">Initials</label>
+								<div class="col-xs-10">
+									<input type="text" id="initials" name="initials" placeholder="Initials" class="form-control generic" data-field="initials" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">

@@ -21,7 +21,7 @@ ini_set("display_errors", 1);
  * Note: The trailing slash is important!
  */
 //define('URL', 'http://medi.marabele.com/'); //online
-define('URL', 'http://localhost/lewinsky_ma/'); //localhost
+define('URL', 'http://localhost/Lewinsky_MA/'); //localhost
 define('UPLOAD_URL', '/public/uploads/');
 define('SITENAME', 'MediSuit');
 define('PREFIX', 'ms_');
