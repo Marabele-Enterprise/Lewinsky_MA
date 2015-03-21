@@ -231,7 +231,7 @@ var options = {
 		
 		$("#editDoctor").modal("hide");
 		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Doctor Added Successfully</div>");
+		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Doctor Updated Successfully</div>");
 		
 		refreshDoctorsView();
 		
@@ -300,16 +300,17 @@ function setBtnHandlers(){
 	$('.btnDeleteDoctor:not(.bound)').addClass('bound').on("touchstart click", function (e){
 		e.preventDefault();
 		
-		var hypothesis_id = $(this).parent().find(".hypothesis_id_holder").val();
+		var doctor_id = $(this).parent().find(".doctor_id_holder").val();
 
 		var x;
 		if (confirm("Are you sure you want delete this item?") == true) {
 			$(this).parent().fadeOut(666);
 			data = {
-				"table": '<?php echo PREFIX; ?>hypothesis',
-				"where": "hypothesis_id = "+hypothesis_id
+				"table": '<?php echo PREFIX; ?>doctor',
+				"where": "doctor_id = "+doctor_id
 			};
-			Generic.genericAction("delete", data, function(){
+			Generic.genericAction("delete", data, function(response){
+				console.log(response);
 				//refreshView();
 			});
 		} else {

@@ -70,67 +70,23 @@ class Generic extends Controller
 		echo "Generic update error. Please make sure the post data matches the fields in the db";
 	}
     }    
-    
-    /**
-     * This method controls what happens when you move to /dashboard/addGenerics in your app.
-     * Creates a new generics. This is usually the target of form submit actions that post the data as json.
+        /**
+     * This method controls what happens when you move to /dashboard/create in your app.
+     * Creates a new generic. This is usually the target of form submit actions.
      */
-    public function addGenerics()
+    public function genericDelete()
     {
         // optimal MVC structure handles POST data in the controller, not in the model.
         // personally, I like POST-handling in the model much better (skinny controllers, fat models), so the login
         // stuff handles POST in the model. in this generic-controller/model, the POST data is intentionally handled
         // in the controller, to show people how to do it "correctly". But I still think this is ugly.
-	   $this->generic_model->addGenerics();
-    }
-
-    /**
-     * This method controls what happens when you move to /generic/edit(/XX) in your app.
-     * Shows the current content of the generic and an editing form.
-     * @param $generic_id int id of the generic
-     */
-    public function edit($generic_id)
-    {
-        if (isset($generic_id)) {
-            // get the generic that you want to edit (to show the current content)
-            $this->view->generic = $this->generic_model->getGeneric($generic_id);
-            $this->view->render('generic/edit');
-        } else {
-            header('location: ' . URL . 'generic');
-        }
-    }
     
-    public function dynamicGet(){
-	   return $this->generic_model->dynamicGet();
-    }
-
-    /**
-     * This method controls what happens when you move to /generic/editsave(/XX) in your app.
-     * Edits a generic (performs the editing after form submit).
-     * @param int $generic_id id of the generic
-     */
-    public function editSave($generic_id)
-    {
-        if (isset($_POST['generic_text']) && isset($generic_id)) {
-            // perform the update: pass generic_id from URL and generic_text from POST
-            $this->generic_model->editSave($generic_id, $_POST['generic_text']);
+        if($this->generic_model->genericDelete()){
+            echo 'Success';
+        }else{
+            echo "Generic update error. Please make sure the post data matches the fields in the db";
         }
-        header('location: ' . URL . 'generic');
-    }
-
-    /**
-     * This method controls what happens when you move to /generic/delete(/XX) in your app.
-     * Deletes a generic. In a real application a deletion via GET/URL is not recommended, but for demo purposes it's
-     * totally okay.
-     * @param int $generic_id id of the generic
-     */
-    public function delete($generic_id)
-    {
-        if (isset($generic_id)) {
-            $this->generic_model->delete($generic_id);
-        }
-        header('location: ' . URL . 'generic');
-    }
+    }    
     
     /**
      * This method controls what happens when you move to /dashboard/create in your app.

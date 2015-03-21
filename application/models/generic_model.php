@@ -131,61 +131,61 @@ class GenericModel
      */
     public function genericDelete()
     {
-	if(isset($_POST["table"])){
-		$table = $_POST["table"];
-	}else{
-		return false;
-	}
-	
-	if(isset($_POST["where"])){
-		$where = "WHERE ".$_POST["where"];
-	}else{
-		return false;
-	}
-	
-	if(isset($_POST["delete_files"])){
-		$file_fields = explode(' ', $_POST["delete_files"]);
-		$sql = "SELECT * FROM $table $where";
-		$query = $this->db->prepare($sql);
-		$query->execute();
-		$result = $query->fetchAll();
+		if(isset($_POST["table"])){
+			$table = $_POST["table"];
+		}else{
+			return false;
+		}
 		
-		foreach($file_fields as $field){
-			$file =  $result[0]->$field;
+		if(isset($_POST["where"])){
+			$where = "WHERE ".$_POST["where"];
+		}else{
+			return false;
+		}
+		
+		if(isset($_POST["delete_files"])){
+			$file_fields = explode(' ', $_POST["delete_files"]);
+			$sql = "SELECT * FROM $table $where";
+			$query = $this->db->prepare($sql);
+			$query->execute();
+			$result = $query->fetchAll();
 			
-			if(substr($file, 0, 4) == "http"){
-				$startPos = $this->strposX($file, "/", 4);
-				$file = ".".substr($file, $startPos);
+			foreach($file_fields as $field){
+				$file =  $result[0]->$field;
+				
+				if(substr($file, 0, 4) == "http"){
+					$startPos = $this->strposX($file, "/", 4);
+					$file = ".".substr($file, $startPos);
+				}
+				
+				if (!unlink($file))
+				{
+					echo ("Error deleting ".$file);
+				}
+				else
+				{
+					echo ("Deleted $file".$file);
+				}
 			}
-			
-			if (!unlink($file))
-			{
-				echo ("Error deleting ".$file);
-			}
-			else
-			{
-				echo ("Deleted $file".$file);
+		}else{
+		}
+		
+		$values = "";
+		$arr = array();
+		foreach($_POST as $key => $value){
+			if($key !== "table" AND $key !== "where"){
+				$values .= $key." = :".$key.",";
+				$arr[":".$key] = $value;
 			}
 		}
-	}else{
-	}
-	
-	$values = "";
-	$arr = array();
-	foreach($_POST as $key => $value){
-		if($key !== "table" AND $key !== "where"){
-			$values .= $key." = :".$key.",";
-			$arr[":".$key] = $value;
-		}
-	}
-	$values = rtrim($values, ',');
-	
-	$sql = "DELETE FROM $table $where";
+		$values = rtrim($values, ',');
+		
+		$sql = "DELETE FROM $table $where";
 
         $query = $this->db->prepare($sql);
         $query->execute($arr);
 	
-	return true;
+		return true;
     }     
 
     /**
