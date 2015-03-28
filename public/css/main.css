@@ -2,6 +2,10 @@
  * Globals
  */
 
+ .container-fluid{
+   min-height: 81% !important;
+ }
+
 .loading, .loadingImg{
 	display: none;
 }

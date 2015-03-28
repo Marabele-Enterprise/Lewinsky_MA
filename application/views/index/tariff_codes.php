@@ -191,27 +191,27 @@
 						<div class="modal-body tariff_codesEditDesign">
 							<div id="feedback"></div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="title">Code</label>
+								<label class="col-xs-2 control-label" for="code">Code</label>
 								<div class="col-xs-10">
-									<input type="text" id="title_initials" name="title_initials" placeholder="Code" class="form-control generic" data-field="title_initials" data-set="value" />
+									<input type="text" name="code" placeholder="Code" class="form-control generic" data-field="code" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="description">Description</label>
 								<div class="col-xs-10">
-									<input type="text" id="description" name="description" placeholder="Description" class="form-control generic" data-field="description" data-set="value" />
+									<input type="text" name="description" placeholder="Description" class="form-control generic" data-field="description" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="private">Private</label>
 								<div class="col-xs-10">
-									<input type="text" id="private" name="private" placeholder="Private" class="form-control generic" data-field="private" data-set="value" />
+									<input type="text" name="private" placeholder="Private" class="form-control generic" data-field="private" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Med Aid 2010</label>
+								<label class="col-xs-2 control-label" for="med_aid_2010">Med Aid 2010</label>
 								<div class="col-xs-10">
-									<input type="text" id="drpr" name="drpr" placeholder="Med Aid 2010 ?" class="form-control generic" data-field="med_aid_2010" data-set="value" />
+									<input type="text" name="med_aid_2010" placeholder="Med Aid 2010 ?" class="form-control generic" data-field="med_aid_2010" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -221,7 +221,7 @@
 								</div>
 							</div>	
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Discovery</label>
+							<label class="col-xs-2 control-label" for="discovery">Discovery</label>
 							<div class="col-xs-10">
 								<input type="text" id="discovery" name="discovery" placeholder="Discovery" class="form-control generic" data-field="discovery" data-set="value" />
 							</div>
@@ -259,7 +259,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Mod Minutes</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="mod_minutes" placeholder="Mod Minutes" class="form-control generic" data-field="modminutes" data-set="value" />
+								<input type="text" id="iod" name="modminutes" placeholder="Mod Minutes" class="form-control generic" data-field="modminutes" data-set="value" />
 							</div>
 						</div>	
 						<div class="form-group">
@@ -311,6 +311,10 @@ var options = {
 	}, uploadProgress: function(event, position, total, percentComplete){
 		console.log("uploadProgress");
 	}, success: function(response){
+		if(response !== "Success"){
+			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
+			return;
+		}
 		//clear all fields and close the modal
 		$("#loader1").fadeOut("fast");
 		
@@ -336,6 +340,12 @@ var options = {
 		
 		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
 		
+		//This code segment removes the feedback automatically
+		var delay = 10666;
+		setTimeout(function() {
+		    $("#feedback").children().fadeOut().html("");
+		}, delay);
+
 		//clear all fields
 		$('form')[0].reset();
 		
@@ -360,6 +370,11 @@ var options = {
 		$("#loader1").fadeOut("fast");
 		
 		$("#editTariffCode").modal("hide");
+
+		if(response !== "Success"){
+			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");				
+			return;
+		}
 		
 		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>TariffCode Updated Successfully</div>");
 		

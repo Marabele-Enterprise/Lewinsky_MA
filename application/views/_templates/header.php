@@ -48,8 +48,8 @@
 						<li><a href="<?php echo URL; ?>index/medical_aids" class="" >Medical Aids</a></li>
 						<li><a href="<?php echo URL; ?>index/tariff_codes" class="" >Tariff Codes</a></li>
 						<li><a href="<?php echo URL; ?>index/diagnosis" class="" >Diagnosis</a></li>
-						<li><a href="<?php echo URL; ?>index/messages" class="" >Messages</a></li>
-						<!--li class="dropdown">
+						<!--li><a href="<?php echo URL; ?>index/messages" class="" >Messages</a></li>
+						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#">Action</a></li>
@@ -173,11 +173,6 @@ function getAccountMenu($loginStat,$userType)
 		}	
 		else if($userType == "Admin"){
 			return '
-					<li  title="Upload and Update artworks you have created for auction.">
-						<a href="'.URL.'canvas/canvas_manager" >
-							Dashboard
-						</a>	
-					</li>
 					<li>
 						<a href="'.URL.'login/logout" >
 							SIGN OUT

@@ -30,11 +30,11 @@ class CanvasModel
 		$query->execute(array(':creator_id' => $_POST["user_id"]));
 
 		$team_id = $this->db->lastInsertId();
-
-		$sql = "INSERT INTO ".PREFIX."canvas (title, user_id, team_id) 
-		VALUES (:title, :user_id, :team_id)";
+		echo $_POST["canvas_type"];
+		$sql = "INSERT INTO ".PREFIX."canvas (title, canvas_type, user_id, team_id) 
+		VALUES (:title, :canvas_type, :user_id, :team_id)";
 		$query = $this->db->prepare($sql);
-		$query->execute(array(':title' => $_POST["title"], ':user_id' => $_POST["user_id"], ':team_id' => $team_id));
+		$query->execute(array(':title' => $_POST["title"], ':canvas_type' => $_POST["canvas_type"], ':user_id' => $_POST["user_id"], ':team_id' => $team_id));
 
 		$canvas_id = $this->db->lastInsertId();
 
