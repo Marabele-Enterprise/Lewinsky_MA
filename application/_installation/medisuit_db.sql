@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2015 at 05:50 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Mar 28, 2015 at 08:35 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `ms_action_log` (
   `session_id` varchar(20) NOT NULL,
   `test_label` varchar(10) NOT NULL,
   PRIMARY KEY (`action_log_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=120 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
 
 --
 -- Dumping data for table `ms_action_log`
@@ -140,20 +140,32 @@ INSERT INTO `ms_action_log` (`action_log_id`, `action`, `category`, `action_date
 (116, 'Login Successful', 'Login', '2015-03-21 16:47:27', 9, '127.0.0.1', 'IRX69udoYVw4Emv', 'A'),
 (117, 'Entered Home Page', 'Navigation', '2015-03-21 16:47:27', 9, '127.0.0.1', 'lb2YLP45JymGjec', 'A'),
 (118, 'Login Successful', 'Login', '2015-03-21 16:48:24', 9, '127.0.0.1', 'I8JoCOHR5E3kVay', 'A'),
-(119, 'Entered Home Page', 'Navigation', '2015-03-21 16:48:25', 9, '127.0.0.1', 'eBvahQCHXSR24AF', 'A');
+(119, 'Entered Home Page', 'Navigation', '2015-03-21 16:48:25', 9, '127.0.0.1', 'eBvahQCHXSR24AF', 'A'),
+(120, 'Login Successful', 'Login', '2015-03-21 23:28:30', 1, '::1', 'P6SQwmTXLRjtfKN', 'A'),
+(121, 'Entered Home Page', 'Navigation', '2015-03-21 23:28:30', 1, '::1', 'Xsw14rlqL6dvuCA', 'A'),
+(122, 'Entered Home Page', 'Navigation', '2015-03-22 02:43:20', 1, '::1', 'jfcOGr8ZvBaXhbu', 'A'),
+(123, 'Login Successful', 'Login', '2015-03-28 18:18:38', 1, '::1', 'MTQiVZlWYrH9zN3', 'A'),
+(124, 'Entered Home Page', 'Navigation', '2015-03-28 18:18:38', 1, '::1', 'ADIJihdlzP2U7Wm', 'A');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ms_diagnoses`
+-- Table structure for table `ms_diagnosis`
 --
 
-CREATE TABLE IF NOT EXISTS `ms_diagnoses` (
-  `diagnoses_id` int(11) NOT NULL AUTO_INCREMENT,
-  `desc` varchar(250) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ms_diagnosis` (
+  `diagnosis_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(250) NOT NULL,
   `icd10` varchar(10) NOT NULL,
-  PRIMARY KEY (`diagnoses_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`diagnosis_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ms_diagnosis`
+--
+
+INSERT INTO `ms_diagnosis` (`diagnosis_id`, `description`, `icd10`) VALUES
+(1, 'iuyu', 'iuy');
 
 -- --------------------------------------------------------
 
@@ -170,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `ms_doctor` (
   `drpr` varchar(50) NOT NULL,
   `email` varchar(150) NOT NULL,
   PRIMARY KEY (`doctor_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `ms_doctor`
@@ -180,8 +192,7 @@ INSERT INTO `ms_doctor` (`doctor_id`, `title`, `initials`, `surname`, `phone`, `
 (1, 'Mr', 'MP', 'Mello', '0790788189', '0566', 'mp.mello5@gmail.com'),
 (2, 'Dr', 'RM', 'Mello', '0825114785', '865', 'mellorm@gmail.com'),
 (3, 'Dr', 'P', 'Phil', '0615663381', '630', 'drphil@gmail.com'),
-(4, 'Dr', 'D', 'Khumalo', '0816513332', '3969', '16v@gmail.com'),
-(5, 'Dr', 'M', 'Mampuru', '0713656863', '8431', 'mampuru@gmail.com');
+(4, 'Dr', 'D', 'Khumalo', '0816513332', '3969', '16v@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -206,6 +217,8 @@ CREATE TABLE IF NOT EXISTS `ms_medical_aid` (
   `medperc` double NOT NULL,
   `tarif` int(11) NOT NULL,
   `dec` int(11) NOT NULL,
+  `bill_at` double NOT NULL,
+  `round_to` varchar(20) NOT NULL,
   PRIMARY KEY (`medical_aid_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -219,12 +232,14 @@ CREATE TABLE IF NOT EXISTS `ms_patient` (
   `patient_id` int(11) NOT NULL,
   `cust` varchar(10) NOT NULL,
   `name` varchar(150) NOT NULL,
+  `surname` varchar(50) NOT NULL,
   `initials` varchar(5) NOT NULL,
   `patient` int(150) NOT NULL,
-  `address_id` int(11) NOT NULL,
+  `address1` varchar(150) NOT NULL,
+  `address2` varchar(150) NOT NULL,
+  `address3` varchar(150) NOT NULL,
   `pc` varchar(50) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `phone2` varchar(20) NOT NULL,
   `cell` varchar(20) NOT NULL,
   `email` varchar(150) NOT NULL,
   `authno` varchar(20) NOT NULL,
@@ -236,16 +251,9 @@ CREATE TABLE IF NOT EXISTS `ms_patient` (
   `refby` varchar(150) NOT NULL,
   `drpr` varchar(20) NOT NULL,
   `diag1` varchar(150) NOT NULL,
-  `diag2` varchar(150) NOT NULL,
-  `diag3` varchar(150) NOT NULL,
   `disorder1` varchar(150) NOT NULL,
-  `disorder2` varchar(150) NOT NULL,
-  `disorder3` varchar(150) NOT NULL,
   `accbf` double NOT NULL,
   `age1` double NOT NULL,
-  `age2` double NOT NULL,
-  `age3` double NOT NULL,
-  `age4` double NOT NULL,
   `patpay` double NOT NULL,
   `amnap` double NOT NULL,
   `stmlangs` varchar(10) NOT NULL,
@@ -269,8 +277,19 @@ CREATE TABLE IF NOT EXISTS `ms_patient` (
   `emailpat` varchar(150) NOT NULL,
   `cellpat` varchar(20) NOT NULL,
   `depcod` varchar(100) NOT NULL,
-  `noedi` varchar(10) NOT NULL DEFAULT 'false'
+  `noedi` varchar(10) NOT NULL DEFAULT 'false',
+  `id_number` varchar(40) NOT NULL,
+  `authcode` varchar(40) NOT NULL,
+  PRIMARY KEY (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ms_patient`
+--
+
+INSERT INTO `ms_patient` (`patient_id`, `cust`, `name`, `surname`, `initials`, `patient`, `address1`, `address2`, `address3`, `pc`, `phone`, `cell`, `email`, `authno`, `patdob`, `patid`, `medcod`, `medaid`, `medno`, `refby`, `drpr`, `diag1`, `disorder1`, `accbf`, `age1`, `patpay`, `amnap`, `stmlangs`, `stmsuppress`, `comment`, `tarif`, `disorder`, `dtad`, `dtlu`, `todue`, `title`, `memid`, `medperc`, `gender`, `closed`, `emailstmsw`, `patliabsw`, `trimmedtitle`, `msgkey`, `emailcc`, `emailpat`, `cellpat`, `depcod`, `noedi`, `id_number`, `authcode`) VALUES
+(0, '', '675', '675', '765', 0, '576', '5765', '67', '', '', '75', '67', '', '0000-00-00', '', '', '657', '65', '76', '', '57', '576', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, '765', 0, 0, '65', 'false', 'true', '', '', '', '', '', '', '', 'false', '56', '76'),
+(1, '', '', 'Khathaza', 'P A', 0, '0', '', '', '', '', '07822334466', 'pasekamonyeki@gmail.com', '', '1998-08-08', '', '', 'HappyMeds', '1100 6708 08', 'Dr love', '', 'Bipolar Diagonis', 'Flu', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, 'Mr', 0, 0, 'Male', 'false', 'true', '', '', '', '', '', '', '', 'false', '954444090909', 'x2rff');
 
 -- --------------------------------------------------------
 
@@ -341,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `ms_users` (
 --
 
 INSERT INTO `ms_users` (`id`, `user_id`, `firstname`, `lastname`, `phone`, `username`, `user_password_hash`, `gender`, `dob`, `email`, `user_active`, `user_account_type`, `user_has_avatar`, `user_rememberme_token`, `user_creation_timestamp`, `user_last_login_timestamp`, `user_failed_logins`, `user_last_failed_login`, `user_activation_hash`, `user_password_reset_hash`, `user_password_reset_timestamp`, `user_provider_type`, `user_facebook_uid`) VALUES
-(1, 1, 'Kwasi', 'Kgwete', NULL, 'super777', '$2y$10$rn6rdqBmr51w3xJTR22LjuiGhkiW3uSy3cD4qPPegaacpEUrZKsWq', NULL, NULL, 'kabelokwasi@gmail.com', 0, 'Admin', 0, NULL, 1424733267, 1425683153, 0, NULL, '54507', NULL, NULL, 'DEFAULT', NULL),
+(1, 1, 'Kwasi', 'Kgwete', NULL, 'super777', '$2y$10$rn6rdqBmr51w3xJTR22LjuiGhkiW3uSy3cD4qPPegaacpEUrZKsWq', NULL, NULL, 'kabelokwasi@gmail.com', 0, 'Admin', 0, NULL, 1424733267, 1427566718, 0, NULL, '54507', NULL, NULL, 'DEFAULT', NULL),
 (9, 9, 'Mpedi', 'Mello', '0790788189', 'admin', '$2y$10$hlJLX2ut8bLX2Q1EI/ZB6Ou5D3e5uIUcTsPgQb9gWweY.94IzPumO', 'M', '1992-09-19', 'mp.mello5@gmail.com', 1, 'User', 0, NULL, NULL, 1426956504, 0, NULL, NULL, NULL, NULL, 'DEFAULT', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

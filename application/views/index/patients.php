@@ -32,7 +32,8 @@
 					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
 				</table>
 				<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
-				<button class="btn btn-default btnEditPatients btn-sm" type="button" >Edit</button>
+				<button class="btn btn-default btnEditPatients btn-sm" type="button" >More</button>
+				<button class="btn btn-default btnDeletePatients btn-sm" type="button" >Use</button>
 				<button class="btn btn-default btnDeletePatients btn-sm" type="button" >Delete</button>
 			</div>
 		</div>	
@@ -71,21 +72,29 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="name" class="col-sm-2 control-label">Name</label>
+							<div class="col-xs-10">
+								<input type="text" id="name" name="name" placeholder="Name" class="form-control" />
+							</div>
+						</div>						
+						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Surname</label>
 							<div class="col-xs-10">
-								<input type="text" id="surnamae" name="surname" placeholder="Khathaza" class="form-control" />
+								<input type="text" id="surnamae" name="surname" placeholder="Surname" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Email</label>
 							<div class="col-xs-10">
-								<input type="text" id="email" name="email" placeholder="pasekamonyeki@gmail.com" class="form-control" />
+								<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="State" class="col-sm-2 control-label">Address</label>
 							<div class="col-xs-10">
-								<input type="textarea" id="authcode" name="authcode" placeholder="x2r44f" class="form-control" />
+								<input type="text" id="authcode" name="address1" placeholder="Address 1" class="form-control" />
+								<input type="text" id="authcode" name="address2" placeholder="Address 2" class="form-control" />
+								<input type="text" id="authcode" name="address3" placeholder="Address 3" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -214,7 +223,7 @@
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="project_name">Email</label>
 								<div class="col-xs-10">
-									<input type="text" name="email" placeholder="pasekamonyeki@gmail.com" class="form-control generic" data-field="email" data-set="value" />
+									<input type="text" name="email" placeholder="Email" class="form-control generic" data-field="email" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
