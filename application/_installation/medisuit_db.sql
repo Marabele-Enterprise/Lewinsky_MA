@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2015 at 08:35 PM
+-- Generation Time: Mar 28, 2015 at 09:20 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `ms_medical_aid` (
 --
 
 CREATE TABLE IF NOT EXISTS `ms_patient` (
-  `patient_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL AUTO_INCREMENT,
   `cust` varchar(10) NOT NULL,
   `name` varchar(150) NOT NULL,
   `surname` varchar(50) NOT NULL,
@@ -281,15 +281,14 @@ CREATE TABLE IF NOT EXISTS `ms_patient` (
   `id_number` varchar(40) NOT NULL,
   `authcode` varchar(40) NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `ms_patient`
 --
 
 INSERT INTO `ms_patient` (`patient_id`, `cust`, `name`, `surname`, `initials`, `patient`, `address1`, `address2`, `address3`, `pc`, `phone`, `cell`, `email`, `authno`, `patdob`, `patid`, `medcod`, `medaid`, `medno`, `refby`, `drpr`, `diag1`, `disorder1`, `accbf`, `age1`, `patpay`, `amnap`, `stmlangs`, `stmsuppress`, `comment`, `tarif`, `disorder`, `dtad`, `dtlu`, `todue`, `title`, `memid`, `medperc`, `gender`, `closed`, `emailstmsw`, `patliabsw`, `trimmedtitle`, `msgkey`, `emailcc`, `emailpat`, `cellpat`, `depcod`, `noedi`, `id_number`, `authcode`) VALUES
-(0, '', '675', '675', '765', 0, '576', '5765', '67', '', '', '75', '67', '', '0000-00-00', '', '', '657', '65', '76', '', '57', '576', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, '765', 0, 0, '65', 'false', 'true', '', '', '', '', '', '', '', 'false', '56', '76'),
-(1, '', '', 'Khathaza', 'P A', 0, '0', '', '', '', '', '07822334466', 'pasekamonyeki@gmail.com', '', '1998-08-08', '', '', 'HappyMeds', '1100 6708 08', 'Dr love', '', 'Bipolar Diagonis', 'Flu', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, 'Mr', 0, 0, 'Male', 'false', 'true', '', '', '', '', '', '', '', 'false', '954444090909', 'x2rff');
+(1, '', '987', '987', '987', 0, '987', '987', '89', '', '', '78', '987', '', '0000-00-00', '', '', '8', '98', '97', '', '987', '987', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, '97', 0, 0, '798', 'false', 'true', '', '', '', '', '', '', '', 'false', '789', '87');
 
 -- --------------------------------------------------------
 
