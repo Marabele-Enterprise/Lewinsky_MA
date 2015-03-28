@@ -44,6 +44,7 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="<?php echo URL; ?>index/index" >Home <span class="sr-only">(current)</span></a></li>
 						<li><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts" >Patients</a></li>
+						<li><a href="<?php echo URL; ?>index/aid_holder" class="" title="Medical Aid Holder" >Aid Holder</a></li>
 						<li><a href="<?php echo URL; ?>index/doctors" class="" >Doctors</a></li>
 						<li><a href="<?php echo URL; ?>index/medical_aids" class="" >Medical Aids</a></li>
 						<li><a href="<?php echo URL; ?>index/tariff_codes" class="" >Tariff Codes</a></li>
