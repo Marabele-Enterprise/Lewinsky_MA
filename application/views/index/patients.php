@@ -33,7 +33,10 @@
 				</table>
 				<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
 				<button class="btn btn-default btnEditPatients btn-sm" type="button" >More</button>
-				<button class="btn btn-default btnDeletePatients btn-sm" type="button" >Use</button>
+				<form action="<?php echo URL; ?>index/use_aid_holder" method="post" class="postLink" >
+				    <input type="hidden" name="patient_id" value="" class="generic" data-field="patient_id" data-set="value" />
+				    <button type="submit" class="btn btn-default btn-sm" >Use</button>
+				</form>
 				<button class="btn btn-default btnDeletePatients btn-sm" type="button" >Delete</button>
 			</div>
 		</div>	
