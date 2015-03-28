@@ -261,6 +261,7 @@
 <script type="text/javascript" src="<?php echo URL; ?>public/plugins/slick/slick.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script>
+	$("li#services").addClass("active");
 
 /*
 	Theses are the jquery.forms options for frmAddMedicalAid above that uses the generic controller 

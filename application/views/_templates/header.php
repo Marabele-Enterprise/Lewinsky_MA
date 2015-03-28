@@ -42,32 +42,43 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="<?php echo URL; ?>index/index" >Home <span class="sr-only">(current)</span></a></li>
+						<!--li class="active"><a href="<?php echo URL; ?>index/index" >Home <span class="sr-only">(current)</span></a></li>
 						<li><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts" >Patients</a></li>
+						<li><a href="<?php echo URL; ?>index/aid_holder" class="" title="Medical Aid Holder" >Aid Holder</a></li>
 						<li><a href="<?php echo URL; ?>index/doctors" class="" >Doctors</a></li>
 						<li><a href="<?php echo URL; ?>index/medical_aids" class="" >Medical Aids</a></li>
 						<li><a href="<?php echo URL; ?>index/tariff_codes" class="" >Tariff Codes</a></li>
 						<li><a href="<?php echo URL; ?>index/diagnosis" class="" >Diagnosis</a></li>
-						<!--li><a href="<?php echo URL; ?>index/messages" class="" >Messages</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
+						<!--li><a href="<?php echo URL; ?>index/messages" class="" >Messages</a></li-->
+						<li id="services" class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
+								<li><a href="<?php echo URL; ?>index/doctors" class="">Doctors</a></li>
+								<li><a href="<?php echo URL; ?>index/medical_aids" class="">Medical Aids</a></li>
+								<li><a href="<?php echo URL; ?>index/tariff_codes" class="">Tariff Codes</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
+								<li><a href="<?php echo URL; ?>index/diagnosis" class="">Diagnosis</a></li>
 								<li class="divider"></li>
-								<li><a href="#">One more separated link</a></li>
+								<li><a href="<?php echo URL; ?>index/messages" class="">Messages</a></li>
 							</ul>
-						</li -->
+						</li>
+						<li id="patients"><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts">Patients</a></li>
+						<li id="reports" class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="<?php echo URL; ?>report/age_analysis" class="">Age Analysis</a></li>
+								<li><a href="<?php echo URL; ?>report/transaction_summary" class="">Transaction Summary</a></li>
+								<li><a href="<?php echo URL; ?>report/audit_trail" class="">Audit Trail</a></li>
+								<li class="divider"></li>
+								<li><a href="<?php echo URL; ?>report/daily_listing" class="">Daily Listing</a></li>
+								<li class="divider"></li>
+								<li><a href="<?php echo URL; ?>report/payment_profile" class="">Payment Profile</a></li>
+								<li><a href="<?php echo URL; ?>report/vat_report" class="">VAT report</a></li>
+								<li><a href="<?php echo URL; ?>report/statements" class="">Statements</a></li>
+							</ul>
+						</li>
 					</ul>
-					<!-- form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form -->
+					
 					<ul class="nav navbar-nav navbar-right">
 						<!--li><a href="#">Link</a></li -->
 						<li class="dropdown">

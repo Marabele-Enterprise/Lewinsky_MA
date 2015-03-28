@@ -57,6 +57,53 @@
 <script type="text/javascript" src="<?php echo URL; ?>public/plugins/slick/slick.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 
+<script>
+	$("li#services").addClass("active");
+
+/*
+	Theses are the jquery.forms options for frmAddDoctor above that uses the generic controller 
+*/
+var options = {
+	beforeSend: function(){
+	$("#loader1").fadeIn("fast");
+	console.log("beforeSend");
+	}, uploadProgress: function(event, position, total, percentComplete){
+		console.log("uploadProgress");
+	}, success: function(response){
+		//clear all fields and close the modal
+		$("#loader1").fadeOut("fast");
+		
+		$("#createDoctor").modal("hide");
+		
+		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Doctor Added Successfully</div>");
+		
+		refreshDoctorsView();
+		
+		$('form')[0].reset();
+		
+		//This code segment removes the feedback automatically
+		var delay = 10666;
+		setTimeout(function() {
+		    $("#feedback").children().fadeOut().html("");
+		}, delay);
+
+	}, complete: function(response){
+		$("#loader1").remove();
+		console.log("Complete. response: "+response.responseText);
+	}, error: function(){
+		$("#createDoctor").modal("hide");
+		
+		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
+		
+		//clear all fields
+		$('form')[0].reset();
+		
+		console.log("ERROR: ");
+	}
+};
+//Initiat AJAX on submit of frmAddDoctor
+$("#frmAddDoctor").ajaxForm(options);
+
 <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-1.11.2.min.js"></script>
 
 

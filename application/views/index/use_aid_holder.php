@@ -1,10 +1,10 @@
 <div class="container" >       
 	<div class="row">
-		<h2>Tariff Codes</h2>
+		<h2>Use Mediacal Aid Holder</h2>
 		<div id="feedback">
 		</div>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createTariffCode" >
-			<span class="glyphicon glyphicon-plus"></span> New Tariff Code
+			<span class="glyphicon glyphicon-plus"></span> New Medical Aid Holder
 		</button>
 	</div>
 </div>	
@@ -300,7 +300,6 @@
 <script type="text/javascript" src="<?php echo URL; ?>public/plugins/slick/slick.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script>
-	$("li#services").addClass("active");
 
 /*
 	Theses are the jquery.forms options for frmAddTariffCode above that uses the generic controller 

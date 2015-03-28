@@ -11,10 +11,10 @@ class Index extends Controller
      */
     function __construct()
     {
-	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+	   // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
         Auth::handleLogin();
 	
-	parent::__construct();
+	   parent::__construct();
     }
 
     /**
@@ -23,9 +23,9 @@ class Index extends Controller
      */
     function index()
     {
-	//Session::set('session_id', $this->generateRandomString(15));
-	
-	$this->view->render('index/index');
+    	//Session::set('session_id', $this->generateRandomString(15));
+    	
+    	$this->view->render('index/index');
     }
 
     function generateRandomString($length = 10) {
@@ -87,6 +87,24 @@ class Index extends Controller
     function messages()
     {
        $this->view->render('index/messages');
-    }   
+    }  
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function use_aid_holder()
+    {
+       $this->view->render('index/use_aid_holder');
+    } 
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function aid_holder()
+    {
+       $this->view->render('index/aid_holder');
+    }           
     
 }
