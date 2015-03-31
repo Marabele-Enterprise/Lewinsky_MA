@@ -44,7 +44,7 @@
 						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>doctor" >
 					</div>
 					<div class="modal-footer">
-						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
+						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button id="save" type="submit" class="btn btn-primary">Save</button>
 					</div>
@@ -72,7 +72,7 @@
 				-->				
 				<form class="form-horizontal" id="frmEditMessage" role="form"  onsubmit="return false" method="post" enctype="multipart/form-data"  >
 					<div class="modal-body">
-						<div id="feedback"></div>
+						<div id="e_feedback"></div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="title">Subject</label>
 							<div class="col-xs-10">
@@ -90,10 +90,41 @@
 					</div>
 					<div class="modal-footer">
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
-						<button id = "close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button id = "e_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button id = "e_save" type="submit" class="btn btn-primary">Save</button>
 					</div>
 				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div><!-- /.modal rows-->
+
+
+
+
+
+<div class="modal-rows">
+
+	<div class="modal fade" id="viewMessage">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- 
+					*If you have select a create task, you can use a combination of the generic controller and jquery forms to simplify
+					*the submitting of data to the database. Below is an example of how to use it. The input field names must
+					*be the same as the attribute names in the table you are creating in. In the script tags, there is a jquery.forms
+					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
+					*create a new controller and model function to handle the process the way you want.
+				-->				
+				<div class="thumbnail">
+				<table class="table table-bordered">
+					<tr class="active"><td><b>Subject:</b></td><td id="v_subj" class="generic" data-field="title" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Message:</b></td><td id="v_messageText" class="generic" data-field="initials" data-set="innertext"></tr>
+                                        <tr class="active"><td><b>Date:</b></td><td id="v_date" class="generic" data-field="initials" data-set="innertext"></td></tr>
+				</table>
+                                    
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                
+                        <br></div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -111,14 +142,14 @@
 				from the database you want to print in that tag. The attribute data-set tells it what to print
 				to. Possible values for dataset=(innertext, value, src, href, ...).
 			-->
-			<div class="thumbnail">
-	<!--			<table class="table table-bordered">
+	<!--		<div class="thumbnail">
+				<table class="table table-bordered">
 					<tr class="active"><td><b>Subject:</b></td><td id="m_subject" class="generic" data-field="title" data-set="innertext"></td>
 					<td><b>Date:</b></td><td id="m_date" class="generic" data-field="initials" data-set="innertext"></td></tr>
 				</table>
 				<button class="btn btn-default btnEditMessage btn-sm" type="button" data-toggle="modal" data-target="#editMessage">Edit</button>
 				<button class="btn btn-default btnDeleteMessage btn-sm" type="button">Delete</button>
-	-->		<br></div>
+			<br></div>-->
 		</div>	
 	</div>
 </div>
@@ -147,7 +178,7 @@
     
     
     $("#save").click(function(){
-        alert($("#messageText").val());
+      //  alert($("#messageText").val());
         var message ="'"+$("#messageText").val()+"'"; var sub_ = "'"+$("#subj").val()+"'";
         var qu = "ms_text_message (message_subject, message_text, message_date)";
         if (sub_ == "") 
@@ -157,7 +188,9 @@
         var msg = {"instruction":"insert", "query":quer}
         //alert("sec "+msg.query);
         ajax_call(msg,false);
-        
+       // alert("ayoo");
+        window.location.reload();
+        //alert(delivery);
 //        window.location = handler;
         
         
@@ -212,7 +245,7 @@
         //$("#e_subj").val(delivery[m_id-1][1]);
         var hlp = delete_row("ms_text_message","WHERE message_id="+m_id);
         ajax_call(hlp,false);
-        alert(delivery +" * "+ m_id);
+     //   alert(delivery +" * "+ m_id);
         window.location.reload();
 //        $("")
         //this.hide();
@@ -235,6 +268,23 @@
         window.location.reload();
         
         //alert(delivery)
+    });
+    
+    $(".btn.btn-default.btnViewMessage.btn-sm").click(function(){
+        save_id = this.getAttribute("id");
+        var arr = save_id.split("-");
+       
+        var m_id = arr[1];
+        m_id = getIndex(arr[1]);
+        var hlp = get_table("ms_text_message","");
+        hlp = {"instruction":"get-table", "query":hlp};
+        ajax_call(hlp,false);
+        $("#v_subj").html(delivery[m_id][1]);
+        $("#v_messageText").html(delivery[m_id][2]);
+        $("#v_date").html(delivery[m_id][3]);
+    //    alert(delivery +" * "+ m_id);
+       // window.location.reload();
+//      
     });
     
     function getIndex(_id) {
@@ -304,8 +354,10 @@
                             +'<table id= "msg_'+_mid+'" class="table table-bordered">'
                                     +'<tr class="active"><td><b>Subject:</b></td><td id="m_subject-'+_mid+'" class="generic" data-field="title" data-set="innertext">'+_subject+'</td><tr>'                                   
                                     +'<tr class="active"><td><b>Date:</b></td><td id="m_date-'+_mid+'" class="generic" data-field="initials" data-set="innertext">'+_date+'</td></tr>' 
-                            +'</table><button id="edit-'+_mid+'" class="btn btn-default btnEditMessage btn-sm" type="button" data-toggle="modal" data-target="#editMessage">Edit</button>'
-                            +'<button id="delete-'+_mid+'" class="btn btn-default btnDeleteMessage btn-sm" type="button" >Delete</button><br>'
+                            +'</table>'
+                            +'<button id="edit-'+_mid+'" class="btn btn-default btnEditMessage btn-sm" type="button" data-toggle="modal" data-target="#editMessage">Edit</button>'
+                            +'<button id="delete-'+_mid+'" class="btn btn-default btnDeleteMessage btn-sm" type="button" >Delete</button>'
+                            +'<button id="view-'+_mid+'" class="btn btn-default btnViewMessage btn-sm" type="button" data-toggle="modal" data-target="#viewMessage">View</button>'
                             +'</div>';
 //       alert("plural");
         return _block;
