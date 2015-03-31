@@ -1,13 +1,13 @@
 <div class="container" >       
 	<div class="row">
-		<h2>Use Mediacal Aid Holder</h2>
+		<h2><?php echo $this->patient_id; ?> Use Medical Aid Holder</h2>
 		<div id="feedback">
 		</div>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createTariffCode" >
 			<span class="glyphicon glyphicon-plus"></span> New Medical Aid Holder
 		</button>
 	</div>
-</div>	
+</div>
 <!-- 
 	The generic class can print data from the database onto a element design of your choice.
 	An element will be printed for each row from your select statement which needs to be 

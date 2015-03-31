@@ -104,8 +104,15 @@ class Index extends Controller
      */
     function use_aid_holder()
     {
-       $this->view->render('index/use_aid_holder');
-    } 
+        if(isset($_POST["patient_id"])){
+            $generic_model = $this->loadModel('Generic');
+            $this->view->patient_id = $_POST["patient_id"];
+
+            $genericGetRequest = array('table' => PREFIX."patient", 'fields' => "*", 'where' => "patient_id = ".$_POST['patient_id'], 'returnType' => "array");
+            $this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);
+            $this->view->render('index/use_aid_holder');
+        }
+    }
 
     /**
      * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
@@ -113,7 +120,7 @@ class Index extends Controller
      */
     function aid_holder()
     {
-       $this->view->render('index/aid_holder');
+        $this->view->render('index/aid_holder');
     }           
     
 }
