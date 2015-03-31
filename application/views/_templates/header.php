@@ -55,11 +55,13 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="<?php echo URL; ?>index/doctors" class="">Doctors</a></li>
 								<li><a href="<?php echo URL; ?>index/medical_aids" class="">Medical Aids</a></li>
-								<li><a href="<?php echo URL; ?>index/tariff_codes" class="">Tariff Codes</a></li>
+								<li><a href="<?php echo URL; ?>index/aid_holder" class="" title="Medical Aid Holder">Medical Aid Holder</a></li>
 								<li class="divider"></li>
 								<li><a href="<?php echo URL; ?>index/diagnosis" class="">Diagnosis</a></li>
+								<li><a href="<?php echo URL; ?>index/tariff_codes" class="">Tariff Codes</a></li>
 								<li class="divider"></li>
-								<li><a href="<?php echo URL; ?>index/messages" class="">Messages</a></li>
+								<li><a href="<?php echo URL; ?>index/messages">Text Messages</a></li>
+								<li><a href="<?php echo URL; ?>index/statement_messages">Statement Messages</a></li>
 							</ul>
 						</li>
 						<li id="patients"><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts">Patients</a></li>
@@ -81,12 +83,7 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<!--li><a href="#">Link</a></li -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo (Session::get("user_logged_in") == "true" ? Session::get("firstname") : "Account"); ?><span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<?php echo getAccountMenu(Session::get('user_logged_in'), Session::get('user_account_type')); ?>
-							</ul>
-						</li>
+						<li><a href="#"><?php echo (Session::get("user_logged_in") == "true" ? Session::get("username") : "Not Authorized"); ?></a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->
