@@ -83,12 +83,7 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<!--li><a href="#">Link</a></li -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo (Session::get("user_logged_in") == "true" ? Session::get("firstname") : "Account"); ?><span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<?php echo getAccountMenu(Session::get('user_logged_in'), Session::get('user_account_type')); ?>
-							</ul>
-						</li>
+						<li><a href="#"><?php echo (Session::get("user_logged_in") == "true" ? Session::get("username") : "Not Authorized"); ?></a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->

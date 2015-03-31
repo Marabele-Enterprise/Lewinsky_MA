@@ -1,17 +1,17 @@
 <div class="container" >       
 	<div class="row">
-		<h2>Patients</h2>
+		<h2>patients</h2>
 		<div id="feedback">
 		</div>
-		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createPatients" >
-			<span class="glyphicon glyphicon-plus"></span> New Patient
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createpatient" >
+			<span class="glyphicon glyphicon-plus"></span> New patient
 		</button>
 	</div>
 </div>	
 <!-- 
 	The generic class can print data from the database onto a element design of your choice.
 	An element will be printed for each row from your select statement which needs to be 
-	written in script tags. See the function refreshPatientssView() bellow to see how to 
+	written in script tags. See the function refreshpatientsView() bellow to see how to 
 	generate the view.
  -->
 <div class="container-fluid" >       
@@ -27,17 +27,18 @@
 			<div class="thumbnail">
 				<table class="table table-bordered">
 					<tr class="active"><td><b>Name</b></td><td class="generic" data-field="name" data-set="innertext"></td></tr>
-					<tr><td><b>Initials</b></td><td class="generic" data-field="initials" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
+					<tr><td><b>ID</b></td><td class="generic" data-field="id" data-set="innertext"></td></tr>
+					<tr><td><b>Date of birth</b></td><td class="generic" data-field="date_of_birth" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Cell</b></td><td class="generic" data-field="cell" data-set="innertext"></td></tr>
 					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Gender</b></td><td class="generic" data-field="gender" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Diagnoses</b></td><td class="generic" data-field="diagnoses" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Referring Dr</b></td><td class="generic" data-field="referring_doc" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Dependent code</b></td><td class="generic" data-field="dependent_code" data-set="innertext"></td></tr>
 				</table>
 				<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
-				<button class="btn btn-default btnEditPatients btn-sm" type="button" >More</button>
-				<form action="<?php echo URL; ?>index/use_aid_holder" method="post" class="postLink" >
-				    <input type="hidden" name="patient_id" value="" class="generic" data-field="patient_id" data-set="value" />
-				    <button type="submit" class="btn btn-default btn-sm" >Use</button>
-				</form>
-				<button class="btn btn-default btnDeletePatients btn-sm" type="button" >Delete</button>
+				<button class="btn btn-default btnEditPatient btn-sm" type="button" >Edit</button>
+				<button class="btn btn-default btnDeletepatient btn-sm" type="button" >Delete</button>
 			</div>
 		</div>	
 	</div>
@@ -45,12 +46,12 @@
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
 <div class="modal-rows">
 
-	<div class="modal fade" id="createPatients">
+	<div class="modal fade" id="createpatient">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">New Patient</h4>
+					<h4 class="modal-title">New patient</h4>
 				</div>
 				<!-- 
 					*If you have select a create task, you can use a combination of the generic controller and jquery forms to simplify
@@ -59,124 +60,66 @@
 					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
 					*create a new controller and model function to handle the process the way you want.
 				-->				
-				<form class="form-horizontal" id="frmAddPatients" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
+				<form class="form-horizontal" id="frmAddpatient" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
 					<div class="modal-body">
 						<div id="feedback"></div>
 						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Title</label>
+							<label class="col-xs-2 control-label" for="Name">Name</label>
 							<div class="col-xs-10">
-								<input type="text" id="title" name="title" placeholder="Mr or Mrs" class="form-control" />
+								<input type="text" id="title" name="name" placeholder="Sick as it gets" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="gmail" class="col-sm-2 control-label">Initials</label>
+							<label class="col-xs-2 control-label" for="identification">ID number</label>
 							<div class="col-xs-10">
-								<input type="text" id="initials" name="initials" placeholder="initial" class="form-control" />
+								<input type="text" id="id" name="id" placeholder="id" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Name</label>
+							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
 							<div class="col-xs-10">
-								<input type="text" id="name" name="name" placeholder="Name" class="form-control" />
-							</div>
-						</div>						
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Surname</label>
-							<div class="col-xs-10">
-								<input type="text" id="surnamae" name="surname" placeholder="Surname" class="form-control" />
+								<input type="text" id="date_of_birth" name="date_of_birth" placeholder="date_of_birth" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Email</label>
+							<label class="col-xs-2 control-label" for="gender">Gender</label>
 							<div class="col-xs-10">
-								<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
+								<input type="text" id="gender" name="gender" placeholder="gender" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Address</label>
+							<label class="col-xs-2 control-label" for="phone">Cell</label>
 							<div class="col-xs-10">
-								<input type="text" id="authcode" name="address1" placeholder="Address 1" class="form-control" />
-								<input type="text" id="authcode" name="address2" placeholder="Address 2" class="form-control" />
-								<input type="text" id="authcode" name="address3" placeholder="Address 3" class="form-control" />
+								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">ID number</label>
+							<label class="col-xs-2 control-label" for="phone">Email</label>
 							<div class="col-xs-10">
-								<input type="text" id="id_number" name="id_number" placeholder="954446780954" class="form-control" />
+								<input type="text" id="email" name="email" placeholder="email" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Date of birth</label>
+							<label class="col-xs-2 control-label" for="phone">Diagnoses</label>
 							<div class="col-xs-10">
-								<input type="text" id="patdob" name="patdob" placeholder="" class="form-control" />
+								<input type="text" id="diagnoses" name="diagnoses" placeholder="diagnoses" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Gender</label>
+							<label class="col-xs-2 control-label" for="drpr">Dependednt code</label>
 							<div class="col-xs-10">
-								<input type="text" id="gender" name="gender" placeholder="Male or Female " class="form-control" />
+								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Cell</label>
+							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
 							<div class="col-xs-10">
-								<input type="text" id="cell" name="cell" placeholder="DRPR ?" class="form-control" />
+								<input type="text" id="referring_doc" name="referring_doc" placeholder="Dr love" class="form-control" />
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Referring doctor</label>
-							<div class="col-xs-10">
-								<input type="text" id="refby" name="refby" placeholder="Dr love" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Disorder</label>
-							<div class="col-xs-10">
-								<input type="text" id="disorder1" name="disorder1" placeholder="Flu" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Diagnosis</label>
-							<div class="col-xs-10">
-								<input type="text" id="diag1" name="diag1" placeholder="Bipolar Diagnosis" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Medical Aid</label>
-							<div class="col-xs-10">
-								<input type="text" id="medaid" name="medaid" placeholder="Happy meds" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Medical Aid Number</label>
-							<div class="col-xs-10">
-								<input type="text" id="medno" name="medno" placeholder="1100 697 500" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Authorisation code</label>
-							<div class="col-xs-10">
-								<input type="text" id="authcode" name="authcode" placeholder="x2r44f" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Tariff</label>
-							<div class="col-xs-10">
-								<input type="text" id="authcode" name="authcode" placeholder="x2r44f" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="State" class="col-sm-2 control-label">Comment</label>
-							<div class="col-xs-10">
-								<input type="text" id="authcode" name="authcode" placeholder="x2r44f" class="form-control" />
-							</div>
-						</div>														
-							
-						</div>														
+						</div>															
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
 						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient" >
-					
+					</div>
 					<div class="modal-footer">
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -187,12 +130,12 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-	<div class="modal fade" id="editPatients">
+	<div class="modal fade" id="editPatient">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">Edit Patient</h4>
+					<h4 class="modal-title">Edit patient</h4>
 				</div>
 				<!-- 
 					*If you have select a edit task, you can use a combination of the generic controller and jquery forms to simplify
@@ -200,116 +143,61 @@
 					*be the same as the attribute names in the table you are updating in. In the script tags, there is a jquery.forms
 					*function for this form to make it use ajax. If your update requires multiple update in multiple tables, then you are gonna have to
 					*create a new controller and model function to handle the process the way you want.
-				-->				
-				<form class="form-horizontal" id="frmEditPatients" role="form" action="<?php echo URL; ?>generic/genericUpdate" method="post" enctype="multipart/form-data"  >
+				-->	<!--doctorsEditTarget-->
+				<form class="form-horizontal" id="frmEditpatient" role="form" action="<?php echo URL; ?>generic/genericUpdate" method="post" enctype="multipart/form-data"  >
 					<div class="patientsEditTarget">
 						<div class="modal-body patientsEditDesign">
 							<div id="feedback"></div>
 							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Title</label>
-								<div class="col-xs-10">
-									<input type="text" name="title" placeholder="Mr or Mrs" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+							<label class="col-xs-2 control-label" for="Name">Name</label>
+							<div class="col-xs-10">
+								<input type="text" id="title" name="name" placeholder="Sick as it gets" class="form-control generic" data-field="name" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label for="gmail" class="col-sm-2 control-label">Initials</label>
-								<div class="col-xs-10">
-									<input type="text" name="initials" placeholder="initial" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="identification">ID number</label>
+							<div class="col-xs-10">
+								<input type="text" id="id" name="id" placeholder="id" class="form-control generic" data-field="id" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label for="name" class="col-sm-2 control-label">Surname</label>
-								<div class="col-xs-10">
-									<input type="text" name="surname" placeholder="Khathaza" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
+							<div class="col-xs-10">
+								<input type="date" id="date_of_birth" name="yyyy/mm/dd" placeholder="date_of_birth" class="form-control generic" data-field="date_of_birth" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="project_name">Email</label>
-								<div class="col-xs-10">
-									<input type="text" name="email" placeholder="Email" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="gender">Gender</label>
+							<div class="col-xs-10">
+								<input type="text" id="gender" name="gender" placeholder="gender" class="form-control generic" data-field="gender" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Address</label>
-								<div class="col-xs-10">
-									<input type="textarea" name="authcode" placeholder="x2r44f" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Cell</label>
+							<div class="col-xs-10">
+								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control generic" data-field="cell" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">ID number</label>
-								<div class="col-xs-10">
-									<input type="text" name="id_number" placeholder="954446780954" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Diagnoses</label>
+							<div class="col-xs-10">
+								<input type="text" id="diagnoses" name="diagnoses" placeholder="diagnoses" class="form-control generic" data-field="diagnoses" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Date of birth</label>
-								<div class="col-xs-10">
-									<input type="text" name="patdob" placeholder="" class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="drpr">Dependednt code</label>
+							<div class="col-xs-10">
+								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control generic" data-field="dependent_code" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Gender</label>
-								<div class="col-xs-10">
-									<input type="text" name="gender" placeholder="Male or Female " class="form-control generic" data-field="email" data-set="value" />
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
+							<div class="col-xs-10">
+								<input type="text" id="referring_doc" name="referring_doc" placeholder="Dr love" class="form-control generic" data-field="referring_doc" data-set="value"/>
 							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Cell</label>
-								<div class="col-xs-10">
-									<input type="text" name="cell" placeholder="DRPR ?" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Referring doctor</label>
-								<div class="col-xs-10">
-									<input type="text" name="refby" placeholder="Dr love" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Disorder</label>
-								<div class="col-xs-10">
-									<input type="text" name="disorder1" placeholder="Flu" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Diagnosis</label>
-								<div class="col-xs-10">
-									<input type="text" name="diag1" placeholder="Bipolar Diagnosis" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Medical Aid</label>
-								<div class="col-xs-10">
-									<input type="text" name="medaid" placeholder="Happy meds" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Medical Aid Number</label>
-								<div class="col-xs-10">
-									<input type="text" name="medno" placeholder="1100 697 500" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Authorisation code</label>
-								<div class="col-xs-10">
-									<input type="text" name="authcode" placeholder="x2r44f" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Tariff</label>
-								<div class="col-xs-10">
-									<input type="text" name="authcode" placeholder="x2r44f" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="State" class="col-sm-2 control-label">Comment</label>
-								<div class="col-xs-10">
-									<input type="text" name="authcode" placeholder="x2r44f" class="form-control generic" data-field="email" data-set="value" />
-								</div>
-							</div>	
-								
+						</div>															
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient" >
+							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient">
 							<input type="hidden" id="table" name="where" value="patient_id = " class="generic" data-field="patient_id" data-set="value">
 						</div>
 					</div>	
@@ -328,10 +216,9 @@
 <script type="text/javascript" src="<?php echo URL; ?>public/plugins/slick/slick.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script>
-	$("li#patients").addClass("active");
 
 /*
-	Theses are the jquery.forms options for frmAddPatients above that uses the generic controller 
+	Theses are the jquery.forms options for frmAddpatient above that uses the generic controller 
 */
 var options = {
 	beforeSend: function(){
@@ -343,11 +230,11 @@ var options = {
 		//clear all fields and close the modal
 		$("#loader1").fadeOut("fast");
 		
-		$("#createPatients").modal("hide");
+		$("#createpatient").modal("hide");
 		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Patients Added Successfully</div>");
+		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>patient Added Successfully</div>");
 		
-		refreshPatientssView();
+		refreshpatientsView();
 		
 		$('form')[0].reset();
 		
@@ -361,7 +248,7 @@ var options = {
 		$("#loader1").remove();
 		console.log("Complete. response: "+response.responseText);
 	}, error: function(){
-		$("#createPatients").modal("hide");
+		$("#createpatient").modal("hide");
 		
 		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
 		
@@ -371,12 +258,12 @@ var options = {
 		console.log("ERROR: ");
 	}
 };
-//Initiat AJAX on submit of frmAddPatients
-$("#frmAddPatients").ajaxForm(options);
+//Initiat AJAX on submit of frmAddpatient
+$("#frmAddpatient").ajaxForm(options);
 
 
 /*
-	Theses are the jquery.forms options for frmEditPatients above that uses the generic controller 
+	Theses are the jquery.forms options for frmEditpatient above that uses the generic controller 
 */
 var options = {
 	beforeSend: function(){
@@ -388,11 +275,11 @@ var options = {
 		//clear all fields and close the modal
 		$("#loader1").fadeOut("fast");
 		
-		$("#editPatients").modal("hide");
+		$("#editPatient").modal("hide");
 		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Patients Updated Successfully</div>");
+		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>patient Updated Successfully</div>");
 		
-		refreshPatientssView();
+		refreshpatientsView();
 		
 		$('form')[0].reset();
 		
@@ -406,7 +293,7 @@ var options = {
 		$("#loader1").remove();
 		console.log("Complete. response: "+response.responseText);
 	}, error: function(){
-		$("#editPatients").modal("hide");
+		$("#editPatient").modal("hide");
 		
 		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
 		
@@ -416,8 +303,8 @@ var options = {
 		console.log("ERROR: ");
 	}
 };
-//Initiat AJAX on submit of frmAddPatients
-$("#frmEditPatients").ajaxForm(options);
+//Initiat AJAX on submit of frmAddpatient
+$("#frmEditpatient").ajaxForm(options);
 
 /**
  * This section creates the patients view
@@ -428,7 +315,7 @@ $("#frmEditPatients").ajaxForm(options);
  //Int this variable replace .patientDesign with your own design
 var containerDesign = $(".patientDesign:first").clone().wrapAll("<div/>").parent().html();
 
-function refreshPatientssView(){
+function refreshpatientsView(){
 	var emptyDesign = "<h2>There are no patients in the system</h2>";
 	
 	//To generate the view using generic class,  state the table, fields, where, order in the json object above
@@ -451,12 +338,12 @@ function refreshPatientssView(){
 	});
 }
 
-refreshPatientssView();
+refreshpatientsView();
 
 var patientsEditDesign = $(".patientsEditDesign:first").clone().wrapAll("<div/>").parent().html();
 
 function setBtnHandlers(){
-	$('.btnDeletePatients:not(.bound)').addClass('bound').on("touchstart click", function (e){
+	$('.btnDeletepatient:not(.bound)').addClass('bound').on("touchstart click", function (e){
 		e.preventDefault();
 		
 		var patient_id = $(this).parent().find(".patient_id_holder").val();
@@ -468,6 +355,7 @@ function setBtnHandlers(){
 				"table": '<?php echo PREFIX; ?>patient',
 				"where": "patient_id = "+patient_id
 			};
+
 			Generic.genericAction("delete", data, function(response){
 				console.log(response);
 				//refreshView();
@@ -475,9 +363,9 @@ function setBtnHandlers(){
 		} else {
 			//x = "You pressed Cancel!";
 		}		
-	});	
+	});
 
-	$('.btnEditPatients:not(.bound)').addClass('bound').on("touchstart click", function (e){
+	$('.btnEditPatient:not(.bound)').addClass('bound').on("touchstart click", function (e){
 		e.preventDefault();
 		
 		var patient_id = $(this).parent().find(".patient_id_holder").val();
@@ -494,8 +382,7 @@ function setBtnHandlers(){
 			console.log("Data append Completed =)");
 		});
 
-		$('#editPatients').modal('show');
-	});	
+		$('#editPatient').modal('show');
+	});
 }	
-
 </script>
