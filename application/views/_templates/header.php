@@ -55,11 +55,13 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="<?php echo URL; ?>index/doctors" class="">Doctors</a></li>
 								<li><a href="<?php echo URL; ?>index/medical_aids" class="">Medical Aids</a></li>
-								<li><a href="<?php echo URL; ?>index/tariff_codes" class="">Tariff Codes</a></li>
+								<li><a href="<?php echo URL; ?>index/aid_holder" class="" title="Medical Aid Holder">Medical Aid Holder</a></li>
 								<li class="divider"></li>
 								<li><a href="<?php echo URL; ?>index/diagnosis" class="">Diagnosis</a></li>
+								<li><a href="<?php echo URL; ?>index/tariff_codes" class="">Tariff Codes</a></li>
 								<li class="divider"></li>
-								<li><a href="<?php echo URL; ?>index/messages" class="">Messages</a></li>
+								<li><a href="<?php echo URL; ?>index/messages">Text Messages</a></li>
+								<li><a href="<?php echo URL; ?>index/statement_messages">Statement Messages</a></li>
 							</ul>
 						</li>
 						<li id="patients"><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts">Patients</a></li>
