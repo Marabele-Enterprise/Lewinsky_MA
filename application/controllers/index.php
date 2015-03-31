@@ -87,7 +87,16 @@ class Index extends Controller
     function messages()
     {
        $this->view->render('index/messages');
-    }  
+    }
+	
+	/**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function statement_messages()
+    {
+       $this->view->render('index/statement_messages');
+    }
 
     /**
      * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
