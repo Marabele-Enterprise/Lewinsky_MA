@@ -79,6 +79,7 @@
 								<li><a href="<?php echo URL; ?>report/statements" class="">Statements</a></li>
 							</ul>
 						</li>
+						<li id="icd_10"><a href="<?php echo URL; ?>help/icd_10" class="" title="ICD 10 Codes">ICD 10 Codes</a></li>
 					</ul>
 					
 					<ul class="nav navbar-nav navbar-right">
