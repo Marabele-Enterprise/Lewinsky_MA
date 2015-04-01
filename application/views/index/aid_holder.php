@@ -26,21 +26,18 @@
 			-->
 			<div class="thumbnail">
 				<table class="table table-bordered">
-					<tr class="active"><td><b>Code</b></td><td class="generic" data-field="code" data-set="innertext"></td></tr>
-					<tr><td><b>Description</b></td><td class="generic" data-field="description" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Private</b></td><td class="generic" data-field="private" data-set="innertext"></td></tr>
-					<tr><td><b>Med Aid 2010</b></td><td class="generic" data-field="med_aid_2010" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>IOD</b></td><td class="generic" data-field="iod" data-set="innertext"></td></tr>
-					<tr><td><b>Discovery</b></td><td class="generic" data-field="discovery" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Rate_5</b></td><td class="generic" data-field="rate_5" data-set="innertext"></td></tr>
-					<tr><td><b>Rate_7</b></td><td class="generic" data-field="rate_7" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Rate_8</b></td><td class="generic" data-field="rate_8" data-set="innertext"></td></tr>
-					<tr><td><b>Rate_9</b></td><td class="generic" data-field="rate_9" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Material</b></td><td class="generic" data-field="material" data-set="innertext"></td></tr>
-					<tr><td><b>Mod Minutes</b></td><td class="generic" data-field="modminutes" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Matpic</b></td><td class="generic" data-field="matpic" data-set="innertext"></td></tr>
-					<tr><td><b>Units</b></td><td class="generic" data-field="units" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Cf Type</b></td><td class="generic" data-field="cf_type" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
+					<tr><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Initials</b></td><td class="generic" data-field="initials" data-set="innertext"></td></tr>
+					<tr><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Cell</b></td><td class="generic" data-field="cell" data-set="innertext"></td></tr>
+					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Tariff Rate</b></td><td class="generic" data-field="tariff_rate" data-set="innertext"></td></tr>
+					<tr><td><b>Bill at</b></td><td class="generic" data-field="bill_at" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Medical Aid</b></td><td class="generic" data-field="medical_aid" data-set="innertext"></td></tr>
+					<tr><td><b>Medical Aid Number</b></td><td class="generic" data-field="medical_aid_number" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Member ID</b></td><td class="generic" data-field="member_id" data-set="innertext"></td></tr>
+					<tr><td><b>Authorisation Code</b></td><td class="generic" data-field="authorisation_code" data-set="innertext"></td></tr>
 				</table>
 				<input type="hidden" value="" class="aid_holder_id_holder generic" data-field="aid_holder_id" data-set="value" />
 				<button class="btn btn-default btnEditAidHolder btn-sm" type="button" >Edit</button>
@@ -72,8 +69,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="title">Surname</label>
 							<div class="col-xs-10">
-								<TEXTAREA class="form-control" >Hello</TEXTAREA>
-								<!--input type="text" name="surname" placeholder="Surname" class="form-control" /-->
+								<input type="text" name="surname" placeholder="Surname" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -91,9 +87,9 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="drpr">Address</label>
 							<div class="col-xs-10">
-								<input type="text" id="authcode" name="address1" placeholder="Address 1" class="form-control" />
-								<input type="text" id="authcode" name="address2" placeholder="Address 2" class="form-control" />
-								<input type="text" id="authcode" name="address3" placeholder="Address 3" class="form-control" />
+								<input type="text" name="address1" placeholder="Address 1" class="form-control" />
+								<input type="text" name="address2" placeholder="Address 2" class="form-control" />
+								<input type="text" name="address3" placeholder="Address 3" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -103,7 +99,7 @@
 							</div>
 						</div>	
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Cell</label>
+							<label class="col-xs-2 control-label" for="cell">Cell</label>
 							<div class="col-xs-10">
 								<input type="text" name="cell" placeholder="Cell" class="form-control" />
 							</div>
@@ -115,15 +111,15 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="email">CC Email</label>
+							<label class="col-xs-2 control-label" for="cc_email">CC Email</label>
 							<div class="col-xs-10">
 								<input type="text" name="cc_email" placeholder="CC Email" class="form-control" />
 							</div>
 						</div>						
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Tariff Rate</label>
+							<label class="col-xs-2 control-label" for="tariff_rate">Tariff Rate</label>
 							<div class="col-xs-10">
-								<select name="tariff_rate" >
+								<select name="tariff_rate" class="form-control" >
 									<option value="Private" >Private</option>
 									<option value="MedAid2010" >MedAid2010</option>
 									<option value="IOD" >IOD</option>
@@ -139,7 +135,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="drpr">Bill at</label>
 							<div class="col-xs-10">
-								<input type="text" id="rate_7" name="rate_7" placeholder="Rate 7" class="form-control" />
+								<input type="text" name="bill_at" placeholder="%" class="form-control" />
 							</div>
 						</div>
 						<fieldset class="iodDetails">
@@ -157,65 +153,77 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">Emp. Reg.#</label>
+								<label class="col-xs-2 control-label" for="iod_emp_reg_num">Emp. Reg.#</label>
 								<div class="col-xs-10">
-									<input type="text" id="emp_reg_num" name="" placeholder="Emp. Reg.#" class="form-control" />
+									<input type="text" name="iod_emp_reg_num" placeholder="Emp. Reg.#" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="date_of_injury" >Date of injury</label>
 								<div class="col-xs-10">
-									<input type="text" name="date_of_injury" placeholder="Date of injury" class="form-control" />
+									<input type="date" name="iod_date_of_injury" placeholder="Date of injury" class="form-control" />
 								</div>
 							</div>																					    						
     					</fieldset>
 
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Suppress Statement</label>
+							<label class="col-xs-2 control-label" for="supress_statement">Suppress Statement</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="rate_8" placeholder="Rate 8" class="form-control" />
+								<select name="supress_statement" class="form-control" >
+									<option value="True" >True</option>
+									<option value="False" >False</option>
+								</select>	
 							</div>
 						</div>											
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Account Closed</label>
+							<label class="col-xs-2 control-label" for="account_closed">Account Closed</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="rate_9" placeholder="Rate 9" class="form-control" />
+								<select name="account_closed" class="form-control" >
+									<option value="True" >True</option>
+									<option value="False" >False</option>
+								</select>						
 							</div>
 						</div>	
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Allow E-Mail Statements</label>
+							<label class="col-xs-2 control-label" for="allow_email_statements" >Allow E-Mail Statements</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="material" placeholder="Material" class="form-control" />
+								<select name="allow_email_statements" class="form-control" >
+									<option value="True" >True</option>
+									<option value="False" >False</option>
+								</select>								
 							</div>
 						</div>	
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Print Patient Liability</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="modminutes" placeholder="Mod Minutes" class="form-control" />
+								<select name="print_patient_liability" class="form-control" >
+									<option value="True" >True</option>
+									<option value="False" >False</option>
+								</select>									
 							</div>
-						</div>	
+						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Medical Aid</label>
+							<label class="col-xs-2 control-label" for="medical_aid">Medical Aid</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="matpic" placeholder="Mat Pic" class="form-control" />
+								<input type="text" name="medical_aid" placeholder="Medical Aid" class="form-control" />
 							</div>
 						</div>	
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Medical Aid Number</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="units" placeholder="Units" class="form-control" />
+								<input type="text" name="medical_aid_number" placeholder="Medical Aid Number" class="form-control" />
 							</div>
 						</div>	
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Member ID</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="cf_type" placeholder="CF Type" class="form-control" />
+								<input type="text" name="member_id" placeholder="Member ID" class="form-control" />
 							</div>
 						</div>	
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Authorisation Code</label>
+							<label class="col-xs-2 control-label" for="authorisation_code">Authorisation Code</label>
 							<div class="col-xs-10">
-								<input type="text" id="iod" name="cf_type" placeholder="CF Type" class="form-control" />
+								<input type="text" name="authorisation_code" placeholder="Authorisation Code" class="form-control" />
 							</div>
 						</div>	
 																																																				
@@ -251,95 +259,170 @@
 						<div class="modal-body aid_holdersEditDesign">
 							<div id="feedback"></div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="code">Code</label>
+								<label class="col-xs-2 control-label" for="surname">Surname</label>
 								<div class="col-xs-10">
-									<input type="text" name="code" placeholder="Code" class="form-control generic" data-field="code" data-set="value" />
+									<input type="text" name="surname" placeholder="Surname" class="form-control generic" data-field="surname" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="description">Description</label>
+								<label class="col-xs-2 control-label" for="title">Title</label>
 								<div class="col-xs-10">
-									<input type="text" name="description" placeholder="Description" class="form-control generic" data-field="description" data-set="value" />
+									<input type="text" name="title" placeholder="Title" class="form-control generic" data-field="title" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="private">Private</label>
+								<label class="col-xs-2 control-label" for="initials">Initials</label>
 								<div class="col-xs-10">
-									<input type="text" name="private" placeholder="Private" class="form-control generic" data-field="private" data-set="value" />
+									<input type="text" name="initials" placeholder="Initials" class="form-control generic" data-field="initials" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="med_aid_2010">Med Aid 2010</label>
+								<label class="col-xs-2 control-label" for="drpr">Address</label>
 								<div class="col-xs-10">
-									<input type="text" name="med_aid_2010" placeholder="Med Aid 2010 ?" class="form-control generic" data-field="med_aid_2010" data-set="value" />
+									<input type="text" name="address1" placeholder="Address 1" class="form-control generic" data-field="address1" data-set="value" />
+									<input type="text" name="address2" placeholder="Address 2" class="form-control generic" data-field="address2" data-set="value" />
+									<input type="text" name="address3" placeholder="Address 3" class="form-control generic" data-field="address3" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="project_name">IOD</label>
+								<label class="col-xs-2 control-label" for="phone">Phone</label>
 								<div class="col-xs-10">
-									<input type="text" id="iod" name="iod" placeholder="IOD" class="form-control generic" data-field="iod" data-set="value" />
+									<input type="text" name="phone" placeholder="Phone" class="form-control generic" data-field="phone" data-set="value" />
 								</div>
 							</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="discovery">Discovery</label>
-							<div class="col-xs-10">
-								<input type="text" id="discovery" name="discovery" placeholder="Discovery" class="form-control generic" data-field="discovery" data-set="value" />
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="cell">Cell</label>
+								<div class="col-xs-10">
+									<input type="text" name="cell" placeholder="Cell" class="form-control generic" data-field="cell" data-set="value" />
+								</div>
+							</div>							
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="email">Email</label>
+								<div class="col-xs-10">
+									<input type="text" name="email" placeholder="Email" class="form-control generic" data-field="email" data-set="value" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Rate 5</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="rate_5" placeholder="Rate 5" class="form-control generic" data-field="rate_5" data-set="value" />
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="cc_email">CC Email</label>
+								<div class="col-xs-10">
+									<input type="text" name="cc_email" placeholder="CC Email" class="form-control generic" data-field="cc_email" data-set="value" />
+								</div>
+							</div>						
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="tariff_rate">Tariff Rate</label>
+								<div class="col-xs-10">
+									<select name="tariff_rate" class="form-control" >
+										<option class="generic" data-field="tariff_rate" data-set="innertext" ></option>
+										<option value="Private" >Private</option>
+										<option value="MedAid2010" >MedAid2010</option>
+										<option value="IOD" >IOD</option>
+										<option value="Discovery" >Discovery</option>
+										<option value="Rate 5" >Rate 5</option>
+										<option value="Medscheme" >Medscheme</option>
+										<option value="Rate 7" >Rate 7</option>
+										<option value="Rate 8" >Rate 8</option>
+										<option value="Rate 9" >Rate 9</option>
+									</select>
+								</div>
 							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Rate 7</label>
-							<div class="col-xs-10">
-								<input type="text" id="rate_7" name="rate_7" placeholder="Rate 7" class="form-control generic" data-field="rate_7" data-set="value" />
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="drpr">Bill at</label>
+								<div class="col-xs-10">
+									<input type="text" name="bill_at" placeholder="%" class="form-control generic" data-field="bill_at" data-set="value" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Rate 8</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="rate_8" placeholder="Rate 8" class="form-control generic" data-field="rate_8" data-set="value" />
+							<fieldset class="iodDetails">
+	    						<legend>IOD Details</legend>
+								<div class="form-group">
+									<label class="col-xs-2 control-label" for="iod_claim_number">IOD Claim Number</label>
+									<div class="col-xs-10">
+										<input type="text" name="iod_claim_number" placeholder="IOD Claim Number" class="form-control generic" data-field="iod_claim_number" data-set="value" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-2 control-label" for="employer">Employer</label>
+									<div class="col-xs-10">
+										<input type="text" name="iod_employer" placeholder="Employer" class="form-control generic" data-field="iod_employer" data-set="value" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-2 control-label" for="iod_emp_reg_num">Emp. Reg.#</label>
+									<div class="col-xs-10">
+										<input type="text" name="iod_emp_reg_num" placeholder="Emp. Reg.#" class="form-control generic" data-field="iod_emp_reg_num" data-set="value" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-2 control-label" for="date_of_injury" >Date of injury</label>
+									<div class="col-xs-10">
+										<input type="date" name="iod_date_of_injury" placeholder="Date of injury" class="form-control generic" data-field="iod_date_of_injury" data-set="value" />
+									</div>
+								</div>																					    						
+	    					</fieldset>
+
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="supress_statement">Suppress Statement</label>
+								<div class="col-xs-10">
+									<select name="supress_statement" class="form-control" >
+										<option selected class="form-control generic" data-field="supress_statement" data-set="innertext"></option>
+										<option value="True" >True</option>
+										<option value="False" >False</option>
+									</select>	
+								</div>
+							</div>											
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="account_closed">Account Closed</label>
+								<div class="col-xs-10">
+									<select name="account_closed" class="form-control">
+										<option selected class="form-control generic" data-field="account_closed" data-set="innertext"></option>
+										<option value="True" >True</option>
+										<option value="False" >False</option>
+									</select>						
+								</div>
+							</div>	
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="allow_email_statements" >Allow E-Mail Statements</label>
+								<div class="col-xs-10">
+									<select name="allow_email_statements" class="form-control" >
+										<option selected class="form-control generic" data-field="allow_email_statements" data-set="innertext"></option>
+										<option value="True" >True</option>
+										<option value="False" >False</option>
+									</select>								
+								</div>
+							</div>	
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="project_name">Print Patient Liability</label>
+								<div class="col-xs-10">
+									<select name="print_patient_liability" class="form-control" >
+										<option selected class="form-control generic" data-field="print_patient_liability" data-set="innertext"></option>
+										<option value="True" >True</option>
+										<option value="False" >False</option>
+									</select>									
+								</div>
 							</div>
-						</div>											
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Rate 9</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="rate_9" placeholder="Rate 9" class="form-control generic" data-field="rate_9" data-set="value" />
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="medical_aid" >Medical Aid</label>
+								<div class="col-xs-10">
+									<input type="text" name="medical_aid" placeholder="Medical Aid" class="form-control generic" data-field="medical_aid" data-set="value" />
+								</div>
+							</div>	
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="project_name">Medical Aid Number</label>
+								<div class="col-xs-10">
+									<input type="text" name="medical_aid_number" placeholder="Medical Aid Number" class="form-control generic" data-field="medical_aid_number" data-set="value" />
+								</div>
+							</div>	
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="project_name">Member ID</label>
+								<div class="col-xs-10">
+									<input type="text" name="member_id" placeholder="Member ID" class="form-control generic" data-field="member_id" data-set="value" />
+								</div>
+							</div>	
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="authorisation_code">Authorisation Code</label>
+								<div class="col-xs-10">
+									<input type="text" name="authorisation_code" placeholder="Authorisation Code" class="form-control generic" data-field="authorisation_code" data-set="value" />
+								</div>
 							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Material</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="material" placeholder="Material" class="form-control generic" data-field="material" data-set="value" />
-							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Mod Minutes</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="modminutes" placeholder="Mod Minutes" class="form-control generic" data-field="modminutes" data-set="value" />
-							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">MatPic</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="matpic" placeholder="Mat Pic" class="form-control generic" data-field="matpic" data-set="value" />
-							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Units</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="units" placeholder="Units" class="form-control generic" data-field="units" data-set="value" />
-							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">CF Type</label>
-							<div class="col-xs-10">
-								<input type="text" id="iod" name="cf_type" placeholder="CF Type" class="form-control generic" data-field="cf_type" data-set="value" />
-							</div>
-						</div>																					
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
 							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>aid_holder" >
 							<input type="hidden" id="table" name="where" value="aid_holder_id = " class="generic" data-field="aid_holder_id" data-set="value">
