@@ -2,6 +2,10 @@
  * Globals
  */
 
+.container {
+  margin-bottom: 13px;
+}
+
  .container-fluid{
    min-height: 81% !important;
  }

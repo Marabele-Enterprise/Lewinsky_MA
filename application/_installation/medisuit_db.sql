@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2015 at 09:20 PM
+-- Generation Time: Apr 02, 2015 at 11:27 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `ms_action_log` (
   `session_id` varchar(20) NOT NULL,
   `test_label` varchar(10) NOT NULL,
   PRIMARY KEY (`action_log_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=129 ;
 
 --
 -- Dumping data for table `ms_action_log`
@@ -145,7 +145,46 @@ INSERT INTO `ms_action_log` (`action_log_id`, `action`, `category`, `action_date
 (121, 'Entered Home Page', 'Navigation', '2015-03-21 23:28:30', 1, '::1', 'Xsw14rlqL6dvuCA', 'A'),
 (122, 'Entered Home Page', 'Navigation', '2015-03-22 02:43:20', 1, '::1', 'jfcOGr8ZvBaXhbu', 'A'),
 (123, 'Login Successful', 'Login', '2015-03-28 18:18:38', 1, '::1', 'MTQiVZlWYrH9zN3', 'A'),
-(124, 'Entered Home Page', 'Navigation', '2015-03-28 18:18:38', 1, '::1', 'ADIJihdlzP2U7Wm', 'A');
+(124, 'Entered Home Page', 'Navigation', '2015-03-28 18:18:38', 1, '::1', 'ADIJihdlzP2U7Wm', 'A'),
+(125, 'Login Successful', 'Login', '2015-03-31 18:56:48', 1, '::1', 'VOA2NLHTi8ucIRM', 'A'),
+(126, 'Entered Home Page', 'Navigation', '2015-03-31 18:56:48', 1, '::1', 'FX2shH5UyNkRrvm', 'A'),
+(127, 'Login Successful', 'Login', '2015-04-02 20:05:39', 1, '::1', 'MbiuNe5t1QmoIA4', 'A'),
+(128, 'Entered Home Page', 'Navigation', '2015-04-02 20:05:39', 1, '::1', '2khpTWb6HXv4zNZ', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ms_aid_holder`
+--
+
+CREATE TABLE IF NOT EXISTS `ms_aid_holder` (
+  `aid_holder_id` int(11) NOT NULL AUTO_INCREMENT,
+  `surname` varchar(150) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `initials` varchar(20) NOT NULL,
+  `address1` varchar(200) NOT NULL,
+  `address2` varchar(200) NOT NULL,
+  `address3` varchar(200) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `cell` varchar(20) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `cc_email` varchar(150) NOT NULL,
+  `tariff_rate` varchar(100) NOT NULL,
+  `bill_at` double NOT NULL,
+  `iod_claim_number` varchar(150) DEFAULT NULL,
+  `iod_employer` varchar(200) DEFAULT NULL,
+  `iod_emp_reg_num` varchar(100) DEFAULT NULL,
+  `iod_date_of_injury` date DEFAULT NULL,
+  `supress_statement` tinyint(1) NOT NULL,
+  `account_closed` tinyint(1) NOT NULL,
+  `allow_email_statements` tinyint(1) NOT NULL,
+  `print_patient_liability` tinyint(1) NOT NULL,
+  `medical_aid` varchar(250) NOT NULL,
+  `medical_aid_number` varchar(150) NOT NULL,
+  `member_id` varchar(150) NOT NULL,
+  `authorisation_code` varchar(150) NOT NULL,
+  PRIMARY KEY (`aid_holder_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -192,7 +231,7 @@ INSERT INTO `ms_doctor` (`doctor_id`, `title`, `initials`, `surname`, `phone`, `
 (1, 'Mr', 'MP', 'Mello', '0790788189', '0566', 'mp.mello5@gmail.com'),
 (2, 'Dr', 'RM', 'Mello', '0825114785', '865', 'mellorm@gmail.com'),
 (3, 'Dr', 'P', 'Phil', '0615663381', '630', 'drphil@gmail.com'),
-(4, 'Dr', 'D', 'Khumalo', '0816513332', '3969', '16v@gmail.com');
+(4, 'Dr 1', 'D1', 'Khumalo1', '08165133321', '39691', '16v1@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -243,14 +282,14 @@ CREATE TABLE IF NOT EXISTS `ms_patient` (
   `cell` varchar(20) NOT NULL,
   `email` varchar(150) NOT NULL,
   `authno` varchar(20) NOT NULL,
-  `patdob` date NOT NULL,
+  `date_of_birth` date NOT NULL,
   `patid` varchar(30) NOT NULL,
   `medcod` varchar(30) NOT NULL,
   `medaid` varchar(150) NOT NULL,
   `medno` varchar(40) NOT NULL,
-  `refby` varchar(150) NOT NULL,
+  `referring_doc` varchar(150) NOT NULL,
   `drpr` varchar(20) NOT NULL,
-  `diag1` varchar(150) NOT NULL,
+  `diagnosis` varchar(150) NOT NULL,
   `disorder1` varchar(150) NOT NULL,
   `accbf` double NOT NULL,
   `age1` double NOT NULL,
@@ -276,19 +315,20 @@ CREATE TABLE IF NOT EXISTS `ms_patient` (
   `emailcc` varchar(150) NOT NULL,
   `emailpat` varchar(150) NOT NULL,
   `cellpat` varchar(20) NOT NULL,
-  `depcod` varchar(100) NOT NULL,
+  `dependent_code` varchar(100) NOT NULL,
   `noedi` varchar(10) NOT NULL DEFAULT 'false',
   `id_number` varchar(40) NOT NULL,
   `authcode` varchar(40) NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `ms_patient`
 --
 
-INSERT INTO `ms_patient` (`patient_id`, `cust`, `name`, `surname`, `initials`, `patient`, `address1`, `address2`, `address3`, `pc`, `phone`, `cell`, `email`, `authno`, `patdob`, `patid`, `medcod`, `medaid`, `medno`, `refby`, `drpr`, `diag1`, `disorder1`, `accbf`, `age1`, `patpay`, `amnap`, `stmlangs`, `stmsuppress`, `comment`, `tarif`, `disorder`, `dtad`, `dtlu`, `todue`, `title`, `memid`, `medperc`, `gender`, `closed`, `emailstmsw`, `patliabsw`, `trimmedtitle`, `msgkey`, `emailcc`, `emailpat`, `cellpat`, `depcod`, `noedi`, `id_number`, `authcode`) VALUES
-(1, '', '987', '987', '987', 0, '987', '987', '89', '', '', '78', '987', '', '0000-00-00', '', '', '8', '98', '97', '', '987', '987', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, '97', 0, 0, '798', 'false', 'true', '', '', '', '', '', '', '', 'false', '789', '87');
+INSERT INTO `ms_patient` (`patient_id`, `cust`, `name`, `surname`, `initials`, `patient`, `address1`, `address2`, `address3`, `pc`, `phone`, `cell`, `email`, `authno`, `date_of_birth`, `patid`, `medcod`, `medaid`, `medno`, `referring_doc`, `drpr`, `diagnosis`, `disorder1`, `accbf`, `age1`, `patpay`, `amnap`, `stmlangs`, `stmsuppress`, `comment`, `tarif`, `disorder`, `dtad`, `dtlu`, `todue`, `title`, `memid`, `medperc`, `gender`, `closed`, `emailstmsw`, `patliabsw`, `trimmedtitle`, `msgkey`, `emailcc`, `emailpat`, `cellpat`, `dependent_code`, `noedi`, `id_number`, `authcode`) VALUES
+(2, '', '87', '', '', 0, '', '', '', '', '', '87', '68@g.v', '', '2015-04-03', '', '', '', '', '87', '', '76', '', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, '876', 'false', 'true', '', '', '', '', '', '', '876', 'false', '687', ''),
+(3, '', '9089', '', '', 0, '', '', '', '', '', '9', '08', '', '0000-00-00', '', '', '', '', '809', '', '908', '', 0, 0, 0, 0, '', '', '', 0, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, '98', 'false', 'true', '', '', '', '', '', '', '9', 'false', '890', '');
 
 -- --------------------------------------------------------
 
@@ -315,7 +355,28 @@ CREATE TABLE IF NOT EXISTS `ms_tariff_code` (
   `units` varchar(100) NOT NULL,
   `cf_type` varchar(100) NOT NULL,
   PRIMARY KEY (`tariff_code_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ms_text_message`
+--
+
+CREATE TABLE IF NOT EXISTS `ms_text_message` (
+  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_subject` int(11) NOT NULL,
+  `message_text` varchar(800) NOT NULL,
+  `message_date` datetime NOT NULL,
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ms_text_message`
+--
+
+INSERT INTO `ms_text_message` (`message_id`, `message_subject`, `message_text`, `message_date`) VALUES
+(1, 0, 'jbnbnb', '2015-04-02 23:10:32');
 
 -- --------------------------------------------------------
 
@@ -359,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `ms_users` (
 --
 
 INSERT INTO `ms_users` (`id`, `user_id`, `firstname`, `lastname`, `phone`, `username`, `user_password_hash`, `gender`, `dob`, `email`, `user_active`, `user_account_type`, `user_has_avatar`, `user_rememberme_token`, `user_creation_timestamp`, `user_last_login_timestamp`, `user_failed_logins`, `user_last_failed_login`, `user_activation_hash`, `user_password_reset_hash`, `user_password_reset_timestamp`, `user_provider_type`, `user_facebook_uid`) VALUES
-(1, 1, 'Kwasi', 'Kgwete', NULL, 'super777', '$2y$10$rn6rdqBmr51w3xJTR22LjuiGhkiW3uSy3cD4qPPegaacpEUrZKsWq', NULL, NULL, 'kabelokwasi@gmail.com', 0, 'Admin', 0, NULL, 1424733267, 1427566718, 0, NULL, '54507', NULL, NULL, 'DEFAULT', NULL),
+(1, 1, 'Kwasi', 'Kgwete', NULL, 'super777', '$2y$10$rn6rdqBmr51w3xJTR22LjuiGhkiW3uSy3cD4qPPegaacpEUrZKsWq', NULL, NULL, 'kabelokwasi@gmail.com', 0, 'Admin', 0, NULL, 1424733267, 1428005138, 0, NULL, '54507', NULL, NULL, 'DEFAULT', NULL),
 (9, 9, 'Mpedi', 'Mello', '0790788189', 'admin', '$2y$10$hlJLX2ut8bLX2Q1EI/ZB6Ou5D3e5uIUcTsPgQb9gWweY.94IzPumO', 'M', '1992-09-19', 'mp.mello5@gmail.com', 1, 'User', 0, NULL, NULL, 1426956504, 0, NULL, NULL, NULL, NULL, 'DEFAULT', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

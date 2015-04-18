@@ -5,7 +5,15 @@
 		</div>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createDoctor" >
 			<span class="glyphicon glyphicon-plus"></span> New Doctor
-		</button>
+		</button><br/>
+		<div class="col-lg-4 col-offset-3 top-search-bar">
+		    <div class="input-group">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Go!</button>
+		      </span>
+		      <input type="text" class="form-control" placeholder="Search for doctor ...">
+		    </div><!-- /input-group -->
+		</div><!-- /.col-lg-6 -->		
 	</div>
 </div>	
 <!-- 
@@ -179,8 +187,13 @@
 	</div><!-- /.modal -->
 </div><!-- /.modal rows-->
 
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/plugins/slick/slick.css">
-<script type="text/javascript" src="<?php echo URL; ?>public/plugins/slick/slick.js"></script>
+<style type="text/css">
+.top-search-bar{
+	float: none;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+</style>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script>
 	$("li#services").addClass("active");

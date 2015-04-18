@@ -27,12 +27,12 @@
 			<div class="thumbnail">
 				<table class="table table-bordered">
 					<tr class="active"><td><b>Name</b></td><td class="generic" data-field="name" data-set="innertext"></td></tr>
-					<tr><td><b>ID</b></td><td class="generic" data-field="id" data-set="innertext"></td></tr>
+					<tr><td><b>ID</b></td><td class="generic" data-field="id_number" data-set="innertext"></td></tr>
 					<tr><td><b>Date of birth</b></td><td class="generic" data-field="date_of_birth" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Cell</b></td><td class="generic" data-field="cell" data-set="innertext"></td></tr>
 					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Gender</b></td><td class="generic" data-field="gender" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Diagnoses</b></td><td class="generic" data-field="diagnoses" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Diagnosis</b></td><td class="generic" data-field="diagnosis" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Referring Dr</b></td><td class="generic" data-field="referring_doc" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Dependent code</b></td><td class="generic" data-field="dependent_code" data-set="innertext"></td></tr>
 				</table>
@@ -66,13 +66,13 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="Name">Name</label>
 							<div class="col-xs-10">
-								<input type="text" id="title" name="name" placeholder="Sick as it gets" class="form-control" />
+								<input type="text" id="title" name="name" placeholder="Name" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="identification">ID number</label>
 							<div class="col-xs-10">
-								<input type="text" id="id" name="id" placeholder="id" class="form-control" />
+								<input type="text" name="id_number" placeholder="ID number" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -88,7 +88,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Cell</label>
+							<label class="col-xs-2 control-label" for="cell">Cell</label>
 							<div class="col-xs-10">
 								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control" />
 							</div>
@@ -100,9 +100,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Diagnoses</label>
+							<label class="col-xs-2 control-label" for="diagnosis">Diagnoies</label>
 							<div class="col-xs-10">
-								<input type="text" id="diagnoses" name="diagnoses" placeholder="diagnoses" class="form-control" />
+								<input type="text" id="diagnosis" name="diagnosis" placeholder="diagnosis" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -151,19 +151,19 @@
 							<div class="form-group">
 							<label class="col-xs-2 control-label" for="Name">Name</label>
 							<div class="col-xs-10">
-								<input type="text" id="title" name="name" placeholder="Sick as it gets" class="form-control generic" data-field="name" data-set="value"/>
+								<input type="text" name="name" placeholder="Name" class="form-control generic" data-field="name" data-set="value"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="identification">ID number</label>
 							<div class="col-xs-10">
-								<input type="text" id="id" name="id" placeholder="id" class="form-control generic" data-field="id" data-set="value"/>
+								<input type="text" name="id_number" placeholder="id_number" class="form-control generic" data-field="id_number" data-set="value"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
 							<div class="col-xs-10">
-								<input type="date" id="date_of_birth" name="yyyy/mm/dd" placeholder="date_of_birth" class="form-control generic" data-field="date_of_birth" data-set="value"/>
+								<input type="date" name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control generic" data-field="date_of_birth" data-set="value"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -173,15 +173,21 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Email</label>
+							<div class="col-xs-10">
+								<input type="email" id="email" name="email" placeholder="email" class="form-control generic" data-field="email" data-set="value" />
+							</div>
+						</div>						
+						<div class="form-group">
 							<label class="col-xs-2 control-label" for="phone">Cell</label>
 							<div class="col-xs-10">
 								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control generic" data-field="cell" data-set="value"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Diagnoses</label>
+							<label class="col-xs-2 control-label" for="phone">Diagnosis</label>
 							<div class="col-xs-10">
-								<input type="text" id="diagnoses" name="diagnoses" placeholder="diagnoses" class="form-control generic" data-field="diagnoses" data-set="value"/>
+								<input type="text" id="diagnosis" name="diagnosis" placeholder="diagnosis" class="form-control generic" data-field="diagnosis" data-set="value"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -193,7 +199,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
 							<div class="col-xs-10">
-								<input type="text" id="referring_doc" name="referring_doc" placeholder="Dr love" class="form-control generic" data-field="referring_doc" data-set="value"/>
+								<input type="text" id="referring_doc" name="referring_doc" placeholder="Referring Dr" class="form-control generic" data-field="referring_doc" data-set="value"/>
 							</div>
 						</div>															
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
