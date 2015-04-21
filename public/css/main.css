@@ -37,6 +37,12 @@ a:hover {
 }
 
 
+.top-search-bar{
+  float: none !important;
+  margin: 0 auto !important;
+  margin-top: 10px !important;
+}
+
 /*
  * Base structure
  */
@@ -189,3 +195,4 @@ footer{
     width: 700px;
   }
 }
+

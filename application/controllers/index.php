@@ -41,6 +41,7 @@ class Index extends Controller
      */
     function patients()
     {
+       $this->view->target = "patient";
 	   $this->view->render('index/patients');
     }
 
@@ -50,7 +51,8 @@ class Index extends Controller
      */
     function doctors()
     {
-	   $this->view->render('index/doctors');
+        $this->view->target = "doctor";
+	    $this->view->render('index/doctors');
     }
 
     /**
@@ -59,6 +61,7 @@ class Index extends Controller
      */
     function medical_aids()
     {
+       $this->view->target = "medical_aid";        
        $this->view->render('index/medical_aids');
     }
 
@@ -68,6 +71,7 @@ class Index extends Controller
      */
     function tariff_codes()
     {
+       $this->view->target = "tariff_code";        
        $this->view->render('index/tariff_codes');
     }
 
@@ -77,6 +81,7 @@ class Index extends Controller
      */
     function diagnosis()
     {
+       $this->view->target = "diagnosis";          
        $this->view->render('index/diagnosis');
     }
 
@@ -86,6 +91,7 @@ class Index extends Controller
      */
     function messages()
     {
+       $this->view->target = "message";          
        $this->view->render('index/messages');
     }
 	
@@ -95,6 +101,7 @@ class Index extends Controller
      */
     function statement_messages()
     {
+       $this->view->target = "statement_message";          
        $this->view->render('index/statement_messages');
     }
 
@@ -105,6 +112,7 @@ class Index extends Controller
     function use_aid_holder()
     {
         if(isset($_POST["patient_id"])){
+            //$this->view->target = "tariff_code";              
             $generic_model = $this->loadModel('Generic');
             $this->view->patient_id = $_POST["patient_id"];
 
@@ -120,6 +128,7 @@ class Index extends Controller
      */
     function aid_holder()
     {
+        $this->view->target = "aid_holder";        
         $this->view->render('index/aid_holder');
     }           
     

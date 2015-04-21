@@ -103,7 +103,7 @@ define('DB_HOST', 'localhost');
 
 define('DB_NAME', 'medisuit_db'); //local_db
 define('DB_USER', 'root'); //local_db_user
-define('DB_PASS', 'root'); //local_db_pswd
+define('DB_PASS', ''); //local_db_pswd
 
 /**
  * Configuration for: Hashing strength

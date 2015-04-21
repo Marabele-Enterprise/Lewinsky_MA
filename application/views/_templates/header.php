@@ -97,7 +97,7 @@
 <input type="hidden" id="URLholder" value="<?php echo URL; ?>" />
 <input type="hidden" id="LoginStatus" value="<?php echo (Session::get('user_logged_in') == true ? "true" : "false"); ?>" />
 <input type="hidden" id="UserType" value="<?php echo Session::get('user_account_type'); ?>" />
-<script language="javascript" type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
+<input type="hidden" id="target" value="<?php echo (isset($this->target) ? $this->target : "none"); ?>" />
 <?php 
 
 function getAccountMenu($loginStat,$userType)

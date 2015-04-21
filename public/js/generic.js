@@ -41,6 +41,7 @@ var Generic = function () {
 					}
 				}	
 				//$(".removeDesign").fadeOut('fast');
+				$(".thumbnail").parent().addClass("designBlock");
 			},
 			error: function(xhr) {
 				console.log(xhr.responseText);
@@ -157,3 +158,38 @@ var Generic = function () {
 		});
 	}			
 }();
+
+$(function(){
+	$("#feedback").parent().append('<div class="col-lg-4 col-offset-3 top-search-bar">'+
+			    '<div class="input-group">'+
+			      '<span class="input-group-btn">'+
+			        '<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>'+
+			      '</span>'+
+			      '<input type="text" class="form-control generic_search" data-table="'+$("#target").val()+'" placeholder="Search for '+$("#target").val().replace(/_/g, " ")+' ..." >'+
+			    '</div><!-- /input-group -->'+
+			'</div><!-- /.col-lg-6 -->');
+
+	$('.generic_search').on("keyup change", function(){
+		var query = $(this).val();
+		query = query.trim();
+
+		if(query == ""){
+			$(".designBlock").fadeIn(666);
+		}else{
+			$(".designBlock").removeClass("matched");
+
+			$(".generic").each(function(i){
+				var text = $(this).html();
+				console.log(i+". q: "+query+" == t:"+text);
+				var result = text.search(query);
+				console.log("result = "+result);
+				if(result >= 0){
+					$(this).parents(".designBlock").addClass("matched");
+				}
+			});
+			$(".designBlock:first").parent().children('.matched').fadeIn(666);
+			$(".designBlock:first").parent().children(':not(.matched)').fadeOut(666);
+		}
+	});	
+});
+

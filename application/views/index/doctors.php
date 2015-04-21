@@ -5,15 +5,7 @@
 		</div>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createDoctor" >
 			<span class="glyphicon glyphicon-plus"></span> New Doctor
-		</button><br/>
-		<div class="col-lg-4 col-offset-3 top-search-bar">
-		    <div class="input-group">
-		      <span class="input-group-btn">
-		        <button class="btn btn-default" type="button">Go!</button>
-		      </span>
-		      <input type="text" class="form-control" placeholder="Search for doctor ...">
-		    </div><!-- /input-group -->
-		</div><!-- /.col-lg-6 -->		
+		</button>	
 	</div>
 </div>	
 <!-- 
@@ -35,11 +27,11 @@
 			<div class="thumbnail">
 				<table class="table table-bordered">
 					<tr class="active"><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
-					<tr><td><b>Initials</b></td><td class="generic" data-field="initials" data-set="innertext"></td></tr>
-					<tr><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
-					<tr><td><b>DRPR</b></td><td class="generic" data-field="drpr" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
+					<tr><td><b>Initials</b></td><td class="generic searchable" data-field="initials" data-set="innertext"></td></tr>
+					<tr><td><b>Surname</b></td><td class="generic searchable" data-field="surname" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Phone</b></td><td class="generic searchable" data-field="phone" data-set="innertext"></td></tr>
+					<tr><td><b>DRPR</b></td><td class="generic" data-field="drpr searchable" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Email</b></td><td class="generic searchable" data-field="email" data-set="innertext"></td></tr>
 				</table>
 				<input type="hidden" value="" class="doctor_id_holder generic" data-field="doctor_id" data-set="value" />
 				<button class="btn btn-default btnEditDoctor btn-sm" type="button" >Edit</button>
@@ -187,16 +179,10 @@
 	</div><!-- /.modal -->
 </div><!-- /.modal rows-->
 
-<style type="text/css">
-.top-search-bar{
-	float: none;
-	margin: 0 auto;
-	margin-top: 10px;
-}
-</style>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script>
-	$("li#services").addClass("active");
+
+$("li#services").addClass("active");
 
 /*
 	Theses are the jquery.forms options for frmAddDoctor above that uses the generic controller 
