@@ -39,6 +39,10 @@
 				<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
 				<button class="btn btn-default btnEditPatient btn-sm" type="button" >Edit</button>
 				<button class="btn btn-default btnDeletepatient btn-sm" type="button" >Delete</button>
+				<form action="<?php echo URL; ?>/index/use_aid_holder/" method="post" class="postLink"> 					    
+					<input type="hidden" name="canvas_id" value="" class="generic" data-field="patient_id" data-set="value"> 					    
+					<button type="submit" class="btn btn-default btn-sm">Use</button> 					
+				</form>
 			</div>
 		</div>	
 	</div>

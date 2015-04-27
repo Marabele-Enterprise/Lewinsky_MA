@@ -4,8 +4,8 @@
 	<title><?php echo SITENAME; ?> | Home</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<link rel="icon" href="http://dzyngiri.com/favicon.png" type="image/x-icon">
-	<link rel="shortcut icon" href="http://dzyngiri.com/favicon.png" type="image/x-icon" />
+	<link rel="icon" href="" type="image/x-icon">
+	<link rel="shortcut icon" href="" type="image/x-icon" />
 	<meta name="description" content="Marabele enterprise, software and design firm.">
 	<meta name="keywords" content="software, responsive, bootstrap, responsive">
 	<meta name="author" content="Inbetwin Networks">  
@@ -16,7 +16,6 @@
 	<!-- Responsive --><!-- Bootstrap -->
 	<link href="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/css/bootstrap-theme.min.css" rel="stylesheet">
-	
 	<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.form.js"></script>
 </head>

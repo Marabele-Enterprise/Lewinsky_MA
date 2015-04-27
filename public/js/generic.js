@@ -160,6 +160,10 @@ var Generic = function () {
 }();
 
 $(function(){
+
+	if($("#target").val() == "none"){
+		return;
+	}
 	$("#feedback").parent().append('<div class="col-lg-4 col-offset-3 top-search-bar">'+
 			    '<div class="input-group">'+
 			      '<span class="input-group-btn">'+

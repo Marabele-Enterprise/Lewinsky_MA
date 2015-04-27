@@ -111,13 +111,13 @@ class Index extends Controller
      */
     function use_aid_holder()
     {
-        if(isset($_POST["patient_id"])){
+        if(isset($_POST["aid_holder_id"])){
             //$this->view->target = "tariff_code";              
             $generic_model = $this->loadModel('Generic');
-            $this->view->patient_id = $_POST["patient_id"];
+            $this->view->aid_holder_id = $_POST["aid_holder_id"];
 
-            $genericGetRequest = array('table' => PREFIX."patient", 'fields' => "*", 'where' => "patient_id = ".$_POST['patient_id'], 'returnType' => "array");
-            $this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);
+            //$genericGetRequest = array('table' => PREFIX."patient", 'fields' => "*", 'where' => "patient_id = ".$_POST['patient_id'], 'returnType' => "array");
+            //$this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);
             $this->view->render('index/use_aid_holder');
         }
     }

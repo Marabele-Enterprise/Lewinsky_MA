@@ -42,6 +42,10 @@
 				<input type="hidden" value="" class="aid_holder_id_holder generic" data-field="aid_holder_id" data-set="value" />
 				<button class="btn btn-default btnEditAidHolder btn-sm" type="button" >Edit</button>
 				<button class="btn btn-default btnDeleteAidHolder btn-sm" type="button" >Delete</button>
+				<form action="<?php echo URL; ?>index/use_aid_holder/" method="post" class="postLink"> 					    
+					<input type="hidden" name="aid_holder_id" value="" class="generic" data-field="aid_holder_id" data-set="value"> 					    
+					<button type="submit" class="btn btn-default btn-sm">Use</button> 					
+				</form>				
 			</div>
 		</div>	
 	</div>
