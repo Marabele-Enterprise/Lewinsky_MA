@@ -3,7 +3,6 @@
 		<h2>Age analysis</h2>
 		<div id="feedback">
 		</div>
-
 		<div class="" id="">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -24,37 +23,41 @@
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="title">For</label>
 								<div class="col-xs-10">
-									<div class="btn-group" data-toggle="buttons">
+									<div id="for" class="btn-group" data-toggle="buttons">
 										<label class="btn btn-default active">
-											<input type="radio" name="options" id="option1" autocomplete="off" checked>All accounts
+											<input type="radio" name="forGroup" id="option1" autocomplete="off" checked value="All accounts" >All accounts
 										</label>
 										<label class="btn btn-default">
-											<input type="radio" name="options" id="option2" autocomplete="off">Outstanding only
+											<input type="radio" name="forGroup" id="outstandingOnlyRadio" autocomplete="off" value="Outstanding only" >Outstanding only
 										</label>
 										<label class="btn btn-default">
-											<input type="radio" name="options" id="option3" autocomplete="off">Debit & Credit Balance
+											<input type="radio" name="forGroup" id="option3" autocomplete="off" value="Debit & Credit Balance" >Debit & Credit Balance
 										</label>
 									</div>
 								</div>
-							</div>
+							</div>	
 							<div class="form-group outstandingOnly">
-								<div class="col-xs-12">
+								<label class="col-xs-2 control-label" for="title">Outstanding only</label>
+								<div class="col-xs-10">
 									<div class="btn-group" data-toggle="buttons">
 										<label class="btn btn-default active">
-											<input type="checkbox" autocomplete="off" checked>One Medical Aid
+											<input type="checkbox" autocomplete="off" checked class="cbxOutstandingOnly" value="Current Nil Balances" >Current Nil Balances
 										</label>
 										<label class="btn btn-default">
-											<input type="checkbox" autocomplete="off">Direct Submission
+											<input type="checkbox" autocomplete="off" class="cbxOutstandingOnly" value="Current Outstanding" >Current Outstanding
+										</label><br/>
+										<label class="btn btn-default">
+											<input type="checkbox" autocomplete="off" class="cbxOutstandingOnly" value="30 days Outstanding" >30 days Outstanding
 										</label>
 										<label class="btn btn-default">
-											<input type="checkbox" autocomplete="off">Not Direct Submission
+											<input type="checkbox" autocomplete="off" class="cbxOutstandingOnly" value="60 days Outstanding" >60 days Outstanding
+										</label><br/>										
+										<label class="btn btn-default">
+											<input type="checkbox" autocomplete="off" class="cbxOutstandingOnly" value="90 days Outstanding">90 days Outstanding
 										</label>
 										<label class="btn btn-default">
-											<input type="checkbox" autocomplete="off">EDI
-										</label>										
-										<label class="btn btn-default">
-											<input type="checkbox" autocomplete="off">Not EDI
-										</label>																				
+											<input type="checkbox" autocomplete="off" class="cbxOutstandingOnly" value="120 days Outstanding">120 days Outstanding
+										</label>																														
 									</div>
 								</div>
 							</div>							
@@ -64,13 +67,13 @@
 								<div class="col-xs-10">
 									<div class="btn-group" data-toggle="buttons">
 										<label class="btn btn-default active">
-											<input type="radio" name="options" id="option1" autocomplete="off" checked>Account no
+											<input type="radio" name="rdoSequence" id="option1" autocomplete="off" checked value="Account no" >Account no
 										</label>
 										<label class="btn btn-default">
-											<input type="radio" name="options" id="option2" autocomplete="off">Surnames
+											<input type="radio" name="rdoSequence" id="option2" autocomplete="off" value="Surnames" >Surnames
 										</label>
 										<label class="btn btn-default">
-											<input type="radio" name="options" id="option3" autocomplete="off">MedicalAid Name
+											<input type="radio" name="rdoSequence" id="option3" autocomplete="off" value="MedicalAid Name">MedicalAid Name
 										</label>
 									</div>
 								</div>
@@ -79,44 +82,43 @@
 								<div class="col-xs-10 center_chbx" style="text-align: center;" >
 									<div class="btn-group" data-toggle="buttons">
 									  	<label class="btn btn-default ">
-									    	<input type="checkbox" autocomplete="off" >Select by MedAid
+									    	<input type="checkbox" autocomplete="off" id="cbxSelectByMedAid" >Select by MedAid
 										</label>
 									</div>
 								</div>	
 							</div>
-							<div class="form-group">
+							<div class="form-group selectByMedicalAidGroup">
+								<div class="col-xs-12" style="text-align: center;">
+									<div class="btn-group" data-toggle="buttons">
+										<label class="btn btn-default active">
+											<input type="radio" name="selectByMedicalAidGroup" id="option1" autocomplete="off" value="One Medical Aid" >One Medical Aid
+										</label>
+										<label class="btn btn-default">
+											<input type="radio" name="selectByMedicalAidGroup" id="option2" autocomplete="off" value="Direct Submission" >Direct Submission
+										</label>
+										<label class="btn btn-default">
+											<input type="radio" name="selectByMedicalAidGroup" id="option3" autocomplete="off" value="Not Direct Submission" >Not Direct Submission
+										</label>
+										<label class="btn btn-default">
+											<input type="radio" name="selectByMedicalAidGroup" id="option3" autocomplete="off" value="EDI" >EDI
+										</label>
+										<label class="btn btn-default">
+											<input type="radio" name="selectByMedicalAidGroup" id="option3" autocomplete="off" value="Not EDI" >Not EDI
+										</label>																				
+									</div>
+								</div>
+							</div>							
+							<div class="form-group oneMedicalAidGroup">
 								<label class="col-xs-2 control-label" for="project_name">MedAid</label>
 								<div class="col-xs-10">
 									<select name="print_patient_liability" class="form-control" >
 										<option selected class="form-control generic" data-field="print_patient_liability" data-set="innertext"></option>
-										<option value="True" >Something else</option>
+										<option value="True" >Aid One</option>
 										<option value="False" >World Bank</option>
 									</select>									
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-xs-12" style="text-align: center;">
-									<div class="btn-group" data-toggle="buttons">
-										<label class="btn btn-default active">
-											<input type="radio" name="options" id="option1" autocomplete="off" checked>One Medical aid
-										</label>
-										<label class="btn btn-default">
-											<input type="radio" name="options" id="option2" autocomplete="off">Direct Submission
-										</label>
-										<label class="btn btn-default">
-											<input type="radio" name="options" id="option3" autocomplete="off">Not Direct Submission
-										</label>
-										<label class="btn btn-default">
-											<input type="radio" name="options" id="option3" autocomplete="off">EDI
-										</label>
-										<label class="btn btn-default">
-											<input type="radio" name="options" id="option3" autocomplete="off">Not EDI
-										</label>																				
-									</div>
-								</div>
-							</div>																	
+							</div>				
 							<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>doctor" >
 						</div>
 						<div class="modal-footer">
 							<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
@@ -137,6 +139,10 @@
 .center_chbx{
 	float: none;
 	margin: 0 auto;
+}
+
+.outstandingOnly, .selectByMedicalAidGroup, .oneMedicalAidGroup{ 
+	display: none;
 }
 </style>
 <!-- 
@@ -290,4 +296,33 @@
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 
 <script>
+$("input[name='forGroup']").on("change", function (){
+	if($(this).val() == "Outstanding only"){
+		$(".outstandingOnly").slideDown(666);
+	}else{
+		$(".outstandingOnly").slideUp(666);
+	}
+});
+
+$(".cbxOutstandingOnly").on("change", function (){
+	$(".cbxOutstandingOnly:checked").each(function(i){
+		console.log(i+". "+$(this).val());
+	});
+});
+
+$("#cbxSelectByMedAid").on("change", function(){
+	if($(this).is(':checked') == true){
+		$(".selectByMedicalAidGroup").slideDown(666);
+	}else{
+		$(".selectByMedicalAidGroup").slideUp(666);
+	}
+});
+
+$("input[name='selectByMedicalAidGroup']").on("change", function (){
+	if($(this).val() == "One Medical Aid"){
+		$(".oneMedicalAidGroup").slideDown(666);
+	}else{
+		$(".oneMedicalAidGroup").slideUp(666);
+	}
+});
 </script>

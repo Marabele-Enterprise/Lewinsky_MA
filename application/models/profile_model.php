@@ -4,6 +4,9 @@
 * ProfileModel
 * Handles users profile data
 */
+
+require 'application/libs/vendor/autoload.php';
+
 class ProfileModel{
 	/**
 	* Constructor, expects a Database connection
@@ -12,7 +15,16 @@ class ProfileModel{
 	public function __construct(Database $db){
 		$this->db = $db;
 	}
-	
+
+	public function viewPDF(){	
+		// Parse pdf file and build necessary objects.
+		$parser = new \Smalot\PdfParser\Parser();
+		$pdf    = $parser->parseFile(URL.'/public/tariffs/document.pdf');
+		 
+		$text = $pdf->getText();
+		echo $text;
+	}
+
 	/**
 	* Get a user's profile details, according to the given $user_id
 	* @param int $user_id The user's id

@@ -116,8 +116,12 @@ class Index extends Controller
             $generic_model = $this->loadModel('Generic');
             $this->view->aid_holder_id = $_POST["aid_holder_id"];
 
-            //$genericGetRequest = array('table' => PREFIX."patient", 'fields' => "*", 'where' => "patient_id = ".$_POST['patient_id'], 'returnType' => "array");
-            //$this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);
+            $genericGetRequest = array('table' => PREFIX."aid_holder", 'fields' => "*", 'where' => "aid_holder_id = ".$_POST['aid_holder_id'], 'returnType' => "array");
+            $this->view->aid_holder_details = $generic_model->genericGetPhp($genericGetRequest);
+
+            $genericGetRequest = array('table' => PREFIX."patient", 'fields' => "patient_id, name, surname", 'where' => "aid_holder_id = ".$_POST['aid_holder_id'], 'returnType' => "array");
+            $this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);            
+
             $this->view->render('index/use_aid_holder');
         }
     }
@@ -131,5 +135,15 @@ class Index extends Controller
         $this->view->target = "aid_holder";        
         $this->view->render('index/aid_holder');
     }           
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
+    function view_pdf()
+    {
+        $generic_model = $this->loadModel('Profile');
+        $generic_model->viewPDF();
+    }               
     
 }

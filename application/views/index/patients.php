@@ -3,9 +3,9 @@
 		<h2>patients</h2>
 		<div id="feedback">
 		</div>
-		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createpatient" >
+		<!--button type="button" class="btn btn-default" data-toggle="modal" data-target="#createpatient" >
 			<span class="glyphicon glyphicon-plus"></span> New patient
-		</button>
+		</button -->
 	</div>
 </div>	
 <!-- 
@@ -40,7 +40,7 @@
 				<button class="btn btn-default btnEditPatient btn-sm" type="button" >Edit</button>
 				<button class="btn btn-default btnDeletepatient btn-sm" type="button" >Delete</button>
 				<form action="<?php echo URL; ?>/index/use_aid_holder/" method="post" class="postLink"> 					    
-					<input type="hidden" name="canvas_id" value="" class="generic" data-field="patient_id" data-set="value"> 					    
+					<input type="hidden" name="aid_holder_id" value="" class="generic" data-field="aid_holder_id" data-set="value"> 					    
 					<button type="submit" class="btn btn-default btn-sm">Use</button> 					
 				</form>
 			</div>

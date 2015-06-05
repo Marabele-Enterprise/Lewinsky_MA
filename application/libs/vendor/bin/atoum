@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+SRC_DIR="`pwd`"
+cd "`dirname "$0"`"
+cd "../atoum/atoum/bin"
+BIN_TARGET="`pwd`/atoum"
+cd "$SRC_DIR"
+"$BIN_TARGET" "$@"
