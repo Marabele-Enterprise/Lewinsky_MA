@@ -23,7 +23,7 @@ ini_set("display_errors", 1);
 //define('URL', 'http://medi.marabele.com/'); //online
 define('URL', 'http://localhost/Lewinsky_MA/'); //localhost
 define('UPLOAD_URL', '/public/uploads/');
-define('SITENAME', 'MediSuit');
+define('SITENAME', 'MediSuite');
 define('PREFIX', 'ms_');
 
 /**
@@ -76,7 +76,7 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 define('COOKIE_RUNTIME', 1209600);
 // the domain where the cookie is valid for, for local development ".127.0.0.1" and ".192.168.0.100:81" will work
 // IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
-define('COOKIE_DOMAIN', 'leanbiz.com');
+define('COOKIE_DOMAIN', 'nuvemed.com');
 
 /**
  * Configuration for: Database
@@ -101,7 +101,7 @@ define('DB_HOST', 'localhost');
 //define('DB_USER', 'f0894051_user'); //online_db_user
 //define('DB_PASS', '11247143'); //online_db_pswd
 
-define('DB_NAME', 'medisuit_db'); //local_db
+define('DB_NAME', 'medi_db'); //local_db
 define('DB_USER', 'root'); //local_db_user
 define('DB_PASS', ''); //local_db_pswd
 
@@ -160,15 +160,17 @@ define("PHPMAILER_DEBUG_MODE", 0);
 // use SMTP or basic mail() ? SMTP is strongly recommended
 define("EMAIL_USE_SMTP", true);
 // name of your host
-define("EMAIL_SMTP_HOST", 'smtp.mweb.co.za');
+define("EMAIL_SMTP_HOST", 'kintaro.aserv.co.za');
 // leave this true until your SMTP can be used without login
 define("EMAIL_SMTP_AUTH", true);
 // SMTP provider username
-define("EMAIL_SMTP_USERNAME", 'info@marabele.com');
+define("EMAIL_SMTP_USERNAME", 'registrations@blueberrybee.co.za');
 // SMTP provider password
-define("EMAIL_SMTP_PASSWORD", 'Marab3l3');
+define("EMAIL_SMTP_PASSWORD", '2014$Marabele');
 // SMTP provider port
-define("EMAIL_SMTP_PORT", 25);
+define("EMAIL_SMTP_PORT", 465);
+// SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
+define("EMAIL_SMTP_ENCRYPTION", 'ssl');
 // SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
 //define("EMAIL_SMTP_ENCRYPTION", 'ssl');
 

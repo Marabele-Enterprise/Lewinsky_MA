@@ -1,105 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	<title><?php echo SITENAME; ?> | Home</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<link rel="icon" href="" type="image/x-icon">
-	<link rel="shortcut icon" href="" type="image/x-icon" />
-	<meta name="description" content="Marabele enterprise, software and design firm.">
-	<meta name="keywords" content="software, responsive, bootstrap, responsive">
-	<meta name="author" content="Inbetwin Networks">  
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Med</title>
 
-	<!-- Main Style -->
-	<link href="<?php echo URL; ?>public/css/main.css" rel="stylesheet">
+<!-- Google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 
-	<!-- Responsive --><!-- Bootstrap -->
-	<link href="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/css/bootstrap-theme.min.css" rel="stylesheet">
-	<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.form.js"></script>
+<!-- font awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="<?php echo URL; ?>public/assets/bootstrap/css/bootstrap.min.css" />
+
+<!-- animate.css -->
+<link rel="stylesheet" href="<?php echo URL; ?>public/assets/animate/animate.css" />
+<link rel="stylesheet" href="<?php echo URL; ?>public/assets/animate/set.css" />
+
+<!-- gallery -->
+<link rel="stylesheet" href="<?php echo URL; ?>public/assets/gallery/blueimp-gallery.min.css">
+
+<!-- favicon -->
+<link rel="shortcut icon" href="<?php echo URL; ?>public/assets/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<?php echo URL; ?>public/assets/images/favicon.ico" type="image/x-icon">
+
+
+<link rel="stylesheet" href="<?php echo URL; ?>public/assets/style.css">
+<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.form.js"></script>
+<!-- jquery -->
+<script src="<?php echo URL; ?>public/assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
 </head>
 
 <body>
-<!-- header start -->
-<header>
-<div class="container-fluid">
-	<div class="row">
-		<nav class="navbar navbar-default" role="navigation" scoped style="margin-bottom: 0px;" >
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#"><?php echo SITENAME; ?><!--img alt="" src="<?php echo URL; ?>public/img/logo.jpg" style="max-width: 120px; margin-top: -27px;" --></a>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<!--li class="active"><a href="<?php echo URL; ?>index/index" >Home <span class="sr-only">(current)</span></a></li>
-						<li><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts" >Patients</a></li>
-						<li><a href="<?php echo URL; ?>index/aid_holder" class="" title="Medical Aid Holder" >Aid Holder</a></li>
-						<li><a href="<?php echo URL; ?>index/doctors" class="" >Doctors</a></li>
-						<li><a href="<?php echo URL; ?>index/medical_aids" class="" >Medical Aids</a></li>
-						<li><a href="<?php echo URL; ?>index/tariff_codes" class="" >Tariff Codes</a></li>
-						<li><a href="<?php echo URL; ?>index/diagnosis" class="" >Diagnosis</a></li>
-						<!--li><a href="<?php echo URL; ?>index/messages" class="" >Messages</a></li-->
-						<li id="services" class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="<?php echo URL; ?>index/doctors" class="">Doctors</a></li>
-								<li><a href="<?php echo URL; ?>index/medical_aids" class="">Medical Aids</a></li>
-								<li><a href="<?php echo URL; ?>index/aid_holder" class="" title="Medical Aid Holder">Medical Aid Holder</a></li>
-								<li class="divider"></li>
-								<li><a href="<?php echo URL; ?>index/diagnosis" class="">Diagnosis</a></li>
-								<li><a href="<?php echo URL; ?>index/tariff_codes" class="">Tariff Codes</a></li>
-								<li class="divider"></li>
-								<li><a href="<?php echo URL; ?>index/messages">Text Messages</a></li>
-								<li><a href="<?php echo URL; ?>index/statement_messages">Statement Messages</a></li>
-							</ul>
-						</li>
-						<li id="patients"><a href="<?php echo URL; ?>index/patients" class="" title="Patient Accounts">Patients</a></li>
-						<li id="reports" class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="<?php echo URL; ?>report/age_analysis" class="">Age Analysis</a></li>
-								<li><a href="<?php echo URL; ?>report/transaction_summary" class="">Transaction Summary</a></li>
-								<li><a href="<?php echo URL; ?>report/audit_trail" class="">Audit Trail</a></li>
-								<li class="divider"></li>
-								<li><a href="<?php echo URL; ?>report/daily_listing" class="">Daily Listing</a></li>
-								<li class="divider"></li>
-								<li><a href="<?php echo URL; ?>report/payment_profile" class="">Payment Profile</a></li>
-								<li><a href="<?php echo URL; ?>report/vat_report" class="">VAT report</a></li>
-								<li><a href="<?php echo URL; ?>report/statements" class="">Statements</a></li>
-							</ul>
-						</li>
-						<li id="icd_10"><a href="<?php echo URL; ?>help/icd_10" class="" title="ICD 10 Codes">ICD 10 Codes</a></li>
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right">
-						<!--li><a href="#">Link</a></li -->
-						<li><a href="#"><?php echo (Session::get("user_logged_in") == "true" ? Session::get("username") : "Not Authorized"); ?></a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
-	</div>
-	
-</div>
-</header>
+<div class="topbar animated fadeInLeftBig"></div>
 <!-- /#The following hidden inputs will be used by the js files to get access to the php variable -->
 <input type="hidden" id="URLholder" value="<?php echo URL; ?>" />
 <input type="hidden" id="LoginStatus" value="<?php echo (Session::get('user_logged_in') == true ? "true" : "false"); ?>" />
 <input type="hidden" id="UserType" value="<?php echo Session::get('user_account_type'); ?>" />
 <input type="hidden" id="target" value="<?php echo (isset($this->target) ? $this->target : "none"); ?>" />
+<!-- Header Starts -->
+<div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- Logo Starts -->
+              <a class="navbar-brand" href="#home">
+              	<h2><b style="color: rgb(33, 171, 202);">Medi</b>Suite</h2>
+              	<!--img src="<?php echo URL; ?>public/assets/images/logo.png" alt="logo" -->
+              </a>
+              <!-- #Logo Ends -->
+
+
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+            </div>
+
+
+            <!-- Nav Starts -->
+            <div class="navbar-collapse  collapse">
+              <ul class="nav navbar-nav navbar-right scroll">
+				<?php echo getAccountMenu(Session::get('user_logged_in'), Session::get('user_account_type'), (isset($this->isHome) ? $this->isHome : false)); ?>
+              </ul>
+            </div>
+            <!-- #Nav Ends -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+<!-- #Header Starts -->
 <?php 
 
-function getAccountMenu($loginStat,$userType)
+function getAccountMenu($loginStat,$userType, $isHome)
 {
 	if($loginStat == true)
 	{
@@ -116,65 +99,62 @@ function getAccountMenu($loginStat,$userType)
 					</a>
 				</li>';
 		}
-		else if($userType == "Customer")
+		else if($userType == "User")
 		{
 			return '
 					<li>
-						<a href="'.URL.'artzone/'.'artists" >
-							Get Custom Art
+						<a href="'.URL.'index/'.'index" >
+							Home
 						</a>	
 					</li>
 					<li>
-						<a href="'.URL.'artzone/'.'viewOrders" >
-							Order Status
+						<a href="'.URL.'index/'.'welcome" >
+							Dashboard
 						</a>	
 					</li>
+					<li><a href="'.URL.'index/doctors" class="">Doctors</a></li>
+					<li><a href="'.URL.'index/medical_aids" class="">Medical Aids</a></li>
+					<li id="patients"><a href="'.URL.'index/patients" class="" title="Patient Accounts">Patients</a></li>
+					<li><a href="'.URL.'index/aid_holder" class="" title="Medical Aid Holder">Customers</a></li>
+					
+					<li id="reports" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="'.URL.'index/diagnosis" class="">Diagnosis</a></li>
+							<li><a href="'.URL.'index/tariff_codes" class="">Tariff Codes</a></li>					
+							<li id="icd_10"><a href="'.URL.'help/icd_10" class="" title="ICD 10 Codes">ICD 10 Codes</a></li>
+							<li><a href="'.URL.'report/age_analysis" class="">Age Analysis</a></li>
+							<li><a href="'.URL.'report/transaction_summary" class="">Transaction Summary</a></li>
+							<li><a href="'.URL.'report/audit_trail" class="">Audit Trail</a></li>
+							<li class="divider"></li>
+							<li><a href="'.URL.'report/daily_listing" class="">Daily Listing</a></li>
+							<li class="divider"></li>
+							<li><a href="'.URL.'report/payment_profile" class="">Payment Profile</a></li>
+							<li><a href="'.URL.'report/vat_report" class="">VAT report</a></li>
+							<li><a href="'.URL.'report/statements" class="">Statements</a></li>
+						</ul>
+					</li>					
 					<li>
-						<a href="'.URL.'artzone/'.'manageGallery" >
-							Manage Your Gallery
-						</a>	
-					</li>
-					<li>
-						<a href="'.URL.'user/'.'profile" >
-							Update Profile
-						</a>	
-					</li>
-					<li>
-						<a href=""  class="signOut">
+						<a href="'.URL.'login/logout" >
 							SIGN OUT
 						</a>
 					</li>';
 		}
-		else if($userType == "Business")
+		else if($userType == "Customer" OR $userType == "Patient")
 		{
 			return '
-					<li  title="Upload and Update artworks you have created for auction.">
-						<a href="'.URL.'artzone/'.'manageGallery" >
-							Manage Your Gallery
-						</a>	
-					</li>
-					<li  title="See the custom art that people want you to create for them." >
-						<a href="'.URL.'artzone/'.'viewArtworkRequests" >
-							View Commission Art Requests
-						</a>	
-					</li>
-					<li  title="View the custom art request that you have to complete" >
-						<a href="'.URL.'artzone/'.'dueOrders" >
-							View Due Commission Art
-						</a>		
-					</li>
 					<li>
-						<a href="'.URL.'user/'.'profile" >
-							Update Profile
-						</a>	
-					</li>
-					<li  title="View the orders you have successfully completed." >
-						<a href="'.URL.'artzone/'.'artistCompletedOrders" >
-							Completed Orders
+						<a href="'.URL.'index/'.'index" >
+							Home
 						</a>	
 					</li>
 					<li>
-						<a href="#"  class="signOut">
+						<a href="'.URL.'index/'.'welcome" >
+							Settings
+						</a>	
+					</li>
+					<li>
+						<a href="'.URL.'login/logout" >
 							SIGN OUT
 						</a>
 					</li>';
@@ -192,9 +172,14 @@ function getAccountMenu($loginStat,$userType)
 	}
 	else
 	{
-		return '
-		<li><a href="#login" class="signIn" data-toggle="modal" data-target="#mdlLogin" >Login</a></li>
-		<li><a href="#signup" class="signUp" data-toggle="modal" data-target="#mdlRegister" >Register</a></li>';
+		$link = ($isHome == true ? "" : URL."index/index/");
+		return '				
+		<li class="active"><a href="'.$link.'#intro">Home</a></li>
+		<li ><a href="'.$link.'#about">About</a></li>
+		<li ><a href="'.$link.'#partners">Partners</a></li>
+		<li ><a href="'.$link.'#contact">Contact</a></li>		
+		<li ><a href="'.URL.'register/index">Register</a></li>
+		<li ><a href="'.URL.'login/index">Login</a></li>';
 	}
 }
 

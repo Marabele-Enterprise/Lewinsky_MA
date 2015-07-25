@@ -26,14 +26,12 @@
 			-->
 			<div class="thumbnail">
 				<table class="table table-bordered">
-					<tr class="active"><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
-					<tr><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Name</b></td><td class="generic" data-field="name" data-set="innertext"></td></tr>
+					<tr><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Initials</b></td><td class="generic" data-field="initials" data-set="innertext"></td></tr>
 					<tr><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Cell</b></td><td class="generic" data-field="cell" data-set="innertext"></td></tr>
+					<tr class="active"><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
 					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Tariff Rate</b></td><td class="generic" data-field="tariff_rate" data-set="innertext"></td></tr>
-					<tr><td><b>Bill at</b></td><td class="generic" data-field="bill_at" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Medical Aid</b></td><td class="generic" data-field="medical_aid" data-set="innertext"></td></tr>
 					<tr><td><b>Medical Aid Number</b></td><td class="generic" data-field="medical_aid_number" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Member ID</b></td><td class="generic" data-field="member_id" data-set="innertext"></td></tr>
@@ -71,6 +69,12 @@
 					<div class="modal-body">
 						<div id="feedback"></div>
 						<div class="form-group">
+							<label class="col-xs-2 control-label" for="title">Name</label>
+							<div class="col-xs-10">
+								<input type="text" name="name" placeholder="Name" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-xs-2 control-label" for="title">Surname</label>
 							<div class="col-xs-10">
 								<input type="text" name="surname" placeholder="Surname" class="form-control" />
@@ -101,26 +105,14 @@
 							<div class="col-xs-10">
 								<input type="text" name="phone" placeholder="Phone" class="form-control" />
 							</div>
-						</div>	
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="cell">Cell</label>
-							<div class="col-xs-10">
-								<input type="text" name="cell" placeholder="Cell" class="form-control" />
-							</div>
-						</div>							
+						</div>					
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="email">Email</label>
 							<div class="col-xs-10">
 								<input type="text" name="email" placeholder="Email" class="form-control" />
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="cc_email">CC Email</label>
-							<div class="col-xs-10">
-								<input type="text" name="cc_email" placeholder="CC Email" class="form-control" />
-							</div>
-						</div>						
-						<div class="form-group">
+						</div>		
+						<!--div class="form-group">
 							<label class="col-xs-2 control-label" for="tariff_rate">Tariff Rate</label>
 							<div class="col-xs-10">
 								<select name="tariff_rate" class="form-control" >
@@ -141,7 +133,7 @@
 							<div class="col-xs-10">
 								<input type="text" name="bill_at" placeholder="%" class="form-control" />
 							</div>
-						</div>
+						</div-->
 						<fieldset class="iodDetails">
     						<legend>IOD Details</legend>
 							<div class="form-group">
@@ -174,8 +166,8 @@
 							<label class="col-xs-2 control-label" for="supress_statement">Suppress Statement</label>
 							<div class="col-xs-10">
 								<select name="supress_statement" class="form-control" >
-									<option value="True" >True</option>
-									<option value="False" >False</option>
+									<option value="1" >True</option>
+									<option value="0" >False</option>
 								</select>	
 							</div>
 						</div>											
@@ -183,8 +175,8 @@
 							<label class="col-xs-2 control-label" for="account_closed">Account Closed</label>
 							<div class="col-xs-10">
 								<select name="account_closed" class="form-control" >
-									<option value="True" >True</option>
-									<option value="False" >False</option>
+									<option value="1" >True</option>
+									<option value="0" >False</option>
 								</select>						
 							</div>
 						</div>	
@@ -192,8 +184,8 @@
 							<label class="col-xs-2 control-label" for="allow_email_statements" >Allow E-Mail Statements</label>
 							<div class="col-xs-10">
 								<select name="allow_email_statements" class="form-control" >
-									<option value="True" >True</option>
-									<option value="False" >False</option>
+									<option value="1" >True</option>
+									<option value="0" >False</option>
 								</select>								
 							</div>
 						</div>	
@@ -201,8 +193,8 @@
 							<label class="col-xs-2 control-label" for="project_name">Print Patient Liability</label>
 							<div class="col-xs-10">
 								<select name="print_patient_liability" class="form-control" >
-									<option value="True" >True</option>
-									<option value="False" >False</option>
+									<option value="1" >True</option>
+									<option value="0" >False</option>
 								</select>									
 							</div>
 						</div>
@@ -230,11 +222,16 @@
 								<input type="text" name="authorisation_code" placeholder="Authorisation Code" class="form-control" />
 							</div>
 						</div>	
-																																																				
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>aid_holder" >
+						<input type="hidden" name="table" value="<?php echo PREFIX; ?>user" >
+						<input type="hidden" name="table_sub" value="<?php echo PREFIX; ?>aid_holder_details_tbls" >
+						<input type="hidden" name="fk" value="user_id" >
+						<input type="hidden" name="practice_id" value="<?php echo Session::get('practice_id'); ?>" />
+						<input type="hidden" name="insert_type" value="sub" />
+						<input type="hidden" name="user_account_type" value="Customer" />						
 					</div>
 					<div class="modal-footer">
+
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Save</button>
@@ -262,6 +259,12 @@
 					<div class="aid_holdersEditTarget">
 						<div class="modal-body aid_holdersEditDesign">
 							<div id="feedback"></div>
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="name">Name</label>
+								<div class="col-xs-10">
+									<input type="text" name="name" placeholder="Name" class="form-control generic" data-field="name" data-set="value" />
+								</div>
+							</div>							
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="surname">Surname</label>
 								<div class="col-xs-10">
@@ -293,20 +296,14 @@
 								<div class="col-xs-10">
 									<input type="text" name="phone" placeholder="Phone" class="form-control generic" data-field="phone" data-set="value" />
 								</div>
-							</div>	
-							<div class="form-group">
-								<label class="col-xs-2 control-label" for="cell">Cell</label>
-								<div class="col-xs-10">
-									<input type="text" name="cell" placeholder="Cell" class="form-control generic" data-field="cell" data-set="value" />
-								</div>
-							</div>							
+							</div>						
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="email">Email</label>
 								<div class="col-xs-10">
 									<input type="text" name="email" placeholder="Email" class="form-control generic" data-field="email" data-set="value" />
 								</div>
 							</div>
-							<div class="form-group">
+							<!--div class="form-group">
 								<label class="col-xs-2 control-label" for="cc_email">CC Email</label>
 								<div class="col-xs-10">
 									<input type="text" name="cc_email" placeholder="CC Email" class="form-control generic" data-field="cc_email" data-set="value" />
@@ -334,7 +331,7 @@
 								<div class="col-xs-10">
 									<input type="text" name="bill_at" placeholder="%" class="form-control generic" data-field="bill_at" data-set="value" />
 								</div>
-							</div>
+							</div -->
 							<fieldset class="iodDetails">
 	    						<legend>IOD Details</legend>
 								<div class="form-group">
@@ -368,8 +365,8 @@
 								<div class="col-xs-10">
 									<select name="supress_statement" class="form-control" >
 										<option selected class="form-control generic" data-field="supress_statement" data-set="innertext"></option>
-										<option value="True" >True</option>
-										<option value="False" >False</option>
+										<option value="1" >True</option>
+										<option value="0" >False</option>
 									</select>	
 								</div>
 							</div>											
@@ -378,8 +375,8 @@
 								<div class="col-xs-10">
 									<select name="account_closed" class="form-control">
 										<option selected class="form-control generic" data-field="account_closed" data-set="innertext"></option>
-										<option value="True" >True</option>
-										<option value="False" >False</option>
+										<option value="1" >True</option>
+										<option value="0" >False</option>
 									</select>						
 								</div>
 							</div>	
@@ -388,8 +385,8 @@
 								<div class="col-xs-10">
 									<select name="allow_email_statements" class="form-control" >
 										<option selected class="form-control generic" data-field="allow_email_statements" data-set="innertext"></option>
-										<option value="True" >True</option>
-										<option value="False" >False</option>
+										<option value="1" >True</option>
+										<option value="0" >False</option>
 									</select>								
 								</div>
 							</div>	
@@ -398,8 +395,8 @@
 								<div class="col-xs-10">
 									<select name="print_patient_liability" class="form-control" >
 										<option selected class="form-control generic" data-field="print_patient_liability" data-set="innertext"></option>
-										<option value="True" >True</option>
-										<option value="False" >False</option>
+										<option value="1" >True</option>
+										<option value="0" >False</option>
 									</select>									
 								</div>
 							</div>
@@ -428,7 +425,7 @@
 								</div>
 							</div>
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>aid_holder" >
+							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>aid_holder_details_tbls" >
 							<input type="hidden" id="table" name="where" value="aid_holder_id = " class="generic" data-field="aid_holder_id" data-set="value">
 						</div>
 					</div>	
@@ -568,9 +565,9 @@ function refreshAidHoldersView(){
 	//The containerDesign which is a string version of .aid_holderDesign needs to be stated.
 	//emptyDesign desing contains the message to print if nothing is found in the db
 	data = {
-		"table": '<?php echo PREFIX; ?>aid_holder',
-		"fields": '*',
-		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
+		"table": '<?php echo PREFIX; ?>aid_holder_details_tbls as a JOIN <?php echo PREFIX; ?>user as b ON a.user_id = b.user_id',
+		"fields": 'a.*, b.*',
+		"where": 'practice_id = '+<?php echo Session::get("practice_id"); ?>,
 		"containerDesign": containerDesign,
 		"emptyDesign": emptyDesign
 	};
@@ -598,7 +595,7 @@ function setBtnHandlers(){
 		if (confirm("Are you sure you want delete this item?") == true) {
 			$(this).parent().fadeOut(666);
 			data = {
-				"table": '<?php echo PREFIX; ?>aid_holder',
+				"table": '<?php echo PREFIX; ?>aid_holder_details_tbls',
 				"where": "aid_holder_id = "+aid_holder_id
 			};
 			Generic.genericAction("delete", data, function(response){
@@ -616,9 +613,9 @@ function setBtnHandlers(){
 		var aid_holder_id = $(this).parent().find(".aid_holder_id_holder").val();
 
 		data = {
-			"table": '<?php echo PREFIX; ?>aid_holder',
-			"fields": '*',
-			"where": 'aid_holder_id = '+aid_holder_id,
+			"table": '<?php echo PREFIX; ?>aid_holder_details_tbls as a JOIN <?php echo PREFIX; ?>user as b ON a.user_id = b.user_id',
+			"fields": 'a.*, b.*',
+			"where": 'a.aid_holder_id = '+aid_holder_id,
 			"containerDesign": aid_holdersEditDesign,
 			"emptyDesign": ""
 		};

@@ -1,49 +1,135 @@
-<!DOCTYPE HTML>
-<html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title><?php echo $this->page_title; ?></title>
-		<meta name="generator" content="Bootply" />
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		
-		<link href="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet">
-		<link href="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/css/bootstrap-theme.min.css" rel="stylesheet">
-		<link href="<?php echo URL; ?>public/css/signin.css" rel="stylesheet">
-		
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-	</head>
-	
-	<body>
-		<div class="container">
-			<form class="form-signin" method="post" action="<?php echo URL; ?>login/login">
-				<h2 class="form-signin-heading">Please sign in</h2>
-				<label for="inputEmail" class="sr-only">Username</label>
-				<input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
-				<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" value="remember-me"> Remember me
-					</label>
-				</div>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			</form>
-		</div>
-		
-		<!--div class="row"-->
-			<div class="col-md-12-">
-				<p align="center">Copyright &copy; 2015 MediSuite. All rights reserved.</p>
-			</div>
-		<!--/div-->
-		
-		<!-- script references -->
-		<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.form.js"></script>
-		<script type="text/javascript" src="<?php echo URL; ?>public/plugins/bootstrap-3.3.2/js/bootstrap.min.js"></script>
-	</body>
-</html>
+<!--Register Starts-->
+<div id="contact" class="spacer fullpage">
+    <form id="frmLogin" action="<?php echo URL; ?>login/login" method="post" class="container form center">
+        <h2 class="text-center  wowload fadeInUp no-margin-btm">Login</h2>
+        <div id="feedback" ></div>
+        <div class="row wowload fadeInRightBig">      
+            <div id="signupbox" style="margin-top:0px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-image thumbnail" >
+                            <span class="glyphicon glyphicon-user thumbnail no-margin-btm" aria-hidden="true"></span>
+                        </div>
+                        <div class="panel-title">Enter your details</div>
+                    </div>  
+                    <div class="panel-body" >
+                        <div id="signupform" class="form-horizontal" role="form">
+                            <div id="signupalert" style="display:none" class="alert alert-danger">
+                                <p>Error:</p>
+                                <span></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-md-3 control-label">Email</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" required name="email" placeholder="Email Address" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" required name="password" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="col-md-3 control-label"><!--img src="<?php echo URL; ?>public/img/loading.gif" class="loading" /--></label>
+                                <!-- Button -->                                        
+                                <div class="col-md-9">
+                                    <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" scoped style="width:15px;" />
+                                    <label class="remember-me-label">Keep me logged in (for 2 weeks)</label>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label for="phone" class="col-md-3 control-label"><img src="<?php echo URL; ?>public/img/loading.gif" class="loading" /></label>
+                                <!-- Button -->                                        
+                                <div class="col-md-9">
+                                    <button id="btn-signup" type="submit" class="btn btn-primary"><i class="icon-hand-right"></i> &nbsp LOGIN</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="col-md-3 control-label"></label>
+                                <!-- Button -->                                        
+                                <div class="col-md-9">
+                                    <a href="<?php echo URL; ?>register/index">Register</a>
+			                        |
+			                        <a href="<?php echo URL; ?>login/requestpasswordreset">Forgot my Password</a>                        
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+             </div> 
+        </div>      
+    </form>
+</div>
+<!--Register Ends-->
+
+<style type="text/css">
+.panel-image{
+  width: 66px;
+  height: 56px;
+  margin: 0px;  
+  float: left;
+}
+
+.panel-image > span{
+    font-size: 25px;
+    text-align: center;
+}
+
+.panel-heading{
+    height: 52px;
+}
+
+.panel-title{
+   width: 80%;
+  float: right;
+  font-size: 22px;
+  margin-top: 10px;  
+}
+
+.remember-me-checkbox{
+	width: 15px;
+}
+</style>
+
+<script type="text/javascript">
+/*
+    Theses are the jquery.forms options for frmAddDoctor above that uses the generic controller 
+*/
+var options = {
+    beforeSend: function(){
+        $(".loading").fadeIn("fast");
+    console.log("beforeSend");
+    }, uploadProgress: function(event, position, total, percentComplete){
+        console.log("uploadProgress");
+    }, success: function(response){
+
+        $("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Login Success!</div>");
+        
+        $('form')[0].reset();
+        
+        window.location = $("#URLholder").val()+"index/welcome";
+        //This code segment removes the feedback automatically
+        /*var delay = 15666;
+        setTimeout(function() {
+            $("#feedback").children().fadeOut().html("");
+        }, delay);
+        */
+    }, complete: function(response){
+        $(".loading").fadeOut("fast");
+        console.log("Complete. response: "+response.responseText);
+    }, error: function(){
+        $("#createDoctor").modal("hide");
+        
+        $("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
+        
+        //clear all fields
+        $('form')[0].reset();
+        
+        console.log("ERROR: ");
+    }
+};
+//Initiat AJAX on submit of frmRegister
+$("#frmLogin").ajaxForm(options);
+
+</script>

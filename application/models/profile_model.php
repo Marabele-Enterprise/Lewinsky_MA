@@ -22,7 +22,11 @@ class ProfileModel{
 		$pdf    = $parser->parseFile(URL.'/public/tariffs/document.pdf');
 		 
 		$text = $pdf->getText();
+		echo "<code>";
+		echo "<pre>";
 		echo $text;
+		echo "</pre>";
+		echo "</code>";
 	}
 
 	/**

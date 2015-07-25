@@ -39,8 +39,8 @@
 				<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
 				<button class="btn btn-default btnEditPatient btn-sm" type="button" >Edit</button>
 				<button class="btn btn-default btnDeletepatient btn-sm" type="button" >Delete</button>
-				<form action="<?php echo URL; ?>/index/use_aid_holder/" method="post" class="postLink"> 					    
-					<input type="hidden" name="aid_holder_id" value="" class="generic" data-field="aid_holder_id" data-set="value"> 					    
+				<form action="<?php echo URL; ?>/index/patient/" method="post" class="postLink"> 					    
+					<input type="hidden" name="patient_id" value="" class="generic" data-field="patient_id" data-set="value"> 					    
 					<button type="submit" class="btn btn-default btn-sm">Use</button> 					
 				</form>
 			</div>
@@ -122,7 +122,7 @@
 							</div>
 						</div>															
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient" >
+						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient_user_details_tbls" >
 					</div>
 					<div class="modal-footer">
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
@@ -207,7 +207,7 @@
 							</div>
 						</div>															
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient">
+							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>patient_user_details_tbls">
 							<input type="hidden" id="table" name="where" value="patient_id = " class="generic" data-field="patient_id" data-set="value">
 						</div>
 					</div>	
@@ -332,7 +332,7 @@ function refreshpatientsView(){
 	//The containerDesign which is a string version of .patientDesign needs to be stated.
 	//emptyDesign desing contains the message to print if nothing is found in the db
 	data = {
-		"table": '<?php echo PREFIX; ?>patient',
+		"table": '<?php echo PREFIX; ?>patient_user_details_tbls',
 		"fields": '*',
 		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
 		"containerDesign": containerDesign,
@@ -362,7 +362,7 @@ function setBtnHandlers(){
 		if (confirm("Are you sure you want delete this item?") == true) {
 			$(this).parent().fadeOut(666);
 			data = {
-				"table": '<?php echo PREFIX; ?>patient',
+				"table": '<?php echo PREFIX; ?>patient_user_details_tbls',
 				"where": "patient_id = "+patient_id
 			};
 
@@ -381,7 +381,7 @@ function setBtnHandlers(){
 		var patient_id = $(this).parent().find(".patient_id_holder").val();
 
 		data = {
-			"table": '<?php echo PREFIX; ?>patient',
+			"table": '<?php echo PREFIX; ?>patient_user_details_tbls',
 			"fields": '*',
 			"where": 'patient_id = '+patient_id,
 			"containerDesign": patientsEditDesign,

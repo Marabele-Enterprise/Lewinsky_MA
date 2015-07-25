@@ -27,38 +27,12 @@
 .info-block > div{
 	float: left;
 }
+
+.row{
+	margin-bottom: 10px;
+}
+
 </style>
-		<!--div class="aid_holderDesign col-xs-12 col-sm-4 col-md-4 col-lg-3">
-			<!-- 
-				.aid_holderDesign is the design for each row in the database. The generic class will print data 
-				in the tags that have class="generic". The attribute data-field tells the system what field
-				from the database you want to print in that tag. The attribute data-set tells it what to print
-				to. Possible values for dataset=(innertext, value, src, href, ...).
-			->
-			<div class="thumbnail">
-				<table class="table table-bordered">
-					<tr class="active"><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
-					<tr><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Initials</b></td><td class="generic" data-field="initials" data-set="innertext"></td></tr>
-					<tr><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Cell</b></td><td class="generic" data-field="cell" data-set="innertext"></td></tr>
-					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Tariff Rate</b></td><td class="generic" data-field="tariff_rate" data-set="innertext"></td></tr>
-					<tr><td><b>Bill at</b></td><td class="generic" data-field="bill_at" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Medical Aid</b></td><td class="generic" data-field="medical_aid" data-set="innertext"></td></tr>
-					<tr><td><b>Medical Aid Number</b></td><td class="generic" data-field="medical_aid_number" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Member ID</b></td><td class="generic" data-field="member_id" data-set="innertext"></td></tr>
-					<tr><td><b>Authorisation Code</b></td><td class="generic" data-field="authorisation_code" data-set="innertext"></td></tr>
-				</table>
-				<input type="hidden" value="" class="aid_holder_id_holder generic" data-field="aid_holder_id" data-set="value" />
-				<button class="btn btn-default btnEditAidHolder btn-sm" type="button" >Edit</button>
-				<button class="btn btn-default btnDeleteAidHolder btn-sm" type="button" >Delete</button>
-				<form action="<?php echo URL; ?>index/use_aid_holder/" method="post" class="postLink"> 					    
-					<input type="hidden" name="aid_holder_id" value="" class="generic" data-field="aid_holder_id" data-set="value"> 					    
-					<button type="submit" class="btn btn-default btn-sm">Use</button> 					
-				</form>				
-			</div>
-		</div-->	
 	<div class="row" >	
 		<div role="tabpanel" class=".col-xs-12 .col-sm-6 .col-md-8">
 		  <!-- Nav tabs -->
@@ -75,11 +49,11 @@
 		  <div class="tab-content .col-xs-12 .col-sm-6 .col-md-8">
 		  	<div role="tabpanel" class="tab-pane fade" id="Patients">
 	  			<div class="row">
-					<h3>patients</h3>
+					<h3>Patients</h3>
 					<div id="feedback">
 					</div>
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createpatient" >
-						<span class="glyphicon glyphicon-plus"></span> New patient
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createPatient" >
+						<span class="glyphicon glyphicon-plus"></span> New Patient
 					</button>
 				</div>
 				<div class="row patientsContainer">
@@ -94,14 +68,13 @@
 						<div class="thumbnail">
 							<table class="table table-bordered">
 								<tr class="active"><td><b>Name</b></td><td class="generic" data-field="name" data-set="innertext"></td></tr>
-								<tr><td><b>ID</b></td><td class="generic" data-field="id_number" data-set="innertext"></td></tr>
-								<tr><td><b>Date of birth</b></td><td class="generic" data-field="date_of_birth" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>Cell</b></td><td class="generic" data-field="cell" data-set="innertext"></td></tr>
+								<tr><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
+								<tr class="active"><td><b>ID</b></td><td class="generic" data-field="id_number" data-set="innertext"></td></tr>
+								<tr><td><b>Date of birth</b></td><td class="generic" data-field="dob" data-set="innertext"></td></tr>
+								<tr class="active"><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
 								<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
 								<tr class="active"><td><b>Gender</b></td><td class="generic" data-field="gender" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>Diagnosis</b></td><td class="generic" data-field="diagnosis" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>Referring Dr</b></td><td class="generic" data-field="referring_doc" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>Dependent code</b></td><td class="generic" data-field="dependent_code" data-set="innertext"></td></tr>
+								<tr><td><b>Dependent code</b></td><td class="generic" data-field="dependent_code" data-set="innertext"></td></tr>
 							</table>
 							<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
 							<button class="btn btn-default btnEditPatient btn-sm" type="button" >Edit</button>
@@ -117,7 +90,8 @@
 					</div>
 			    	<div class="btn-group">
 						<button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#createTransaction">Invoivce</button>
-						<button class="btn btn-default btn-sm" type="button" >Payment</button>
+						<button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#createPayment" >Payment</button>
+						<button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#createStatement" >Statement</button>
 						<button class="btn btn-default btn-sm" type="button" >Others</button>
 					</div>
 				</div>
@@ -143,7 +117,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-								<h4 class="modal-title">Edit AidHolder</h4>
+								<h4 class="modal-title">Edit Medical Aid Holder</h4>
 							</div>
 							<!-- 
 								*If you have select a edit task, you can use a combination of the generic controller and jquery forms to simplify
@@ -187,48 +161,13 @@
 											<div class="col-xs-10">
 												<input type="text" name="phone" placeholder="Phone" class="form-control" value="<?php echo $this->aid_holder_details[0]->phone; ?>" />
 											</div>
-										</div>	
-										<div class="form-group">
-											<label class="col-xs-2 control-label" for="cell">Cell</label>
-											<div class="col-xs-10">
-												<input type="text" name="cell" placeholder="Cell" class="form-control" value="<?php echo $this->aid_holder_details[0]->cell; ?>" />
-											</div>
 										</div>							
 										<div class="form-group">
 											<label class="col-xs-2 control-label" for="email">Email</label>
 											<div class="col-xs-10">
 												<input type="text" name="email" placeholder="Email" class="form-control" value="<?php echo $this->aid_holder_details[0]->email; ?>" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-xs-2 control-label" for="cc_email">CC Email</label>
-											<div class="col-xs-10">
-												<input type="text" name="cc_email" placeholder="CC Email" class="form-control" value="<?php echo $this->aid_holder_details[0]->cc_email; ?>" />
-											</div>
-										</div>						
-										<div class="form-group">
-											<label class="col-xs-2 control-label" for="tariff_rate">Tariff Rate</label>
-											<div class="col-xs-10">
-												<select name="tariff_rate" class="form-control" >
-													<option ><?php echo $this->aid_holder_details[0]->tariff_rate; ?></option>
-													<option value="Private" >Private</option>
-													<option value="MedAid2010" >MedAid2010</option>
-													<option value="IOD" >IOD</option>
-													<option value="Discovery" >Discovery</option>
-													<option value="Rate 5" >Rate 5</option>
-													<option value="Medscheme" >Medscheme</option>
-													<option value="Rate 7" >Rate 7</option>
-													<option value="Rate 8" >Rate 8</option>
-													<option value="Rate 9" >Rate 9</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-xs-2 control-label" for="drpr">Bill at</label>
-											<div class="col-xs-10">
-												<input type="text" name="bill_at" placeholder="%" class="form-control" value="<?php echo $this->aid_holder_details[0]->bill_at; ?>" />
-											</div>
-										</div>
+										</div>	
 										<fieldset class="iodDetails">
 				    						<legend>IOD Details</legend>
 											<div class="form-group">
@@ -417,34 +356,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
 <div class="modal-rows">
 	<!-- Patient Modal Rows-->
-	<div class="modal fade" id="createpatient">
+	<div class="modal fade" id="createPatient">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">New patient</h4>
+					<h4 class="modal-title">New Patient</h4>
 				</div>
 				<!-- 
 					*If you have select a create task, you can use a combination of the generic controller and jquery forms to simplify
@@ -453,7 +373,7 @@
 					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
 					*create a new controller and model function to handle the process the way you want.
 				-->				
-				<form class="form-horizontal" id="frmAddpatient" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
+				<form class="form-horizontal" id="frmAddPatient" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
 					<div class="modal-body">
 						<div id="feedback"></div>
 						<div class="form-group">
@@ -463,6 +383,12 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-xs-2 control-label" for="Surname">Surname</label>
+							<div class="col-xs-10">
+								<input type="text" name="surname" placeholder="Surname" class="form-control" />
+							</div>
+						</div>						
+						<div class="form-group">
 							<label class="col-xs-2 control-label" for="identification">ID number</label>
 							<div class="col-xs-10">
 								<input type="text" name="id_number" placeholder="ID number" class="form-control" />
@@ -471,31 +397,29 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
 							<div class="col-xs-10">
-								<input type="text" id="date_of_birth" name="date_of_birth" placeholder="date_of_birth" class="form-control" />
+								<input type="date" name="dob" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="gender">Gender</label>
 							<div class="col-xs-10">
-								<input type="text" id="gender" name="gender" placeholder="gender" class="form-control" />
+								<select name="gender" class="form-control" required >
+									<option></option>
+									<option value="M">Male</option>
+									<option value="F">Female</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="cell">Cell</label>
+							<label class="col-xs-2 control-label" for="phone">Phone</label>
 							<div class="col-xs-10">
-								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control" />
+								<input type="text" name="phone" placeholder="Phone" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="phone">Email</label>
 							<div class="col-xs-10">
-								<input type="text" id="email" name="email" placeholder="email" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="diagnosis">Diagnoies</label>
-							<div class="col-xs-10">
-								<input type="text" id="diagnosis" name="diagnosis" placeholder="diagnosis" class="form-control" />
+								<input type="email" name="email" placeholder="email" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -504,14 +428,20 @@
 								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control" />
 							</div>
 						</div>
-						<div class="form-group">
+						<!-- div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
 							<div class="col-xs-10">
-								<input type="text" id="referring_doc" name="referring_doc" placeholder="Dr love" class="form-control" />
+								<input type="text" id="referring_doc" name="referring_doc" placeholder="Dr Name Surname" class="form-control" />
 							</div>
-						</div>															
+						</div -->															
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-						<input type="hidden" name="table" value="<?php echo PREFIX; ?>patient" >
+						<input type="hidden" name="table" value="<?php echo PREFIX; ?>user" >
+						<input type="hidden" name="table_sub" value="<?php echo PREFIX; ?>patient_user_details_tbls" >
+						<input type="hidden" name="fk" value="user_id" >
+						<input type="hidden" name="practice_id" value="<?php echo Session::get('practice_id'); ?>" />
+						<input type="hidden" name="insert_type" value="sub" />
+						<input type="hidden" name="user_account_type" value="Patient" />						
+						<input type="hidden" name="aid_holder_id" value="<?php echo $this->aid_holder_id; ?>" >
 					</div>
 					<div class="modal-footer">
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
@@ -572,9 +502,9 @@
 							</div>
 						</div>						
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Cell</label>
+							<label class="col-xs-2 control-label" for="phone">Phone</label>
 							<div class="col-xs-10">
-								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control generic" data-field="cell" data-set="value"/>
+								<input type="text" name="phone" placeholder="Phone" class="form-control generic" data-field="phone" data-set="value"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -589,12 +519,12 @@
 								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control generic" data-field="dependent_code" data-set="value"/>
 							</div>
 						</div>
-						<div class="form-group">
+						<!--div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
 							<div class="col-xs-10">
 								<input type="text" id="referring_doc" name="referring_doc" placeholder="Referring Dr" class="form-control generic" data-field="referring_doc" data-set="value"/>
 							</div>
-						</div>															
+						</div-->															
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
 							<input type="hidden" name="table" value="<?php echo PREFIX; ?>patient">
 							<input type="hidden" name="where" value="patient_id = " class="generic" data-field="patient_id" data-set="value">
@@ -770,6 +700,95 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->			
 
+	<!-- Payment Modal Rows-->
+	<div class="modal fade" id="createPayment">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">New Payment</h4>
+				</div>
+				<!-- 
+					*If you have select a create task, you can use a combination of the generic controller and jquery forms to simplify
+					*the submitting of data to the database. Below is an example of how to use it. The input field names must
+					*be the same as the attribute names in the table you are creating in. In the script tags, there is a jquery.forms
+					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
+					*create a new controller and model function to handle the process the way you want.
+				-->				
+				<form class="form-horizontal" id="frmAddPayment" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
+					<div class="modal-body">
+						<div id="feedback"></div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="dob">Payment By</label>
+							<div class="col-xs-10" >
+								<select name="payment_by" class="form-control" >
+									<option></option>
+									<option value="Patient" >Patient</option>
+									<option value="Medical Aid" >Medical Aid</option>
+								</select>
+							</div>
+						</div>						
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="Name">Date</label>
+							<div class="col-xs-10">
+								<input type="date" name="date" placeholder="Date" class="form-control current-date" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="identification">Payment Type</label>
+							<div class="col-xs-10">
+								<select name="payment_type" class="form-control" >
+									<option></option>
+									<option value="Cash" >Cash</option>
+									<option value="Medical Aid" >Medical Aid</option>
+								</select>								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="gender">Description</label>
+							<div class="col-xs-10">
+								<textarea name="description" placeholder="Description..." class="form-control" ></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="cell">Value</label>
+							<div class="col-xs-10">
+								<input type="text" name="amount" placeholder="0.00" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">ID</label>
+							<div class="col-xs-10">
+								<input type="text" name="ID" placeholder="ID" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="age">Age</label>
+							<div class="col-xs-10">
+								<input type="number" name="age" placeholder="Age" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="diagnosis">Diagnosis</label>
+							<div class="col-xs-10">
+								<select class="selectpicker form-control diagnosis_select" data-live-search="true" >
+								</select>
+							</div>
+						</div>
+						<input type="hidden" name="aid_holder_id" value="<?php echo $this->aid_holder_id; ?>" >
+						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
+						<input type="hidden" name="table" value="<?php echo PREFIX; ?>transaction" >
+					</div>
+					<div class="modal-footer">
+						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 	<!-- Transactions Modal Rows-->
 	<div class="modal fade" id="createTransaction">
 		<div class="modal-dialog">
@@ -791,23 +810,50 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="dob">Patient</label>
 							<div class="col-xs-10" >
-								<select name="patient_id" class="form-control" >
+								<select name="patient_id" class="form-control patient_selector" >
+									<option></option>
 									<?php foreach ($this->patient_details as $key => $patient) {?>
-									<option value="<?php echo $patient->patient_id;?>" ><?php echo $patient->name;?> <?php echo $patient->surname;?></option>
+									<option value="<?php echo $patient->patient_id;?>" data-id="<?php echo $patient->id_number;?>" class="patient_<?php echo $patient->patient_id;?>" ><?php echo $patient->name;?> <?php echo $patient->surname;?></option>
 									<?php }?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">ID</label>
+							<div class="col-xs-10">
+								<input type="text" name="ID" placeholder="ID" class="form-control patient_id_target" />
+							</div>
+						</div>												
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="Name">Date</label>
+							<div class="col-xs-10">
+								<input type="date" name="date" placeholder="Date" class="form-control current-date" value="<?php echo date("Y-m-d"); ?>" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="diagnosis">Diagnosis</label>
+							<div class="col-xs-10">
+								<select name="diagnosis" class="selectpicker form-control diagnosis_select" data-live-search="true" multiple id="diagnosis_select" >
 								</select>
 							</div>
 						</div>						
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="Name">Date</label>
+							<label class="col-xs-2 control-label" for="identification">Code</label>
 							<div class="col-xs-10">
-								<input type="date" name="date" placeholder="Date" class="form-control" />
+								<select class="form-control slct_tarrif_code" name="code" data-live-search="true" >
+								</select>								
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="identification">Code</label>
+							<label class="col-xs-2 control-label" for="cell">Amount</label>
 							<div class="col-xs-10">
-								<input type="text" name="code" placeholder="Code" class="form-control" />
+								<input type="text" class="form-control amount_target" name="amount" placeholder="0.00" class="form-control" />
+							</div>
+						</div>						
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="gender">Description</label>
+							<div class="col-xs-10">
+								<textarea name="description" placeholder="Description..." class="form-control desc_target" ></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -839,35 +885,11 @@
 									<option value="None" >[None]</option>
 								</select>
 							</div>														
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="gender">Description</label>
-							<div class="col-xs-10">
-								<textarea name="description" placeholder="Description..." class="form-control" ></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="cell">Amount</label>
-							<div class="col-xs-10">
-								<input type="text" name="amount" placeholder="0.00" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">ID</label>
-							<div class="col-xs-10">
-								<input type="text" name="ID" placeholder="ID" class="form-control" />
-							</div>
-						</div>
+						</div>						
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="age">Age</label>
 							<div class="col-xs-10">
-								<input type="number" name="age" placeholder="Age" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="diagnosis">Diagnosis</label>
-							<div class="col-xs-10">
-								<input type="text" name="diagnosis" placeholder="ICD10 code" class="form-control" />
+								<input type="number" name="age" placeholder="Age" class="form-control" min="1" max="5" value="1" />
 							</div>
 						</div>
 						<input type="hidden" name="aid_holder_id" value="<?php echo $this->aid_holder_id; ?>" >
@@ -972,774 +994,194 @@
 	</div><!-- /.modal -->
 </div><!-- /.modal rows-->
 
+<!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
+<div class="modal-rows">
+	<!-- Patient Modal Rows-->
+	<div class="modal fade" id="createStatement">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">New Statement</h4>
+				</div>
+				<!-- 
+					*If you have select a create task, you can use a combination of the generic controller and jquery forms to simplify
+					*the submitting of data to the database. Below is an example of how to use it. The input field names must
+					*be the same as the attribute names in the table you are creating in. In the script tags, there is a jquery.forms
+					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
+					*create a new controller and model function to handle the process the way you want.
+				-->				
+				<form class="form-horizontal" id="frmAddSatement" role="form" action="" method="post" enctype="multipart/form-data"  >
+					<div class="modal-body">
+						<div id="feedback"></div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="Name">Message</label>
+							<div class="col-xs-10">
+								<input type="text" id="tbx_message" name="message" placeholder="Message" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="Name">Patient</label>
+							<div class="col-xs-10">
+								<select class="form-control" name="patient"  id="tbx_patient" >
+									<?php foreach ($this->patient_details as $key => $patient) {?>
+										<option value="<?php echo $patient->patient_id;?>" ><?php echo $patient->name;?> <?php echo $patient->surname;?></option>
+									<?php }?>									
+								</select>
+							</div>
+						</div>							
+						<div class="form-group email_container" >
+							<label class="col-xs-2 control-label" for="Name">Email</label>
+							<div class="col-xs-10">
+								<input type="text" id="tbx_email" name="email" placeholder="Message" class="form-control" value="<?php echo $this->aid_holder_details[0]->email; ?>" />
+							</div>
+						</div>											
+						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
+						<input type="hidden" name="table" value="<?php echo PREFIX; ?>patient" >
+					</div>
+					<div class="modal-footer">
+						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
+						<div class="email_btns" >
+							<button type="button" class="btn btn-default btnSendEmail" >Send</button>
+							<button type="button" class="btn btn-primary btnCancelEmail">Cancel</button>
+						</div><br>						
+						<input type="hidden" id="aid_holder_id" name="aid_holder_id" value="<?php echo $this->aid_holder_details[0]->aid_holder_id; ?>" >	
+						<!--button type="button" class="btn btn-default btn-sm btn_download_statement">Download</button --> 					
+						<a href="<?php echo URL; ?>index/pdf_test/<?php echo $this->aid_holder_details[0]->aid_holder_id; ?>/" class="btn btn-default btn-sm tbx_message_target" download >Download</a> 
+						<!--form id="download_statement_form" action="<?php echo URL; ?>/index/pdf_test" method="post" class="postLink" > 					    
+							<input type="hidden" name="message" value="" class="tbx_message_target" >
+							<input type="hidden" id="aid_holder_id" name="aid_holder_id" value="<?php echo $this->aid_holder_details[0]->aid_holder_id; ?>" >
+							
+						</form -->
+						<button type="button" class="btn btn-primary btnEmail">Email</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" id="editPatient">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Edit patient</h4>
+				</div>
+				<!-- 
+					*If you have select a edit task, you can use a combination of the generic controller and jquery forms to simplify
+					*the submitting of data to the database. Below is an example of how to use it. The input field names must
+					*be the same as the attribute names in the table you are updating in. In the script tags, there is a jquery.forms
+					*function for this form to make it use ajax. If your update requires multiple update in multiple tables, then you are gonna have to
+					*create a new controller and model function to handle the process the way you want.
+				-->	<!--doctorsEditTarget-->
+				<form class="form-horizontal" id="frmEditpatient" role="form" action="<?php echo URL; ?>generic/genericUpdate" method="post" enctype="multipart/form-data"  >
+					<div class="patientsEditTarget">
+						<div class="modal-body patientsEditDesign">
+							<div id="feedback"></div>
+							<div class="form-group">
+							<label class="col-xs-2 control-label" for="Name">Name</label>
+							<div class="col-xs-10">
+								<input type="text" name="name" placeholder="Name" class="form-control generic" data-field="name" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="identification">ID number</label>
+							<div class="col-xs-10">
+								<input type="text" name="id_number" placeholder="id_number" class="form-control generic" data-field="id_number" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
+							<div class="col-xs-10">
+								<input type="date" name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control generic" data-field="date_of_birth" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="gender">Gender</label>
+							<div class="col-xs-10">
+								<input type="text" id="gender" name="gender" placeholder="gender" class="form-control generic" data-field="gender" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Email</label>
+							<div class="col-xs-10">
+								<input type="email" id="email" name="email" placeholder="email" class="form-control generic" data-field="email" data-set="value" />
+							</div>
+						</div>						
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Cell</label>
+							<div class="col-xs-10">
+								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control generic" data-field="cell" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Diagnosis</label>
+							<div class="col-xs-10">
+								<input type="text" id="diagnosis" name="diagnosis" placeholder="diagnosis" class="form-control generic" data-field="diagnosis" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="drpr">Dependednt code</label>
+							<div class="col-xs-10">
+								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control generic" data-field="dependent_code" data-set="value"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
+							<div class="col-xs-10">
+								<input type="text" id="referring_doc" name="referring_doc" placeholder="Referring Dr" class="form-control generic" data-field="referring_doc" data-set="value"/>
+							</div>
+						</div>															
+							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
+							<input type="hidden" name="table" value="<?php echo PREFIX; ?>patient">
+							<input type="hidden" name="where" value="patient_id = " class="generic" data-field="patient_id" data-set="value">
+						</div>
+					</div>	
+					<div class="modal-footer">
+						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div><!-- /.modal rows-->
+<input type="hidden" id="aid_holder_id" value="<?php echo $this->aid_holder_id; ?>" >
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<script type="text/javascript" src="<?php echo URL; ?>public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>public/js/use_aid_holder.js"></script>
 <script>
-$('#Transactions').css("opacity", 1);
-//$('#myTab a[href="#Transactions"]').tab('show'); // Select tab by name
 
-/*
-	Theses are the jquery.forms options for frmEditAidHolder above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#editAidHolder").modal("hide");
+	var now = new Date();
+    $(".current-date").val(now);
 
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");				
-			return;
-		}
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>AidHolder Updated Successfully</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
 
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#editAidHolder").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddAidHolder
-$("#frmEditAidHolder").ajaxForm(options);
+$(".btnEmail").on("click", function (){
+	$(".email_container").slideDown("slow");
+	$(".email_btns").slideDown("slow");
+});
 
+$(".btnCancelEmail").on("click", function (){
+	$(".email_container").slideUp("slow");
+	$(".email_btns").slideUp("slow");
+});
 
-/*
-	Theses are the jquery.forms options for frmAddPatient above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createPatient").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Patient Added Successfully</div>");
-		
-		refreshPatientsView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
+$('.email_container, .email_btns').slideUp(10);
 
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createPatient").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
+$('#tbx_message').on("change", function(){
+	$('.tbx_message_target').attr("href", $("#URLholder").val()+"index/get_pdf_statement/"+$("#aid_holder_id").val()+"/"+$("#tbx_patient").val()+"/"+$(this).val());
+});
 
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddPatient
-$("#frmAddPatient").ajaxForm(options);
+$('#tbx_patient').on("change", function(){
+	$('.tbx_message_target').attr("href", $("#URLholder").val()+"index/get_pdf_statement/"+$("#aid_holder_id").val()+"/"+$(this).val()+"/"+$("#tbx_message").val());
+});
 
-
-/*
-	Theses are the jquery.forms options for frmEditPatient above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#editPatient").modal("hide");
-
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");				
-			return;
-		}
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Patient Updated Successfully</div>");
-		
-		refreshPatientsView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#editPatient").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddPatient
-$("#frmEditPatient").ajaxForm(options);
-
-/*
-	Theses are the jquery.forms options for frmAddPatient above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createPatient").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Patient Added Successfully</div>");
-		
-		refreshPatientsView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createPatient").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddPatient
-$("#frmAddPatient").ajaxForm(options);
-
-
-/*
-	Theses are the jquery.forms options for frmAddTransaction above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createTransaction").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Transaction Added Successfully</div>");
-		
-		refreshTransactionsView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createTransaction").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddTransaction
-$("#frmAddTransaction").ajaxForm(options);
-
-/**
- * This section creates the tariff_codes view
- * It uses the generic MVC class to retrieve the data from the database and merge it with the design
- * The design is replicate for each row of data that is retrieved
- */
-
- //Int this variable replace .patientDesign with your own design
-var transactionDesign = $(".transactionDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function refresTransactionView(){
-	var emptyDesign = "<tr><td><h2>There are no transactions in the system</h2></td></tr>";
-	
-	//To generate the view using generic class,  state the table, fields, where, order in the json object above
-	//The containerDesign which is a string version of .transactionDesign needs to be stated.
-	//emptyDesign desing contains the message to print if nothing is found in the db
-	data = {
-		"table": '<?php echo PREFIX; ?>transaction',
-		"fields": '*',
-		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
-		"containerDesign": transactionDesign,
-		"emptyDesign": emptyDesign
-	};
-
-	//To generate the view, call the function below with the following parameters
-	//(targetContainer, designClass, data, type(can be table/grid/other), replace/append, oncomplete function)
-	Generic.genericView(".transactionsContainer", ".transactionDesign", data, "other", "replace", function(){
-		console.log("Data append Completed :)");
-		//button handlers must be set after the view has been generated
-		setBtnHandlers();
-	});
-}
-
-refresTransactionView();
-
-
-
-/**
- * This section creates the tariff_codes view
- * It uses the generic MVC class to retrieve the data from the database and merge it with the design
- * The design is replicate for each row of data that is retrieved
- */
-
- //Int this variable replace .patientDesign with your own design
-var patientDesign = $(".patientDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function refreshpatientsView(){
-	var emptyDesign = "<h2>There are no patients in the system</h2>";
-	
-	//To generate the view using generic class,  state the table, fields, where, order in the json object above
-	//The containerDesign which is a string version of .patientDesign needs to be stated.
-	//emptyDesign desing contains the message to print if nothing is found in the db
-	data = {
-		"table": '<?php echo PREFIX; ?>patient',
-		"fields": '*',
-		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
-		"containerDesign": patientDesign,
-		"emptyDesign": emptyDesign
-	};
-
-	//To generate the view, call the function below with the following parameters
-	//(targetContainer, designClass, data, type(can be table/grid/other), replace/append, oncomplete function)
-	Generic.genericView(".patientsContainer", ".patientDesign", data, "other", "replace", function(){
-		console.log("Data append Completed :)");
-		//button handlers must be set after the view has been generated
-		setBtnHandlers();
-	});
-}
-
-refreshpatientsView();
-
-
-var patientsEditDesign = $(".patientsEditDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function setBtnHandlers(){
-	$('.btnDeletepatient:not(.bound)').addClass('bound').on("touchstart click", function (e){
-		e.preventDefault();
-		
-		var patient_id = $(this).parent().find(".patient_id_holder").val();
-
-		var x;
-		if (confirm("Are you sure you want delete this item?") == true) {
-			$(this).parent().fadeOut(666);
-			data = {
-				"table": '<?php echo PREFIX; ?>patient',
-				"where": "patient_id = "+patient_id
-			};
-
-			Generic.genericAction("delete", data, function(response){
-				console.log(response);
-				//refreshView();
-			});
-		} else {
-			//x = "You pressed Cancel!";
-		}		
-	});
-
-	$('.btnEditPatient:not(.bound)').addClass('bound').on("touchstart click", function (e){
-		e.preventDefault();
-		
-		var patient_id = $(this).parent().find(".patient_id_holder").val();
-
-		data = {
-			"table": '<?php echo PREFIX; ?>patient',
-			"fields": '*',
-			"where": 'patient_id = '+patient_id,
-			"containerDesign": patientsEditDesign,
-			"emptyDesign": ""
-		};
-		
-		Generic.genericView(".patientsEditTarget", ".patientsEditDesign", data, "other", "replace", function(){
-			console.log("Data append Completed =)");
-		});
-
-		$('#editPatient').modal('show');
-	});
-}	
-
-/* Note js
-SEPATATOR =====================================================================================================================================||
-*/
-/*
-	Theses are the jquery.forms options for frmAddNote above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createNote").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Note Added Successfully</div>");
-		
-		refreshNotesView();
-
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createNote").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddNote
-$("#frmAddNote").ajaxForm(options);
-
-/*
-	Theses are the jquery.forms options for frmAddNote above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createNote").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Note Added Successfully</div>");
-		
-		refreshNotesView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createNote").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddNote
-$("#frmEditNote").ajaxForm(options);
-
-/**
- * This section creates the tariff_codes view
- * It uses the generic MVC class to retrieve the data from the database and merge it with the design
- * The design is replicate for each row of data that is retrieved
- */
-
- //Int this variable replace .noteDesign with your own design
-var noteDesign = $(".noteDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function refreshNotesView(){
-	var emptyDesign = "<tr><td><h2>There are no notes in the system</h2></td></tr>";
-	
-	//To generate the view using generic class,  state the table, fields, where, order in the json object above
-	//The containerDesign which is a string version of .noteDesign needs to be stated.
-	//emptyDesign desing contains the message to print if nothing is found in the db
-	data = {
-		"table": '<?php echo PREFIX; ?>note',
-		"fields": '*',
-		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
-		"containerDesign": noteDesign,
-		"emptyDesign": emptyDesign
-	};
-
-	//To generate the view, call the function below with the following parameters
-	//(targetContainer, designClass, data, type(can be table/grid/other), replace/append, oncomplete function)
-	Generic.genericView(".notesContainer", ".noteDesign", data, "other", "replace", function(){
-		console.log("Data append Completed :)");
-		//button handlers must be set after the view has been generated
-		setNoteBtnHandlers();
-	});
-}
-
-refreshNotesView();
-
-var noteEditDesign = $(".noteEditDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function setNoteBtnHandlers(){
-	$('.btnDeleteNote:not(.bound)').addClass('bound').on("touchstart click", function (e){
-		e.preventDefault();
-		
-		var note_id = $(this).parent().find(".note_id_holder").val();
-
-		var x;
-		if (confirm("Are you sure you want delete this item?") == true) {
-			$(this).parent().fadeOut(666);
-			data = {
-				"table": '<?php echo PREFIX; ?>note',
-				"where": "note_id = "+note_id
-			};
-
-			Generic.genericAction("delete", data, function(response){
-				console.log(response);
-				//refreshView();
-			});
-		} else {
-			//x = "You pressed Cancel!";
-		}		
-	});
-
-	$('.btnEditNote:not(.bound)').addClass('bound').on("touchstart click", function (e){
-		e.preventDefault();
-		
-		var note_id = $(this).parent().find(".note_id_holder").val();
-
-		data = {
-			"table": '<?php echo PREFIX; ?>note',
-			"fields": '*',
-			"where": 'note_id = '+note_id,
-			"containerDesign": noteEditDesign,
-			"emptyDesign": ""
-		};
-		
-		Generic.genericView(".editNoteTarget", ".noteEditDesign", data, "other", "replace", function(){
-			console.log("Data append Completed =)");
-		});
-
-		$('#editNote').modal('show');
-	});
-}
-
-/* Note js
-SEPATATOR =====================================================================================================================================||
-*/
-
-/* Message js
-SEPATATOR =====================================================================================================================================||
-*/
-/*
-	Theses are the jquery.forms options for frmAddMessage above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createMessage").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Message Added Successfully</div>");
-		
-		refreshMessagesView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createMessage").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddMessage
-$("#frmAddMessage").ajaxForm(options);
-
-/*
-	Theses are the jquery.forms options for frmAddMessage above that uses the generic controller 
-*/
-var options = {
-	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
-	console.log("beforeSend");
-	}, uploadProgress: function(event, position, total, percentComplete){
-		console.log("uploadProgress");
-	}, success: function(response){
-		if(response !== "Success"){
-			$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+"</div>");		
-			return;
-		}
-		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createMessage").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Message Added Successfully</div>");
-		
-		refreshMessagesView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-	}, complete: function(response){
-		$("#loader1").remove();
-		console.log("Complete. response: "+response.responseText);
-	}, error: function(){
-		$("#createMessage").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
-
-		//clear all fields
-		$('form')[0].reset();
-		
-		console.log("ERROR: ");
-	}
-};
-//Initiat AJAX on submit of frmAddMessage
-$("#frmEditMessage").ajaxForm(options);
-
-/**
- * This section creates the tariff_codes view
- * It uses the generic MVC class to retrieve the data from the database and merge it with the design
- * The design is replicate for each row of data that is retrieved
- */
-
- //Int this variable replace .messageDesign with your own design
-var messageDesign = $(".messageDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function refreshMessagesView(){
-	var emptyDesign = "<tr><td><h2>There are no messages in the system</h2></td></tr>";
-	
-	//To generate the view using generic class,  state the table, fields, where, order in the json object above
-	//The containerDesign which is a string version of .messageDesign needs to be stated.
-	//emptyDesign desing contains the message to print if nothing is found in the db
-	data = {
-		"table": '<?php echo PREFIX; ?>aid_holder_message',
-		"fields": '*',
-		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
-		"containerDesign": messageDesign,
-		"emptyDesign": emptyDesign
-	};
-
-	//To generate the view, call the function below with the following parameters
-	//(targetContainer, designClass, data, type(can be table/grid/other), replace/append, oncomplete function)
-	Generic.genericView(".messagesContainer", ".messageDesign", data, "other", "replace", function(){
-		console.log("Data append Completed :)");
-		//button handlers must be set after the view has been generated
-		setMessageBtnHandlers();
-	});
-}
-
-refreshMessagesView();
-
-var messageEditDesign = $(".messageEditDesign:first").clone().wrapAll("<div/>").parent().html();
-
-function setMessageBtnHandlers(){
-	$('.btnDeleteMessage:not(.bound)').addClass('bound').on("touchstart click", function (e){
-		e.preventDefault();
-		
-		var message_id = $(this).parent().find(".message_id_holder").val();
-
-		var x;
-		if (confirm("Are you sure you want delete this item?") == true) {
-			$(this).parent().fadeOut(666);
-			data = {
-				"table": '<?php echo PREFIX; ?>aid_holder_message',
-				"where": "aid_holder_message_id = "+message_id
-			};
-
-			Generic.genericAction("delete", data, function(response){
-				console.log(response);
-				//refreshView();
-			});
-		} else {
-			//x = "You pressed Cancel!";
-		}		
-	});
-
-	$('.btnEditMessage:not(.bound)').addClass('bound').on("touchstart click", function (e){
-		e.preventDefault();
-		
-		var message_id = $(this).parent().find(".message_id_holder").val();
-
-		data = {
-			"table": '<?php echo PREFIX; ?>aid_holder_message',
-			"fields": '*',
-			"where": 'aid_holder_message_id = '+message_id,
-			"containerDesign": messageEditDesign,
-			"emptyDesign": ""
-		};
-		
-		Generic.genericView(".editMessageTarget", ".messageEditDesign", data, "other", "replace", function(){
-			console.log("Data append Completed =)");
-		});
-
-		$('#editMessage').modal('show');
-	});
-}
-
-/* Message js
-SEPATATOR =====================================================================================================================================||
-*/
+$('.btn_download_statement').click(function(e){
+	console.log("download statement");
+    e.preventDefault();
+    form = $('#download_statement_form');
+    form.submit();
+});
 </script>

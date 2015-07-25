@@ -37,14 +37,9 @@ class Login extends Controller
         // create a login model to perform the getFacebookLoginUrl() method
         $login_model = $this->loadModel('Login');
         
-        // if we use Facebook: this is necessary as we need the facebook_login_url in the login form (in the view)
-        if (FACEBOOK_LOGIN == true) {
-            $this->view->facebook_login_url = $login_model->getFacebookLoginUrl();
-        }
-        
         $this->view->page_title = "Login | MediSuite";
         // show the view
-        $this->view->render('login/index', true);
+        $this->view->render('login/index');
     }
     
     /*======================
@@ -64,18 +59,19 @@ class Login extends Controller
         // check login status
         if($login_successful === 0){
             // if account not active, go to the verification page.
-            header('location: ' . URL . 'login');
+            //header('location: ' . URL . 'login');
             //echo "login/verify";
+            echo "[error]";
         } elseif ($login_successful) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-           header('location: ' . URL);
-          //  echo "Success";
+           //header('location: ' . URL);
+            echo "Success";
 	  
 		//echo Session::get('user_logged_in');
 		//return false;
         } else {
             // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'login/index');
+            echo "[error]";
             //print_r($_SESSION["feedback_negative"]);
             //echo "Error";
         }
@@ -99,4 +95,17 @@ class Login extends Controller
             header('location: ' . URL . 'login/index');
         }
     }
+
+    /**
+     * The logout action, login/logout
+     */
+    function logout()
+    {
+        $login_model = $this->loadModel('Login');
+        $generic_model = $this->loadModel('Generic');
+        $login_model->logout($generic_model);
+        // redirect user to base URL
+        header('location: ' . URL);
+        //echo "Success";
+    }    
 }

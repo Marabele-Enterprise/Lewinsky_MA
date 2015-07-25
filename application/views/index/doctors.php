@@ -30,10 +30,10 @@
 					<tr><td><b>Initials</b></td><td class="generic searchable" data-field="initials" data-set="innertext"></td></tr>
 					<tr><td><b>Surname</b></td><td class="generic searchable" data-field="surname" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Phone</b></td><td class="generic searchable" data-field="phone" data-set="innertext"></td></tr>
-					<tr><td><b>DRPR</b></td><td class="generic" data-field="drpr searchable" data-set="innertext"></td></tr>
+					<tr><td><b>Practice #</b></td><td class="generic searchable" data-field="practice_number" data-set="innertext"></td></tr>
 					<tr class="active"><td><b>Email</b></td><td class="generic searchable" data-field="email" data-set="innertext"></td></tr>
 				</table>
-				<input type="hidden" value="" class="doctor_id_holder generic" data-field="doctor_id" data-set="value" />
+				<input type="hidden" value="" class="doctor_id_holder generic" data-field="details_id" data-set="value" />
 				<button class="btn btn-default btnEditDoctor btn-sm" type="button" >Edit</button>
 				<button class="btn btn-default btnDeleteDoctor btn-sm" type="button" >Delete</button>
 			</div>
@@ -63,7 +63,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="title">Title</label>
 							<div class="col-xs-10">
-								<input type="text" id="title" name="title" placeholder="Title" class="form-control" />
+								<input type="text" id="title" name="title" placeholder="Title" value="Dr" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -73,21 +73,15 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-xs-2 control-label" for="name">Name</label>
+							<div class="col-xs-10">
+								<input type="text" name="name" placeholder="Name" class="form-control" />
+							</div>
+						</div>						
+						<div class="form-group">
 							<label class="col-xs-2 control-label" for="surname">Surname</label>
 							<div class="col-xs-10">
-								<input type="text" id="surname" name="surname" placeholder="Surname" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Phone</label>
-							<div class="col-xs-10">
-								<input type="text" id="phone" name="phone" placeholder="Phone" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">DRPR</label>
-							<div class="col-xs-10">
-								<input type="text" id="drpr" name="drpr" placeholder="DRPR ?" class="form-control" />
+								<input type="text" name="surname" placeholder="Surname" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -95,9 +89,43 @@
 							<div class="col-xs-10">
 								<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
 							</div>
+						</div>						
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="phone">Phone</label>
+							<div class="col-xs-10">
+								<input type="text" id="phone" name="phone" placeholder="Phone" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="reg_type">Registration Type</label>
+							<div class="col-xs-10">
+								<select class="form-control reg_type" >
+									<option></option>
+									<option>HPCSA</option>
+									<option>Practice Number</option>
+								</select>
+							</div>
+						</div>						
+						<div class="form-group hpcsa">
+							<label class="col-xs-2 control-label" for="drpr">HPCSA Reg#</label>
+							<div class="col-xs-10">
+								<input type="text" name="hpcsa_number" placeholder="HPCSA Registration number" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group practice-number">
+							<label class="col-xs-2 control-label" for="drpr">Practice Number</label>
+							<div class="col-xs-10">
+								<input type="text" name="hpcsa_number" placeholder="HPCSA Registration number" class="form-control" />
+							</div>
 						</div>															
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>doctor" >
+						<input type="hidden" name="table" value="<?php echo PREFIX; ?>user" >
+						<input type="hidden" name="table_sub" value="<?php echo PREFIX; ?>doctor_user_details_tbls" >
+						<input type="hidden" name="fk" value="user_id" >
+						<input type="hidden" name="practice_id" value="<?php echo Session::get('practice_id'); ?>" />
+						<input type="hidden" name="practice_number" value="<?php echo Session::get('practice_number'); ?>" />
+						<input type="hidden" name="insert_type" value="sub" />
+						<input type="hidden" name="user_account_type" value="Doctor" />						
 					</div>
 					<div class="modal-footer">
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
@@ -152,9 +180,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="drpr">DRPR</label>
+								<label class="col-xs-2 control-label" for="drpr">Practice #</label>
 								<div class="col-xs-10">
-									<input type="text" id="drpr" name="drpr" placeholder="DRPR ?" class="form-control generic" data-field="drpr" data-set="value" />
+									<input type="text" id="practice_number" name="practice_number" class="form-control generic" data-field="practice_number" data-set="value" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -164,8 +192,9 @@
 								</div>
 							</div>															
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>doctor" >
-							<input type="hidden" id="table" name="where" value="doctor_id = " class="generic" data-field="doctor_id" data-set="value">
+							<input type="hidden" name="table" value="<?php echo PREFIX; ?>doctor_user_details_tbls" />
+							<input type="hidden" name="insert_type" value="sub_user" />
+							<input type="hidden" id="table" name="where" value="doctor_id = " class="generic" data-field="doctor_id" data-set="value" />
 						</div>
 					</div>	
 					<div class="modal-footer">
@@ -178,11 +207,31 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 </div><!-- /.modal rows-->
-
+<style type="text/css">
+.hpcsa, .practice-number{
+	display: none;
+}
+</style>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script>
 
 $("li#services").addClass("active");
+
+
+$(".reg_type").on("change", function(){
+	console.log($(this).val());
+	if($(this).val() == "Practice Number"){
+		$(".practice-number").slideUp("slow");
+		$(".hpcsa").slideDown("slow");
+	}else if($(this).val() == "HPCSA"){
+		$(".hpcsa").slideUp("slow");
+		$(".practice-number").slideDown("slow");
+	}else{
+		$(".hpcsa").slideUp("slow");
+		$(".practice-number").slideUp("slow");
+	}
+});
+
 
 /*
 	Theses are the jquery.forms options for frmAddDoctor above that uses the generic controller 
@@ -289,8 +338,8 @@ function refreshDoctorsView(){
 	//The containerDesign which is a string version of .doctorDesign needs to be stated.
 	//emptyDesign desing contains the message to print if nothing is found in the db
 	data = {
-		"table": '<?php echo PREFIX; ?>doctor',
-		"fields": '*',
+		"table": '<?php echo PREFIX; ?>doctor_user_details_tbls as a JOIN <?php echo PREFIX; ?>user as b ON a.user_id = b.user_id',
+		"fields": 'a.*, b.*',
 		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
 		"containerDesign": containerDesign,
 		"emptyDesign": emptyDesign
@@ -319,7 +368,7 @@ function setBtnHandlers(){
 		if (confirm("Are you sure you want delete this item?") == true) {
 			$(this).parent().fadeOut(666);
 			data = {
-				"table": '<?php echo PREFIX; ?>doctor',
+				"table": '<?php echo PREFIX; ?>doctor_user_details_tbls',
 				"where": "doctor_id = "+doctor_id
 			};
 			Generic.genericAction("delete", data, function(response){
@@ -337,9 +386,9 @@ function setBtnHandlers(){
 		var doctor_id = $(this).parent().find(".doctor_id_holder").val();
 
 		data = {
-			"table": '<?php echo PREFIX; ?>doctor',
-			"fields": '*',
-			"where": 'doctor_id = '+doctor_id,
+			"table": '<?php echo PREFIX; ?>doctor_user_details_tbls as a JOIN <?php echo PREFIX; ?>user as b ON a.user_id = b.user_id',
+			"fields": 'a.*, b.*',
+			"where": 'a.details_id = '+doctor_id,
 			"containerDesign": doctorsEditDesign,
 			"emptyDesign": ""
 		};

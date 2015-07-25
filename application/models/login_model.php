@@ -71,7 +71,7 @@ class LoginModel
     * @return string avatar picture path
     */
     public function getUserAvatarFilePath(){
-        $query = $this->db->prepare("SELECT user_has_avatar FROM ".PREFIX."users WHERE id = :user_id");
+        $query = $this->db->prepare("SELECT user_has_avatar FROM ".PREFIX."user WHERE id = :user_id");
         $query->execute(array(':user_id' => $_SESSION['user_id']));
         
         if ($query->fetch()->user_has_avatar) {
@@ -93,40 +93,27 @@ class LoginModel
     * @return bool success state
     */
     public function login($generic_model){
-        // we do negative-first checks here
-        if (!isset($_POST['username']) OR empty($_POST['username'])) {
-            echo FEEDBACK_USERNAME_FIELD_EMPTY;
-            return false;
-        }
-        if (!isset($_POST['password']) OR empty($_POST['password'])) {
-            echo FEEDBACK_PASSWORD_FIELD_EMPTY;
-            return false;
-        }
         
         // get user's data
         // (we check if the password fits the password_hash via password_verify() some lines below)
-        $sth = $this->db->prepare("SELECT id,
-            firstname,
-            lastname,
-            username,
-            email,
-            user_password_hash,
-            user_active,
-            user_account_type,
-            user_failed_logins,
-            user_last_failed_login
-            FROM ".PREFIX."users
-            WHERE  (username = :username OR email = :username OR email = :username)
-            AND user_provider_type = :provider_type");
+        $sth = $this->db->prepare("SELECT a.user_id, a.name, a.surname, a.email,
+            a.user_password_hash,
+            a.user_active,
+            a.user_account_type,
+            a.user_failed_logins,
+            a.user_last_failed_login, b.practice_number, b.practice_id 
+            FROM ".PREFIX."user as a JOIN ".PREFIX."practice as b ON a.practice_id = b.practice_id
+            WHERE  a.email = :email
+            AND a.user_provider_type = :provider_type");
         // DEFAULT is the marker for "normal" accounts (that have a password etc.)
         // There are other types of accounts that don't have passwords etc. (FACEBOOK)
-        $sth->execute(array(':username' => $_POST['username'], ':provider_type' => 'DEFAULT'));
+        $sth->execute(array(':email' => $_POST['email'], ':provider_type' => 'DEFAULT'));
         $count =  $sth->rowCount();
         // if there's NOT one result
         if ($count != 1) {
             // was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
             // to prevent potential attackers showing if the user exists
-            echo FEEDBACK_LOGIN_FAILED;
+            echo FEEDBACK_LOGIN_FAILED." Email or Password is incorrect.";
             return false;
         }
         
@@ -144,13 +131,15 @@ class LoginModel
 		// login process, write the user data into session
 		Session::init();
 		Session::set('user_logged_in', true);
-		Session::set('user_id', $result->id);
-		Session::set('firstname', $result->firstname);
-		Session::set('lastname', $result->lastname);
-		Session::set('username', $result->username);
+		Session::set('user_id', $result->user_id);
+		Session::set('name', $result->name);
+		Session::set('surname', $result->surname);
 		Session::set('email', $result->email);
 		Session::set('user_account_type', $result->user_account_type);
 		Session::set('user_provider_type', 'DEFAULT');
+        Session::set('practice_number', $result->practice_number);
+        Session::set('practice_id', $result->practice_id);
+
 		// put native avatar path into session
 		/*Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 		Session::set('user_avatar_xsmall', $this->getUserAvatarFilePath());
@@ -163,19 +152,19 @@ class LoginModel
 		
 		// reset the failed login counter for that user (if necessary)
 		if ($result->user_last_failed_login > 0) {
-			$sql = "UPDATE ".PREFIX."users SET user_failed_logins = 0, user_last_failed_login = NULL
-			WHERE id = :user_id AND user_failed_logins != 0";
+			$sql = "UPDATE ".PREFIX."user SET user_failed_logins = 0, user_last_failed_login = NULL
+			WHERE user_id = :user_id AND user_failed_logins != 0";
 			$sth = $this->db->prepare($sql);
-			$sth->execute(array(':user_id' => $result->id));
+			$sth->execute(array(':user_id' => $result->user_id));
 		}
 		
 		// generate integer-timestamp for saving of last-login date
 		$user_last_login_timestamp = time();
 		// write timestamp of this login into database (we only write "real" logins via login form into the
 		// database, not the session-login on every page request
-		$sql = "UPDATE ".PREFIX."users SET user_last_login_timestamp = :user_last_login_timestamp WHERE id = :user_id";
+		$sql = "UPDATE ".PREFIX."user SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
 		$sth = $this->db->prepare($sql);
-		$sth->execute(array(':user_id' => $result->id, ':user_last_login_timestamp' => $user_last_login_timestamp));
+		$sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
 		
 		// if user has checked the "remember me" checkbox, then write cookie
 		if (isset($_POST['rememberme'])) {
@@ -183,12 +172,12 @@ class LoginModel
 			$random_token_string = hash('sha256', mt_rand());
 			
 			// write that token into database
-			$sql = "UPDATE ".PREFIX."users SET user_rememberme_token = :user_rememberme_token WHERE id = :user_id";
+			$sql = "UPDATE ".PREFIX."user SET user_rememberme_token = :user_rememberme_token WHERE user_id = :user_id";
 			$sth = $this->db->prepare($sql);
-			$sth->execute(array(':user_rememberme_token' => $random_token_string, ':user_id' => $result->id));
+			$sth->execute(array(':user_rememberme_token' => $random_token_string, ':user_id' => $result->user_id));
 			
 			// generate cookie string that consists of user id, random string and combined hash of both
-			$cookie_string_first_part = $result->id . ':' . $random_token_string;
+			$cookie_string_first_part = $result->user_id . ':' . $random_token_string;
 			$cookie_string_hash = hash('sha256', $cookie_string_first_part);
 			$cookie_string = $cookie_string_first_part . ':' . $cookie_string_hash;
 			
@@ -201,11 +190,11 @@ class LoginModel
         
 	} else {
 		// increment the failed login counter for that user
-		$sql = "UPDATE ".PREFIX."users
+		$sql = "UPDATE ".PREFIX."user
 			SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
-			WHERE username = :username OR email = :username";
+			WHERE email = :email";
 		$sth = $this->db->prepare($sql);
-		$sth->execute(array(':username' => $_POST['username'], ':user_last_failed_login' => time() ));
+		$sth->execute(array(':email' => $_POST['email'], ':user_last_failed_login' => time() ));
 		// feedback message
 		//echo FEEDBACK_PASSWORD_WRONG;
 		echo FEEDBACK_LOGIN_FAILED;
@@ -249,9 +238,9 @@ class LoginModel
         }
         
         // get real token from database (and all other data)
-        $query = $this->db->prepare("SELECT id, firstname, lastname, username, email, email, user_password_hash, 
+        $query = $this->db->prepare("SELECT id, name, surname, email, email, user_password_hash, 
                     user_active, user_account_type, user_has_avatar, user_failed_logins, user_last_failed_login
-                    FROM ".PREFIX."users 
+                    FROM ".PREFIX."user 
                     WHERE id = :user_id
                     AND user_rememberme_token = :user_rememberme_token
                     AND user_rememberme_token IS NOT NULL
@@ -266,10 +255,8 @@ class LoginModel
             Session::init();
             Session::set('user_logged_in', true);
             Session::set('user_id', $result->id);
-            Session::set('firstname', $result->firstname);
-            Session::set('lastname', $result->lastname);
-            Session::set('username', $result->username);
-            Session::set('email', $result->email);
+            Session::set('name', $result->name);
+            Session::set('surname', $result->surname);
             Session::set('email', $result->email);
             Session::set('user_account_type', $result->user_account_type);
             Session::set('user_provider_type', 'DEFAULT');
@@ -290,7 +277,7 @@ class LoginModel
             $user_last_login_timestamp = time();
             // write timestamp of this login into database (we only write "real" logins via login form into the
             // database, not the session-login on every page request
-            $sql = "UPDATE ".PREFIX."users SET user_last_login_timestamp = :user_last_login_timestamp WHERE id = :user_id";
+            $sql = "UPDATE ".PREFIX."user SET user_last_login_timestamp = :user_last_login_timestamp WHERE id = :user_id";
             $sth = $this->db->prepare($sql);
             $sth->execute(array(':user_id' => $user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
             
@@ -305,5 +292,5 @@ class LoginModel
             $generic_model->logActionPHP("Login With Cookie Failed", "Login", "A");
             return false;
         }
-    }
+    }   
 }

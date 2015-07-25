@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cd0dfa993d439d0e8ab8f467c1465a30",
+    "hash": "7f0521164c5d8b636d4a2551ba71f399",
     "packages": [
+        {
+            "name": "smalot/pdfparser",
+            "version": "v0.9.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smalot/pdfparser.git",
+                "reference": "613d00cde8d91825bc3ed8b41411aaf9c75c1d6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smalot/pdfparser/zipball/613d00cde8d91825bc3ed8b41411aaf9c75c1d6e",
+                "reference": "613d00cde8d91825bc3ed8b41411aaf9c75c1d6e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "tecnick.com/tcpdf": ">=6.0.050"
+            },
+            "require-dev": {
+                "atoum/atoum": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Smalot\\PdfParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastien MALOT",
+                    "email": "sebastien@malot.fr",
+                    "homepage": "http://www.malot.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pdf parser library. Can read and extract information from pdf file.",
+            "homepage": "http://www.pdfparser.org",
+            "time": "2015-05-26 08:06:39"
+        },
         {
             "name": "tecnick.com/tcpdf",
             "version": "6.2.8",
@@ -70,96 +113,12 @@
             "time": "2015-04-29 16:13:58"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "atoum/atoum",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/atoum/atoum.git",
-                "reference": "9f17fa0a729294f4fcbb1a085f99ae612dc36cb5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/atoum/atoum/zipball/9f17fa0a729294f4fcbb1a085f99ae612dc36cb5",
-                "reference": "9f17fa0a729294f4fcbb1a085f99ae612dc36cb5",
-                "shasum": ""
-            },
-            "require": {
-                "ext-hash": "*",
-                "ext-json": "*",
-                "ext-session": "*",
-                "ext-tokenizer": "*",
-                "ext-xml": "*",
-                "php": ">=5.3.3"
-            },
-            "replace": {
-                "mageekguy/atoum": "*"
-            },
-            "suggest": {
-                "ext-mbstring": "Provides support for UTF-8 strings"
-            },
-            "bin": [
-                "bin/atoum"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "classes/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Frédéric Hardy",
-                    "email": "frederic.hardy@atoum.org",
-                    "homepage": "http://blog.mageekbox.net"
-                },
-                {
-                    "name": "François Dussert",
-                    "email": "francois.dussert@atoum.org"
-                },
-                {
-                    "name": "Gérald Croes",
-                    "email": "gerald.croes@atoum.org"
-                },
-                {
-                    "name": "Julien Bianchi",
-                    "email": "julien.bianchi@atoum.org"
-                },
-                {
-                    "name": "Ludovic Fleury",
-                    "email": "ludovic.fleury@atoum.org"
-                }
-            ],
-            "description": "Simple modern and intuitive unit testing framework for PHP 5.3+",
-            "homepage": "http://www.atoum.org",
-            "keywords": [
-                "TDD",
-                "atoum",
-                "test",
-                "unit testing"
-            ],
-            "time": "2015-05-08 21:54:35"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "atoum/atoum": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.3.0"
-    },
+    "platform": [],
     "platform-dev": []
 }

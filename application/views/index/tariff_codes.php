@@ -8,6 +8,7 @@
 		</button>
 	</div>
 </div>	
+
 <!-- 
 	The generic class can print data from the database onto a element design of your choice.
 	An element will be printed for each row from your select statement which needs to be 
@@ -66,11 +67,76 @@
 					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
 					*create a new controller and model function to handle the process the way you want.
 				-->				
-				<form class="form-horizontal" id="frmAddTariffCode" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
-					<div class="modal-body">
+				<div class="modal-body">
+					<label class="col-xs-3 control-label">Upload Type:</label>
+					<div class="col-sm-9">
+						<select class="form-control" id="uploadSelect">
+							<option value="0">Choose Method</option>
+							<option value="Form">Form</option>
+							<option value="Exel">Excel file</option>
+						</select>
+					</div><br/><br/>
+					<div id="excelUpload" class="dropRow" style="display:none">
+						<div class="">
+							<!-- THIS IS THE EXEL FILE WEBSITES ADDER-->
+							<div style="dispay: none" >
+								<select name="format" style="visibility:hidden;">
+									<!--option value="csv" > CSV</option-->
+									<option value="json" selected> JSON</option>
+									<!--option value="form"> FORMULAE</option-->
+								</select>
+								<br />
+							</div>
+							
+							<img src='<?php echo URL;?>public/img/loading.gif' id='loadingImg' alt='Loading...' class="center-block" scoped style="display:none;" />
+							<div id="drop">
+								Drop an XLS file here to import product, please note that the format in file should be
+								<br/>
+								[ Product Name | Brandname | Description | Size | Category ]
+								<br/>
+								[ Values  |  Values  |  Values |  Values  |  Values ]
+							</div>
+							<!--Use Web Workers: (when available) --><input type="checkbox" name="useworker" checked style="visibility:hidden;">
+							<!--Use readAsBinaryString: (when available)--><input type="checkbox" name="userabs" checked style="visibility:hidden;">
+							<input type="checkbox" name="xferable" checked style="visibility:hidden;">
+							<pre id="out" style="display: none"></pre>
+							<br/>
+							
+							<!-- uncomment the next line here and in xlsxworker.js for encoding support -->
+							<!--<script src="dist/cpexcel.js"></script>-->
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/xls.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/script.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/shim.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/jszip.js"></script>
+							<!--script src="<?php echo URL; ?>public/plugins/dropUploader/xlsx.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/xlsxScript.js"></script-->
+							
+							<style>
+								#drop{
+									border:2px dashed #bbb;
+									-moz-border-radius:5px;
+									-webkit-border-radius:5px;
+									border-radius:5px;
+									padding:25px;
+									text-align:center;
+									font:20pt bold,"Vollkorn";color:#bbb
+								}
+								#b64data{
+									width:100%;
+								}
+								
+								hr{
+									margin-top: -5px;
+								}
+							</style>
+							<!-- THIS IS THE EXEL FILE WEBSITES ADDER END-->
+						</div>
+					</div> <!-- /#excelUpload -->					
+					<form class="form-horizontal" id="frmAddTariffCode" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" style="display:none" enctype="multipart/form-data"  >
+						
 						<div id="feedback"></div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="title">Code</label>
+						<div class="form-group" scoped style="display: inline-flex;">
+							<label class="col-xs-2 control-label" for="code">Code</label>
 							<div class="col-xs-10">
 								<input type="text" name="code" placeholder="Code" class="form-control" />
 							</div>
@@ -161,13 +227,13 @@
 						</div>																																									
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
 						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>tariff_code" >
-					</div>
-					<div class="modal-footer">
-						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save</button>
-					</div>
-				</form>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>	
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -485,4 +551,17 @@ function setBtnHandlers(){
 	});	
 }	
 
+$('#uploadSelect').on('change', function(){
+	var val = $(this).val();
+	if(val == "Form"){
+		$('#frmAddTariffCode').slideDown('slow');
+		$('.dropRow').slideUp('slow');
+	}else if(val == "Exel"){
+		$('#frmAddTariffCode').slideUp('slow');
+		$('.dropRow').slideDown('slow');
+	}else{
+		$('#frmAddTariffCode').slideUp('slow');
+		$('.dropRow').slideUp('slow');
+	}
+});
 </script>

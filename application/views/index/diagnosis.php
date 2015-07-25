@@ -69,7 +69,7 @@
 							</div>
 						</div>															
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>diagnosis" >
+						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>icd_diag" >
 					</div>
 					<div class="modal-footer">
 						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
@@ -112,7 +112,7 @@
 								</div>
 							</div>
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>diagnosis" >
+							<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>icd_diag" >
 							<input type="hidden" id="table" name="where" value="diagnosis_id = " class="generic" data-field="diagnosis_id" data-set="value">
 						</div>
 					</div>	
@@ -238,8 +238,9 @@ function refreshDiagnosissView(){
 	//The containerDesign which is a string version of .diagnosisDesign needs to be stated.
 	//emptyDesign desing contains the message to print if nothing is found in the db
 	data = {
-		"table": '<?php echo PREFIX; ?>diagnosis',
+		"table": '<?php echo PREFIX; ?>icd_diag',
 		"fields": '*',
+		"extra": 'limit 100',
 		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
 		"containerDesign": containerDesign,
 		"emptyDesign": emptyDesign
@@ -268,7 +269,7 @@ function setBtnHandlers(){
 		if (confirm("Are you sure you want delete this item?") == true) {
 			$(this).parent().fadeOut(666);
 			data = {
-				"table": '<?php echo PREFIX; ?>diagnosis',
+				"table": '<?php echo PREFIX; ?>icd_diag',
 				"where": "diagnosis_id = "+diagnosis_id
 			};
 			Generic.genericAction("delete", data, function(response){
@@ -287,7 +288,7 @@ function setBtnHandlers(){
 		var diagnosis_id = $(this).parent().find(".diagnosis_id_holder").val();
 
 		data = {
-			"table": '<?php echo PREFIX; ?>diagnosis',
+			"table": '<?php echo PREFIX; ?>icd_diag',
 			"fields": '*',
 			"where": 'diagnosis_id = '+diagnosis_id,
 			"containerDesign": diagnosissEditDesign,

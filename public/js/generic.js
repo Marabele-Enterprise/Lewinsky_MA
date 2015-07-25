@@ -114,14 +114,14 @@ var Generic = function () {
 			type: "POST",
 			success: function(response){
 				oncomplete(response);
-				if(response != "Success"){
+				/*if(response != "Success"){
 					$("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Apologies, but an error has been detect: "+response+"</div>");
 					//This code segment removes the feedback automatically
 					var delay = 23666;
 					setTimeout(function() {
 					    $("#feedback").children().fadeOut().html("");
 					}, delay);
-				}
+				}*/
 			},
 			error: function(xhr) {
 				console.log(xhr.responseText);

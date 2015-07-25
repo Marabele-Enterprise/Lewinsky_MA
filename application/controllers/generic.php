@@ -49,7 +49,7 @@ class Generic extends Controller
         // stuff handles POST in the model. in this generic-controller/model, the POST data is intentionally handled
         // in the controller, to show people how to do it "correctly". But I still think this is ugly.
 	
-    	if($this->generic_model->genericCreate()){
+    	if($this->generic_model->genericCreate($_POST)){
     		echo 'Success';
     	}else{
     		echo "Generic create error. Please make sure the post data matches the fields in the db";
@@ -87,9 +87,27 @@ class Generic extends Controller
         if($this->generic_model->genericDelete()){
             echo 'Success';
         }else{
-            echo "Generic update error. Please make sure the post data matches the fields in the db";
+            echo "Generic delete error. Please make sure the post data matches the fields in the db";
         }
-    }    
+    }
+
+    /**
+     * This method controls what happens when you move to /dashboard/create in your app.
+     * Creates a new generic. This is usually the target of form submit actions.
+     */
+    public function insertExcel()
+    {
+        // optimal MVC structure handles POST data in the controller, not in the model.
+        // personally, I like POST-handling in the model much better (skinny controllers, fat models), so the login
+        // stuff handles POST in the model. in this generic-controller/model, the POST data is intentionally handled
+        // in the controller, to show people how to do it "correctly". But I still think this is ugly.
+    
+        if($this->generic_model->insertExcel($_POST)){
+            echo 'Success';
+        }else{
+            echo "Generic insertExcel error. Please make sure the post data matches the fields in the db";
+        }
+    }        
     
     /**
      * This method controls what happens when you move to /dashboard/create in your app.
