@@ -166,20 +166,11 @@
 							<label class="col-xs-2 control-label" for="supress_statement">Suppress Statement</label>
 							<div class="col-xs-10">
 								<select name="supress_statement" class="form-control" >
-									<option value="1" >True</option>
 									<option value="0" >False</option>
+									<option value="1" >True</option>
 								</select>	
 							</div>
-						</div>											
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="account_closed">Account Closed</label>
-							<div class="col-xs-10">
-								<select name="account_closed" class="form-control" >
-									<option value="1" >True</option>
-									<option value="0" >False</option>
-								</select>						
-							</div>
-						</div>	
+						</div>						
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="allow_email_statements" >Allow E-Mail Statements</label>
 							<div class="col-xs-10">

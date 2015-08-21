@@ -15,30 +15,29 @@
 	generate the view.
  -->
 <div class="container-fluid" >       
-	<div class="row doctorsContainer">
-		<!-- .doctorsContainer is the container the generic class will print in -->
-		<div class="doctorDesign col-xs-12 col-sm-4 col-md-4 col-lg-3">
-			<!-- 
-				.doctorDesign is the design for each row in the database. The generic class will print data 
-				in the tags that have class="generic". The attribute data-field tells the system what field
-				from the database you want to print in that tag. The attribute data-set tells it what to print
-				to. Possible values for dataset=(innertext, value, src, href, ...).
-			-->
-			<div class="thumbnail">
-				<table class="table table-bordered">
-					<tr class="active"><td><b>Title</b></td><td class="generic" data-field="title" data-set="innertext"></td></tr>
-					<tr><td><b>Initials</b></td><td class="generic searchable" data-field="initials" data-set="innertext"></td></tr>
-					<tr><td><b>Surname</b></td><td class="generic searchable" data-field="surname" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Phone</b></td><td class="generic searchable" data-field="phone" data-set="innertext"></td></tr>
-					<tr><td><b>Practice #</b></td><td class="generic searchable" data-field="practice_number" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Email</b></td><td class="generic searchable" data-field="email" data-set="innertext"></td></tr>
-				</table>
-				<input type="hidden" value="" class="doctor_id_holder generic" data-field="details_id" data-set="value" />
-				<button class="btn btn-default btnEditDoctor btn-sm" type="button" >Edit</button>
-				<button class="btn btn-default btnDeleteDoctor btn-sm" type="button" >Delete</button>
-			</div>
-		</div>	
-	</div>
+	<table class="table table-hover">
+		<thead><tr><th>#</th><th>Title</th><th>Initials</th><th>Surname</th><th>Phone</th><th>Email</th><th>Practice #</th><th></th><th></th></tr></thead>
+		<tbody>
+			<?php $i = 0;
+				foreach ($this->rows as $key => $row) { $i++; ?>
+				<tr class="designBlock">
+					<th scope="row"><?php echo $i; ?><div class="data_holder"><?php echo json_encode($row); ?></div></th>
+					<td ><?php echo $row->title; ?></td>
+					<td class="generic searchable" ><?php echo $row->initials; ?></td>
+					<td class="generic searchable" ><?php echo $row->surname; ?></td>
+					<td class="generic searchable" ><?php echo $row->phone; ?></td>
+					<td class="generic searchable" ><?php echo $row->email; ?></td>
+					<td ><?php echo $row->practice_number; ?></td>
+					<td >
+						<input type="hidden" value="<?php echo $row->details_id; ?>" class="doctor_id_holder" />
+						<button class="btn btn-default btnEditDoctor btn-xs" type="button" >Edit</button>
+					</td>
+					<td ><button class="btn btn-default btnDeleteDoctor btn-xs" type="button" >Delete</button></td>
+					<td ></td>
+				</tr>			
+			<?php }?>
+		</tbody>
+	</table> 	
 </div>
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
 <div class="modal-rows">
@@ -87,7 +86,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="project_name">Email</label>
 							<div class="col-xs-10">
-								<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
+								<input type="email" id="email" name="email" placeholder="Email" class="form-control" />
 							</div>
 						</div>						
 						<div class="form-group">
@@ -115,7 +114,7 @@
 						<div class="form-group practice-number">
 							<label class="col-xs-2 control-label" for="drpr">Practice Number</label>
 							<div class="col-xs-10">
-								<input type="text" name="hpcsa_number" placeholder="HPCSA Registration number" class="form-control" />
+								<input type="text" name="practice_number" placeholder="Practice number" class="form-control" />
 							</div>
 						</div>															
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
@@ -188,13 +187,13 @@
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="project_name">Email</label>
 								<div class="col-xs-10">
-									<input type="text" id="email" name="email" placeholder="Email" class="form-control generic" data-field="email" data-set="value" />
+									<input type="email" id="email" name="email" placeholder="Email" class="form-control generic" data-field="email" data-set="value" />
 								</div>
 							</div>															
 							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
 							<input type="hidden" name="table" value="<?php echo PREFIX; ?>doctor_user_details_tbls" />
-							<input type="hidden" name="insert_type" value="sub_user" />
-							<input type="hidden" id="table" name="where" value="doctor_id = " class="generic" data-field="doctor_id" data-set="value" />
+							<!--input type="hidden" name="insert_type" value="sub_user" /-->
+							<input type="hidden" id="table" name="where" value="details_id = " class="generic" data-field="details_id" data-set="value" />
 						</div>
 					</div>	
 					<div class="modal-footer">
@@ -221,11 +220,11 @@ $("li#services").addClass("active");
 $(".reg_type").on("change", function(){
 	console.log($(this).val());
 	if($(this).val() == "Practice Number"){
-		$(".practice-number").slideUp("slow");
-		$(".hpcsa").slideDown("slow");
-	}else if($(this).val() == "HPCSA"){
-		$(".hpcsa").slideUp("slow");
 		$(".practice-number").slideDown("slow");
+		$(".hpcsa").slideUp("slow");
+	}else if($(this).val() == "HPCSA"){
+		$(".hpcsa").slideDown("slow");
+		$(".practice-number").slideUp("slow");
 	}else{
 		$(".hpcsa").slideUp("slow");
 		$(".practice-number").slideUp("slow");
@@ -238,30 +237,23 @@ $(".reg_type").on("change", function(){
 */
 var options = {
 	beforeSend: function(){
-	$("#loader1").fadeIn("fast");
+	$(".loader1").fadeIn("fast");
 	console.log("beforeSend");
 	}, uploadProgress: function(event, position, total, percentComplete){
 		console.log("uploadProgress");
 	}, success: function(response){
 		//clear all fields and close the modal
-		$("#loader1").fadeOut("fast");
-		
-		$("#createDoctor").modal("hide");
-		
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Doctor Added Successfully</div>");
-		
-		refreshDoctorsView();
-		
-		$('form')[0].reset();
-		
-		//This code segment removes the feedback automatically
-		var delay = 10666;
-		setTimeout(function() {
-		    $("#feedback").children().fadeOut().html("");
-		}, delay);
+		if(response == "Success" || response == "success"){
+			$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! Your details are inserted.</div>");
+			window.location.reload();
+			//$('form')[0].reset();
+		}else{
+			$("#feedback").append("<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+". If the problem persists, please contact us at help@nuvemed.com</div>");     
+			window.location.reload();
+		}
 
 	}, complete: function(response){
-		$("#loader1").remove();
+		$(".loader1").fadeOut("fast");
 		console.log("Complete. response: "+response.responseText);
 	}, error: function(){
 		$("#createDoctor").modal("hide");

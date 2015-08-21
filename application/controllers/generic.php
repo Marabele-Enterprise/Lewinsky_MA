@@ -101,7 +101,6 @@ class Generic extends Controller
         // personally, I like POST-handling in the model much better (skinny controllers, fat models), so the login
         // stuff handles POST in the model. in this generic-controller/model, the POST data is intentionally handled
         // in the controller, to show people how to do it "correctly". But I still think this is ugly.
-    
         if($this->generic_model->insertExcel($_POST)){
             echo 'Success';
         }else{
@@ -132,6 +131,7 @@ class Generic extends Controller
      */
     function genericGet($type)
     {
+        set_time_limit(0);
     	$data =  $this->generic_model->genericGet('array');
     	
     	if($data  == "empty"){

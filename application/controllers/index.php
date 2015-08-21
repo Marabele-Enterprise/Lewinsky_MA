@@ -23,7 +23,7 @@ class Index extends Controller
     {
     	//Session::set('session_id', $this->generateRandomString(15));
         $this->view->isHome = true;
-    	$this->view->render('index/index');
+    	$this->view->render('index/sitedown', true);
     }
 
     function generateRandomString($length = 10) {
@@ -40,8 +40,19 @@ class Index extends Controller
     function patients()
     {
         Auth::handleLogin();
-       $this->view->target = "patient";
-	   $this->view->render('index/patients');
+        $this->view->target = "patient";
+        $generic_model = $this->loadModel('Generic');
+
+        $genericGetRequest = array(
+            'table' => PREFIX.'patient_user_details_tbls as a JOIN '.PREFIX.'user as b ON a.user_id = b.user_id', 
+            'fields' => "a.*, b.*", 
+            'where' => "practice_id = ".Session::get("practice_id"), 
+            'returnType' => "array"
+        );
+
+        $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);
+
+    	$this->view->render('index/patients');
     }
 
     /**
@@ -52,6 +63,16 @@ class Index extends Controller
     {
         Auth::handleLogin();
         $this->view->target = "doctor";
+        $generic_model = $this->loadModel('Generic');
+
+        $genericGetRequest = array(
+            'table' => PREFIX.'doctor_user_details_tbls as a JOIN '.PREFIX.'user as b ON a.user_id = b.user_id', 
+            'fields' => "a.*, b.*", 
+            'where' => "practice_id = ".Session::get("practice_id"), 
+            'returnType' => "array"
+        );
+
+        $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);        
 	    $this->view->render('index/doctors');
     }
 
@@ -62,8 +83,17 @@ class Index extends Controller
     function medical_aids()
     {
         Auth::handleLogin();
-       $this->view->target = "medical_aid";        
-       $this->view->render('index/medical_aids');
+        $generic_model = $this->loadModel('Generic');
+
+        $genericGetRequest = array(
+            'table' => PREFIX.'medical_aid', 
+            'fields' => "*", 
+            'returnType' => "array"
+        );
+
+        $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);                
+        $this->view->target = "medical_aid";        
+        $this->view->render('index/medical_aids');
     }
 
     /**
@@ -73,8 +103,18 @@ class Index extends Controller
     function tariff_codes()
     {
         Auth::handleLogin();
-       $this->view->target = "tariff_code";        
-       $this->view->render('index/tariff_codes');
+        $this->view->target = "tariff_code";        
+        $generic_model = $this->loadModel('Generic');
+
+        $genericGetRequest = array(
+            'table' => PREFIX.'tariff_code', 
+            'fields' => "*", 
+            'returnType' => "array"
+        );
+
+        $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);                        
+
+        $this->view->render('index/tariff_codes');
     }
 
     /**
@@ -84,8 +124,18 @@ class Index extends Controller
     function diagnosis()
     {
         Auth::handleLogin();
-       $this->view->target = "diagnosis";          
-       $this->view->render('index/diagnosis');
+        $generic_model = $this->loadModel('Generic');
+
+        $genericGetRequest = array(
+            'table' => PREFIX.'icd10_diagnosis', 
+            'fields' => "*", 
+            "extra" => 'limit 150',
+            'returnType' => "array"
+        );
+
+        $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);                        
+        $this->view->target = "diagnosis";          
+        $this->view->render('index/diagnosis');
     }
 
     /**
@@ -148,6 +198,40 @@ class Index extends Controller
      * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */
+    function use_patient()
+    {
+        Auth::handleLogin();
+        if(isset($_POST["patient_id"])){
+            //$this->view->target = "tariff_code";              
+            $generic_model = $this->loadModel('Generic');
+            $this->view->patient_id = $_POST["patient_id"];
+
+            $genericGetRequest = array(
+                'table' => PREFIX.'patient_user_details_tbls as a JOIN '.PREFIX.'user as b ON a.user_id = b.user_id', 
+                'fields' => "a.*, b.*", 
+                'where' => "patient_id = ".$_POST['patient_id'], 
+                'returnType' => "array"
+            );
+
+            $this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);
+
+            $genericGetRequest = array(
+                'table' => PREFIX.'transaction', 
+                'fields' => "*", 
+                'where' => "patient_id = ".$_POST['patient_id'], 
+                'returnType' => "array"
+            );
+
+            $this->view->transactions = $generic_model->genericGetPhp($genericGetRequest);            
+
+            $this->view->render('index/use_patient');
+        }
+    }    
+
+    /**
+     * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
+     * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
+     */
     function aid_holder()
     {
         Auth::handleLogin();
@@ -169,20 +253,49 @@ class Index extends Controller
      * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */
-    function patient()
+    function patient_referral()
     {
         Auth::handleLogin();
         if(isset($_POST["patient_id"])){
             $generic_model = $this->loadModel('Generic');
 
-            $genericGetRequest = array('table' => PREFIX."patient", 'fields' => "*", 'where' => 'patient_id = '.$_POST['patient_id'], 'returnType' => "array");
-            $this->view->patient_details = $generic_model->genericGetPhp($genericGetRequest);     
-            $this->view->render('index/patient');   
+            $genericGetRequest = array(
+                'table' => PREFIX.'user as a JOIN '.PREFIX.'patient_referral as b ON a.user_id = b.user_id', 
+                'fields' => "a.name, surname, b.*", 
+                'where' => "b.user_id = ".$_POST["patient_id"], 
+                'returnType' => "array"
+            );
+            $this->view->patient_id = $_POST["patient_id"];
+            $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);
+
+            $this->view->render('index/patient_referral');   
         }else{
            $this->view->target = "patient";
            $this->view->render('index/patients');            
         }
     } 
+
+    function patient_prescrption()
+    {
+        Auth::handleLogin();
+        if(isset($_POST["patient_id"])){
+            $generic_model = $this->loadModel('Generic');
+
+            $genericGetRequest = array(
+                'table' => PREFIX.'user as a JOIN '.PREFIX.'patient_prescription as b ON a.user_id = b.user_id', 
+                'fields' => "a.name, surname, b.*", 
+                'where' => "b.user_id = ".$_POST["patient_id"], 
+                'returnType' => "array"
+            );
+            $this->view->patient_id = $_POST["patient_id"];
+            $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);
+
+            $this->view->render('index/prescription');   
+        }else{
+           $this->view->target = "patient";
+           $this->view->render('index/patients');            
+        }
+    }     
 
     /**
      * Handles what happens when user moves to URL/index/index, which is the same like URL/index or in this

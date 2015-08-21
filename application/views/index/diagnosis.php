@@ -15,26 +15,26 @@
 	generate the view.
  -->
 <div class="container-fluid" >       
-	<div class="row diagnosissContainer">
-		<!-- .diagnosissContainer is the container the generic class will print in -->
-		<div class="diagnosisDesign col-xs-12 col-sm-4 col-md-4 col-lg-3">
-			<!-- 
-				.diagnosisDesign is the design for each row in the database. The generic class will print data 
-				in the tags that have class="generic". The attribute data-field tells the system what field
-				from the database you want to print in that tag. The attribute data-set tells it what to print
-				to. Possible values for dataset=(innertext, value, src, href, ...).
-			-->
-			<div class="thumbnail">
-				<table class="table table-bordered">
-					<tr class="active"><td><b>Description</b></td><td class="generic" data-field="description" data-set="innertext"></td></tr>
-					<tr><td><b>ICD 10</b></td><td class="generic" data-field="icd10" data-set="innertext"></td></tr>
-				</table>
-				<input type="hidden" value="" class="diagnosis_id_holder generic" data-field="diagnosis_id" data-set="value" />
-				<button class="btn btn-default btnEditDiagnosis btn-sm" type="button" >Edit</button>
-				<button class="btn btn-default btnDeleteDiagnosis btn-sm" type="button" >Delete</button>
-			</div>
-		</div>	
-	</div>
+	<table class="table table-hover">
+		<thead><tr><th>#</th><th>ICD 10 Code</th><th>Description</th><th>Level</th><th></th><th></th></tr></thead>
+		<tbody>
+			<?php $i = 0;
+				foreach ($this->rows as $key => $row) { $i++; ?>
+				<tr class="designBlock">
+					<th scope="row"><?php echo $i; ?></th>
+					<td class="generic searchable" ><?php echo $row->name; ?></td>
+					<td class="generic searchable" ><?php echo $row->description; ?></td>
+					<td class="generic searchable" ><?php echo $row->level; ?></td>
+					<td >
+						<input type="hidden" value="<?php echo $row->id; ?>" class="medical_aid_id_holder" />
+						<button class="btn btn-default btnEditDiagnosis btn-xs" type="button" >Edit</button>
+					</td>
+					<td ><button class="btn btn-default btnDeleteDoctor btn-xs" type="button" >Delete</button></td>
+					<td ></td>
+				</tr>				
+			<?php }?>
+		</tbody>
+	</table> 	
 </div>
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
 <div class="modal-rows">

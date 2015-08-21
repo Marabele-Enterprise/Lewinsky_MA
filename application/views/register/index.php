@@ -32,7 +32,28 @@
 			                <div class="form-group">
 			                    <label for="type" class="col-md-3 control-label">Type</label>
 			                    <div class="col-md-9">
-			                        <input type="text" class="form-control" required name="type" placeholder="Type" >
+			                        <select class="form-control" required name="type" >
+			                        	<option></option>
+			                        	<option>Physiotherapist</option>			                        	
+			                        	<option>Pediatrician</option>
+			                        	<option>Physiatrist</option>
+			                        	<option>Surgeon</option>
+			                        	<option>Plastic surgeon</option>
+			                        	<option>Family Practitioner</option>
+			                        	<option>Primary care physician</option>
+			                        	<option>Oncologist</option>
+			                        	<option>Allergist</option>
+			                        	<option>Anesthetist</option>
+			                        	<option>Cardiologist</option>
+			                        	<option>Dermatologist</option>
+			                        	<option>Neurologist</option>
+			                        	<option>Orthopedist</option>
+			                        	<option>Otorhinolaryngologist</option>
+			                        	<option>Radiologist</option>
+			                        	<option>Urologist</option>
+			                        	<option>Acupuncturist</option>
+			                        	<option>Chiropractor</option>
+			                        </select>
 			                    </div>
 			                </div>
 			            </div>
@@ -59,7 +80,7 @@
 			                <div class="form-group">
 			                    <label for="email" class="col-md-3 control-label">Email</label>
 			                    <div class="col-md-9">
-			                        <input type="text" class="form-control" required name="email" placeholder="Email Address">
+			                        <input type="email" class="form-control" required name="email" placeholder="Email Address">
 			                    </div>
 			                </div>
 			                <div class="form-group">
@@ -138,11 +159,14 @@ var options = {
 	}, uploadProgress: function(event, position, total, percentComplete){
 		console.log("uploadProgress");
 	}, success: function(response){
+		if(response == "Success" || response == "success"){
+			$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! You are now registered and a verification email is sent. <a href='"+$("#URLholder").val()+"login/index'>Continue to login.</a></div>");
+			
+			$('form')[0].reset();
 
-		$("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! You are now registered and a verification email is sent. <a href='"+$("#URLholder").val()+"login/index'>Continue to login.</a></div>");
-		
-		$('form')[0].reset();
-		
+		}else{
+			$("#feedback").append("<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+". If the problem persists, please contact us at help@nuvemed.com</div>");			
+		}
 		//This code segment removes the feedback automatically
 		/*var delay = 15666;
 		setTimeout(function() {

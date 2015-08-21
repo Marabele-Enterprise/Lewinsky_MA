@@ -10,7 +10,6 @@ class Report extends Controller {
 	*/
 	public function __construct() {
 		Auth::handleLogin();
-		
 		parent::__construct();
 	}
 	
@@ -48,4 +47,10 @@ class Report extends Controller {
 	public function statements() {
 		$this->view->render("report/statements");
 	}
+
+	public function create_batch() {
+		$report_model = $this->loadModel('Report');
+		$this->view->practices = $report_model->create_batch($this->loadModel('Generic'));
+		$this->view->render("report/create_batch");
+	}	
 }

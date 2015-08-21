@@ -2,14 +2,10 @@
 
 <!-- Footer Starts -->
 <div class="footer text-center spacer">
-<p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p>
+<!--p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p -->
 	Copyright <?php date("Y"); ?> Nuve Med. All rights reserved.
 </div>
 <!-- # Footer Ends -->
-<a href="#works" class="gototop "><i class="fa fa-angle-up  fa-3x"></i></a>
-
-
-
 
 
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->

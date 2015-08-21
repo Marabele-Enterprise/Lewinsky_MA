@@ -30,7 +30,7 @@
 
 <?php   if (Session::get("user_account_type") == "User") {  ?>
     <!--Register Starts-->
-    <form id="frmRegister" action="<?php echo URL; ?>register/register" method="post" class="container form center" scoped style="  margin-bottom: -60px;">
+    <form id="frmRegister" action="<?php echo URL; ?>register/update" method="post" class="container form center" scoped style="  margin-bottom: -60px;">
       <div class="row wowload fadeInLeftBig">     
         <div id="signupbox" class="mainbox col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
@@ -88,13 +88,13 @@
                         <div class="form-group">
                             <label for="email" class="col-md-3 control-label">Email</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" value="<?php echo $this->user_details[0]->email; ?>" required disabled >
+                                <input type="text" class="form-control" value="<?php echo $this->user_details[0]->email; ?>" required name="email" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password" class="col-md-3 control-label">Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control" title="Leave empty to keep current password" required name="password" placeholder="Leave empty to keep current">
+                                <input type="password" class="form-control" title="Leave empty to keep current password" name="password" placeholder="Leave empty to keep current">
                             </div>
                         </div>                      
                         <div class="form-group">
@@ -172,7 +172,7 @@
       </form>  
 <?php   }else if (Session::get("user_account_type") == "Customer") { ?>
 <!--Register Starts-->
-  <form id="frmRegister" action="<?php echo URL; ?>register/register" method="post" class="container form center">
+  <form id="frmRegister" action="<?php echo URL; ?>register/update" method="post" class="container form center">
     <div id="feedback" ></div>
     <div class="row wowload fadeInRightBig">      
       <div id="signupbox" style="margin-top:0px" class="mainbox col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2">
@@ -235,7 +235,7 @@
 <!--Register Ends-->             
 <?php   }else if (Session::get("user_account_type") == "Doctor") { ?>
 <!--Register Starts-->
-  <form id="frmRegister" action="<?php echo URL; ?>register/register" method="post" class="container form center">
+  <form id="frmRegister" action="<?php echo URL; ?>register/update" method="post" class="container form center">
     <div id="feedback" ></div>
     <div class="row wowload fadeInRightBig">      
       <div id="signupbox" style="margin-top:0px" class="mainbox col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2">
@@ -298,7 +298,7 @@
 <!--Register Ends-->             
 <?php   }else if (Session::get("user_account_type") == "Patient") { ?>
 <!--Register Starts-->
-  <form id="frmRegister" action="<?php echo URL; ?>register/register" method="post" class="container form center">
+  <form id="frmRegister" action="<?php echo URL; ?>register/update" method="post" class="container form center">
     <div id="feedback" ></div>
     <div class="row wowload fadeInRightBig">      
       <div id="signupbox" style="margin-top:0px" class="mainbox col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2">
@@ -408,6 +408,44 @@ form#frmRegister {
 /*
   Theses are the jquery.forms options for frmAddDoctor above that uses the generic controller 
 */
+var options = {
+  beforeSend: function(){
+    $(".loading").fadeIn("fast");
+  console.log("beforeSend");
+  }, uploadProgress: function(event, position, total, percentComplete){
+    console.log("uploadProgress");
+  }, success: function(response){
+    if(response == "Success" || response == "success"){
+      $("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! Your details are updated.</div>");
+      
+      //$('form')[0].reset();
+
+    }else{
+      $("#feedback").append("<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+". If the problem persists, please contact us at help@nuvemed.com</div>");     
+    }
+    //This code segment removes the feedback automatically
+    var delay = 9666;
+    setTimeout(function() {
+        $("#feedback").children().fadeOut().html("");
+    }, delay);
+    
+  }, complete: function(response){
+    $(".loading").fadeOut("fast");
+    console.log("Complete. response: "+response.responseText);
+  }, error: function(){
+    $("#createDoctor").modal("hide");
+    
+    $("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
+    
+    //clear all fields
+    $('form')[0].reset();
+    
+    console.log("ERROR: ");
+  }
+};
+//Initiat AJAX on submit of frmRegister
+$("#frmRegister").ajaxForm(options);
+
 var options = {
   beforeSend: function(){
     $(".loading").fadeIn("fast");

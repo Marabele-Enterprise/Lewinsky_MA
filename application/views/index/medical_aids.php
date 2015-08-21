@@ -15,31 +15,28 @@
 	generate the view.
  -->
 <div class="container-fluid" >       
-	<div class="row medical_aidsContainer">
-		<!-- .medical_aidsContainer is the container the generic class will print in -->
-		<div class="medical_aidDesign col-xs-12 col-sm-4 col-md-4 col-lg-3">
-			<!-- 
-				.medical_aidDesign is the design for each row in the database. The generic class will print data 
-				in the tags that have class="generic". The attribute data-field tells the system what field
-				from the database you want to print in that tag. The attribute data-set tells it what to print
-				to. Possible values for dataset=(innertext, value, src, href, ...).
-			-->
-			<div class="thumbnail">
-				<table class="table table-bordered">
-					<tr class="active"><td><b>Name</b></td><td class="generic" data-field="name" data-set="innertext"></td></tr>
-					<tr><td><b>Code</b></td><td class="generic" data-field="code" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
-					<tr><td><b>Contact</b></td><td class="generic" data-field="contact" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>EDI</b></td><td class="generic" data-field="edi" data-set="innertext"></td></tr>
-					<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Admin</b></td><td class="generic" data-field="admin" data-set="innertext"></td></tr>
-					<tr><td><b>Direct</b></td><td class="generic" data-field="direct" data-set="innertext"></td></tr>
-				</table>
-				<input type="hidden" value="" class="medical_aid_id_holder generic" data-field="medical_aid_id" data-set="value" />
-				<button class="btn btn-default btnEditMedicalAid btn-sm" type="button" >View More</button>
-				<button class="btn btn-default btnDeleteMedicalAid btn-sm" type="button" >Delete</button>
-			</div>
-		</div>	
+	<div class="row">
+		<table class="table table-hover">
+			<thead><tr><th>#</th><th>Name</th><th>Reg Date</th><th>Type</th><th>Phone</th><th></th><th></th></tr></thead>
+			<tbody>
+				<?php $i = 0;
+					foreach ($this->rows as $key => $row) { $i++; ?>
+					<tr class="designBlock">
+						<th scope="row"><?php echo $i; ?></th>
+						<td class="generic searchable" ><?php echo $row->name; ?></td>
+						<td class="generic searchable" ><?php echo $row->registration_date; ?></td>
+						<td class="generic searchable" ><?php echo $row->type; ?></td>
+						<td class="generic searchable" ><?php echo $row->phone; ?></td>
+						<td >
+							<input type="hidden" value="<?php echo $row->medical_aid_id; ?>" class="medical_aid_id_holder" />
+							<button class="btn btn-default btnEditDoctor btn-xs" type="button" >Edit</button>
+						</td>
+						<td ><button class="btn btn-default btnDeleteDoctor btn-xs" type="button" >Delete</button></td>
+						<td ></td>
+					</tr>				
+				<?php }?>
+			</tbody>
+		</table> 		
 	</div>
 </div>
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
@@ -59,8 +56,75 @@
 					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
 					*create a new controller and model function to handle the process the way you want.
 				-->				
-				<form class="form-horizontal" id="frmAddMedicalAid" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
-					<div class="modal-body">
+				<div class="modal-body" scoped style="min-height: 70px;">
+					<div class="form-group col-xs-12 col-sm-12 col-md-12" scoped style="margin-bottom: 15px;">
+						<label class="col-xs-2 control-label" >Upload Type:</label>
+						<div class="col-xs-10">
+							<select class="form-control" id="uploadSelect">
+								<option value="0">Choose Method</option>
+								<option value="Form">Form</option>
+								<option value="Exel">Excel file</option>
+							</select>
+						</div>
+					</div>
+					<div id="excelUpload" class="dropRow" style="display:none">
+						<div class="">
+							<!-- THIS IS THE EXEL FILE WEBSITES ADDER-->
+							<div style="dispay: none" >
+								<select name="format" style="visibility:hidden;">
+									<!--option value="csv" > CSV</option-->
+									<option value="json" selected> JSON</option>
+									<!--option value="form"> FORMULAE</option-->
+								</select>
+								<br />
+							</div>
+							
+							<img src='<?php echo URL;?>public/img/loading.gif' id='loadingImg' alt='Loading...' class="center-block" scoped style="display:none;" />
+							<div id="drop">
+								Drop an XLS file here to import product, please note that the format in file should be
+								<br/>
+								[ Field | Field | Field | Field | Field ]
+								<br/>
+								[ Values  |  Values  |  Values |  Values  |  Values ]
+							</div>
+							<!--Use Web Workers: (when available) --><input type="checkbox" name="useworker" checked style="visibility:hidden;">
+							<!--Use readAsBinaryString: (when available)--><input type="checkbox" name="userabs" checked style="visibility:hidden;">
+							<input type="checkbox" name="xferable" checked style="visibility:hidden;">
+							<input type="hidden" class="excelTable" value="medical_aid" />
+							<pre id="out" style="display: none"></pre>
+							<br/>
+							
+							<!-- uncomment the next line here and in xlsxworker.js for encoding support -->
+							<!--<script src="dist/cpexcel.js"></script>-->
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/xls.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/script.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/shim.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/jszip.js"></script>
+							<!--script src="<?php echo URL; ?>public/plugins/dropUploader/xlsx.js"></script>
+							<script src="<?php echo URL; ?>public/plugins/dropUploader/xlsxScript.js"></script-->
+							
+							<style>
+								#drop{
+									border:2px dashed #bbb;
+									-moz-border-radius:5px;
+									-webkit-border-radius:5px;
+									border-radius:5px;
+									padding:25px;
+									text-align:center;
+									font:20pt bold,"Vollkorn";color:#bbb
+								}
+								#b64data{
+									width:100%;
+								}
+								
+								hr{
+									margin-top: -5px;
+								}
+							</style>
+							<!-- THIS IS THE EXEL FILE WEBSITES ADDER END-->
+						</div>
+					</div> <!-- /#excelUpload -->											
+					<form class="form-horizontal" id="frmAddMedicalAid" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data" scoped  style="margin-top: 15px; display:none" >
 						<div id="feedback"></div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="name">Name</label>
@@ -138,13 +202,14 @@
 						</div>																				
 						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
 						<input type="hidden" id="table" name="table" value="<?php echo PREFIX; ?>medical_aid" >
-					</div>
-					<div class="modal-footer">
-						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save</button>
-					</div>
-				</form>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
+				
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -369,7 +434,7 @@ function refreshMedicalAidsView(){
 	//emptyDesign desing contains the message to print if nothing is found in the db
 	data = {
 		"table": '<?php echo PREFIX; ?>medical_aid',
-		"fields": '*',
+		"fields": 'name, registration_date, type, phone',
 		//"where": 'user_id = '+<?php echo Session::get("user_id"); ?>,
 		"containerDesign": containerDesign,
 		"emptyDesign": emptyDesign
@@ -430,5 +495,19 @@ function setBtnHandlers(){
 		$('#editMedicalAid').modal('show');
 	});	
 }	
+
+$('#uploadSelect').on('change', function(){
+	var val = $(this).val();
+	if(val == "Form"){
+		$('#frmAddMedicalAid').slideDown('slow');
+		$('.dropRow').slideUp('slow');
+	}else if(val == "Exel"){
+		$('#frmAddMedicalAid').slideUp('slow');
+		$('.dropRow').slideDown('slow');
+	}else{
+		$('#frmAddMedicalAid').slideUp('slow');
+		$('.dropRow').slideUp('slow');
+	}
+});
 
 </script>

@@ -72,12 +72,19 @@ class GenericModel
 				}
 			}
 		}
-		
+
 		foreach($request as $key => $value){
 			if($key !== "table" AND $key !== "has_files" AND $key !== "file_fields" AND $key !== "file_dirs" AND $key !== "max_size" AND $key !== "insert_id"){
-				$fields .= $key.",";
-				$values .= ":".$key.",";
-				$arr[":".$key] = $value;
+				if(is_array($request[$key])){
+					//Input with Multiple Detected
+					$fields .= $key.",";
+					$values .= ":".$key.",";
+					$arr[":".$key] = implode(",", $value);				
+				}else{
+					$fields .= $key.",";
+					$values .= ":".$key.",";
+					$arr[":".$key] = $value;	
+				}
 			}
 		}
 		$fields = rtrim($fields, ',');
@@ -117,43 +124,6 @@ class GenericModel
 		$tbl2_fields = "";
 		$tbl2_values = "";
 		$tbl2_arr = array();
-
-		/*	
-		if(isset($request["has_files"]) AND $request["has_files"] == "true" AND isset($request["file_fields"]) AND isset($request["file_dirs"])){
-			//This code segment uploads the files and collect the file urls and fieldnames
-			
-			$file_fields = explode(" ", $request["file_fields"]);
-			$file_dirs = explode(" ", $request["file_dirs"]);
-			if(count($file_fields) != count($file_dirs)){
-				echo "count(file_fields) != count(file_dirs) error.";
-				return false;
-			}
-			if(isset($request['max_size'])){
-				$max_size = $request['max_size'];
-			}else{
-				$max_size = '666662048000';
-			}
-			
-			$messeges = $this->uploadFiles($file_fields, $file_dirs, $max_size);
-			
-			foreach($messeges as $msg){
-				if($msg["status"] == "error"){
-					//print_r($msg);
-					echo $msg["msg"][0];
-					return false;
-				}else{
-					print_r($msg);
-					
-					$fields_url = explode(" ", $msg["fields-url"][0]);
-					
-					$fields .= $fields_url[0].",";
-					$values .= ":".$fields_url[0].",";
-					$arr[":".$fields_url[0]] = $fields_url[1];
-					
-					//echo "<br/>fields: $fields ---- vals: $values <br/>";
-				}
-			}
-		}*/
 		
 		if(isset($request["insert_type"]) AND $request["insert_type"] == "sub"){
 			$q = $this->db->prepare("DESCRIBE ".$request["table"]);
@@ -181,15 +151,6 @@ class GenericModel
 				}				
 			}
 			
-			//$tbl1_fields = rtrim($tbl1_fields, ',');
-			//$tbl1_values = rtrim($tbl1_values, ',');		
-			
-			// echo "\n Fields1: \n";
-			// echo $tbl1_fields;
-			// echo "\n Vals1: \n";
-			// echo $tbl1_values;	
-			// echo "\n array1: \n";
-			// print_r($tbl1_arr);
 
 			$password = substr(str_shuffle($request["email"]."0123456789"), 0, 8);
 
@@ -254,6 +215,120 @@ class GenericModel
 			return true;
 		}
     }
+
+    /**
+     * Getter for all products (products are an implementation of example data, in a real world application this
+     * would be data that the user has created)
+     * @return array an array with several objects (the results)
+     */
+    public function genericUpdateSub($request)
+    {
+		if(isset($request["table"]) AND isset($request["table_sub"])){
+			$table1 = $request["table"];
+			$table2 = $request["table_sub"];
+		}else{
+			echo "Error: Target table is not set.";
+			return false;
+		}
+		
+		$tbl1_fields = "";
+		$tbl1_values = "";
+		$tbl1_arr = array();
+
+		$tbl2_fields = "";
+		$tbl2_values = "";
+		$tbl2_arr = array();
+		
+		if(isset($request["insert_type"]) AND $request["insert_type"] == "sub"){
+			$q = $this->db->prepare("DESCRIBE ".$request["table"]);
+			$q->execute();
+			$table_fields = $q->fetchAll(PDO::FETCH_COLUMN);
+			//print_r($table_fields);
+
+			foreach($request as $key => $value){
+				if($key !== "insert_type" AND $key !== "fk" AND $key !== "table" AND $key !== "table_sub" AND $key !== "has_files" AND $key !== "file_fields" AND $key !== "file_dirs" AND $key !== "max_size" AND $key !== "insert_id"){
+					//echo "\n Testing: ".$key;
+					if (in_array($key, $table_fields))
+					{
+						//echo "\n ARR!: ".$key;
+						$tbl1_fields .= $key.",";
+						$tbl1_values .= ":".$key.",";
+						$tbl1_arr[":".$key] = $value;
+					}
+					else
+					{
+						//echo "\n ARR2: ".$key;
+						$tbl2_fields .= $key.",";
+						$tbl2_values .= ":".$key.",";
+						$tbl2_arr[":".$key] = $value;
+					}					
+				}				
+			}
+			
+
+			$password = substr(str_shuffle($request["email"]."0123456789"), 0, 8);
+
+			//Add Hashed Password for user from their 
+	        // crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
+	        // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
+	        // by the password hashing compatibility library. the third parameter looks a little bit shitty, but that's
+	        // how those PHP 5.5 functions want the parameter: as an array with, currently only used with 'cost' => XX
+	        $hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
+	        $user_password_hash = password_hash($password, PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+
+			$tbl1_fields .= "user_password_hash";
+			$tbl1_values .= ":user_password_hash";
+			$tbl1_arr[":user_password_hash"] = $user_password_hash;			
+
+			$sql = "INSERT INTO $table1 ($tbl1_fields) VALUES ($tbl1_values)";
+			$query = $this->db->prepare($sql);
+			$query->execute($tbl1_arr);	
+			$insert_id = $this->db->lastInsertId();
+
+			$tbl2_fields .= $request["fk"];
+			$tbl2_values .= ":".$request["fk"];
+			$tbl2_arr[":".$request["fk"]] = $insert_id;
+
+			// echo "\n Fields2: \n";
+			// echo $tbl2_fields;
+			// echo "\n Vals2: \n";
+			// echo $tbl2_values;	
+			// echo "\n array2: \n";
+			// print_r($tbl2_arr);			
+
+			$sql = "INSERT INTO $table2 ($tbl2_fields) VALUES ($tbl2_values)";
+
+			//echo "\n SQL: ".$sql;
+
+			$query = $this->db->prepare($sql);
+			$query->execute($tbl2_arr);	
+
+			$body = "Thank you ".$request["name"]." for using ".SITENAME.".";
+			$body .= "\n\nYou can now login with the details below: ";
+			$body .= "\n\nEmail: ".$request["email"];
+			$body .= "\nPassword: ".$password;
+			$body .= "\n\nYou can update your details and password in your <a href=\"http://nuvemed.com/login/index\">".SITENAME." dashboard.</a>";
+			$body .= "\n\nKind Regards";
+			$body .= "\n".SITENAME." Team";
+			$body .= "\n"."nuvemed.com";
+			//	NOW EMAIL THE NEW DETAILS TO THE USER.
+			$request = array(
+				'from' => "account@nuvemed.com", 
+				'fromName' => SITENAME.".com",
+				'subject' => "Your ".$request["user_account_type"]." account details for ".SITENAME,
+				'body' => $body,
+				'address' => [$request["email"]]
+			);
+
+			$this->sendEmail($request);
+
+			if(isset($request['insert_id']) AND $request['insert_id'] == true){
+	        	return $this->db->lastInsertId();
+	        }
+
+			return true;
+		}
+    }    
     
     /**
      * Getter for all products (products are an implementation of example data, in a real world application this
@@ -262,6 +337,10 @@ class GenericModel
      */
     public function genericUpdate()
     {
+		if(isset($request["insert_type"]) AND $request["insert_type"] == "sub"){
+			return $this->genericUpdate($request);
+		}
+
 		if(isset($_POST["table"])){
 			$table = $_POST["table"];
 		}else{
@@ -558,6 +637,10 @@ class GenericModel
      */
     public function insertExcel($items)
     {
+    	if($items["table"] == "medical_aid"){
+    		return $this->insertExcelMedAids($items);
+    	}
+
 		echo "<pre>";
 		$data = json_decode($items["data"], true);
 		foreach ($data as $key => $page) {
@@ -582,7 +665,43 @@ class GenericModel
 		echo "</pre>";
 
 		return true;
-    }    
+    }
+
+        /**
+     * Getter for all products (products are an implementation of example data, in a real world application this
+     * would be data that the user has created)
+     * @return array an array with several objects (the results)
+     */
+    public function insertExcelMedAids($items)
+    {
+		echo "<pre>";
+		$data = json_decode($items["data"], true);
+		foreach ($data as $key => $page) {
+			# code...
+			foreach ($page as $key_sub => $row) {
+				# code...
+				echo "************************** INSERT SUCCESS **********************";
+				print_r($row);
+				$sql = "INSERT INTO ".PREFIX."medical_aid (name, registration_date, type, phone, upload_type) 
+						VALUES (:name, :registration_date, :type, :phone, :upload_type)";
+				
+				$query = $this->db->prepare($sql);
+				$query->execute(
+				array(
+					':name' => $row['Scheme Name'], 
+					':registration_date' => (isset($row['Registration Date']) ? $row['Registration Date'] : "Unknown"),
+					':type' => (isset($row['Type']) ? $row['Type'] : 0),
+					':phone' => (isset($row['Telephone']) ? $row['Telephone'] : "none"),
+					':upload_type' => "excel"));	
+			}
+			
+			echo "=================== you are awsome, you are gonna make it =================";
+		}
+
+		echo "</pre>";
+
+		return true;
+    }            
 
     /**
      * Gets the user's avatar file path

@@ -1,7 +1,7 @@
 <div class="container" >       
 	<div class="row">
 		<br/>
-		<h2><?php //echo $this->aid_holder_id; ?>Medical Aid Holder: <?php echo $this->aid_holder_details[0]->initials." ".$this->aid_holder_details[0]->surname; ?></h2>
+		<h2><?php //echo $this->aid_holder_id; ?>Patient: <?php echo $this->aid_holder_details[0]->initials." ".$this->aid_holder_details[0]->surname; ?></h2>
 		<div id="feedback">
 		</div>
 	</div>	
@@ -37,7 +37,7 @@
 		<div role="tabpanel" class=".col-xs-12 .col-sm-6 .col-md-8">
 		  <!-- Nav tabs -->
 		  <ul class="nav nav-tabs" role="tablist">
-		  	<li role="presentation" ><a href="#Patients" aria-controls="Patients" role="tab" data-toggle="tab">Patients</a></li>
+		  	<li role="presentation" ><a href="#Patients" aria-controls="Patients" role="tab" data-toggle="tab">Patient IOD</a></li>
 		    <li role="presentation" class="active"><a href="#Transactions" aria-controls="Transactions" role="tab" data-toggle="tab">Transactions</a></li>
 		    <li role="presentation"><a href="#AccountDetails" aria-controls="AccountDetails" role="tab" data-toggle="tab">Account Details</a></li>
 		    <li role="presentation"><a href="#Notes" aria-controls="Notes" role="tab" data-toggle="tab">Notes</a></li>
@@ -47,40 +47,38 @@
 
 		  <!-- Tab panes -->
 		  <div class="tab-content .col-xs-12 .col-sm-6 .col-md-8">
-		  	<div role="tabpanel" class="tab-pane fade" id="Patients">
+		  	<div role="tabpanel" class="tab-pane fade" id="PatientIod">
 	  			<div class="row">
-					<h3>Patients</h3>
+					<h3>Patient IOD</h3>
 					<div id="feedback">
 					</div>
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#createPatient" >
-						<span class="glyphicon glyphicon-plus"></span> New Patient
-					</button>
-				</div>
-				<div class="row patientsContainer">
-					<!-- .patientsContainer is the container the generic class will print in -->
-					<div class="patientDesign col-xs-12 col-sm-4 col-md-4 col-lg-3">
-						<!-- 
-							.patientDesign is the design for each row in the database. The generic class will print data 
-							in the tags that have class="generic". The attribute data-field tells the system what field
-							from the database you want to print in that tag. The attribute data-set tells it what to print
-							to. Possible values for dataset=(innertext, value, src, href, ...).
-						-->
-						<div class="thumbnail">
-							<table class="table table-bordered">
-								<tr class="active"><td><b>Name</b></td><td class="generic" data-field="name" data-set="innertext"></td></tr>
-								<tr><td><b>Surname</b></td><td class="generic" data-field="surname" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>ID</b></td><td class="generic" data-field="id_number" data-set="innertext"></td></tr>
-								<tr><td><b>Date of birth</b></td><td class="generic" data-field="dob" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>Phone</b></td><td class="generic" data-field="phone" data-set="innertext"></td></tr>
-								<tr><td><b>Email</b></td><td class="generic" data-field="email" data-set="innertext"></td></tr>
-								<tr class="active"><td><b>Gender</b></td><td class="generic" data-field="gender" data-set="innertext"></td></tr>
-								<tr><td><b>Dependent code</b></td><td class="generic" data-field="dependent_code" data-set="innertext"></td></tr>
-							</table>
-							<input type="hidden" value="" class="patient_id_holder generic" data-field="patient_id" data-set="value" />
-							<button class="btn btn-default btnEditPatient btn-sm" type="button" >Edit</button>
-							<button class="btn btn-default btnDeletepatient btn-sm" type="button" >Delete</button>
-						</div>
-					</div>	
+						<fieldset class="iodDetails">
+    						<legend>IOD Details</legend>
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="iod_claim_number">IOD Claim Number</label>
+								<div class="col-xs-10">
+									<input type="text" name="iod_claim_number" placeholder="IOD Claim Number" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="employer">Employer</label>
+								<div class="col-xs-10">
+									<input type="text" name="iod_employer" placeholder="Employer" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="iod_emp_reg_num">Emp. Reg.#</label>
+								<div class="col-xs-10">
+									<input type="text" name="iod_emp_reg_num" placeholder="Emp. Reg.#" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="date_of_injury" >Date of injury</label>
+								<div class="col-xs-10">
+									<input type="date" name="iod_date_of_injury" placeholder="Date of injury" class="form-control" />
+								</div>
+							</div>																					    						
+    					</fieldset>					
 				</div>
 		  	</div>
 		    <div role="tabpanel" class="tab-pane fade active" id="Transactions">
@@ -96,15 +94,19 @@
 					</div>
 				</div>
 				<table class="table table-hover">
-					<thead><tr><th>#</th><th>Code</th><th>Date</th><th>Mod1</th><th>Mod2</th><th>Mod3</th><th>Amount</th><th>ID</th><th>Age</th><th>Diagnosis</th><th>Description</th><th></th></tr></thead>
+					<thead><tr><th>#</th><th>Code</th><th>Date</th><th>Amount</th><th>Vat</th><th>Cost Incl Vat</th><th>Mod1</th><th>Patient</th><th>Diagnosis</th><th>Description</th><th></th></tr></thead>
 					<tbody class="transactionsContainer">
 						<tr class="transactionDesign">
 							<th scope="row" class="generic row_id" data-field="transaction_id" data-set="innertext"></th>
-							<td class="generic" data-field="code" data-set="innertext" ></td><td class="generic" data-field="date" data-set="innertext" ></td>
-							<td class="generic" data-field="mod1" data-set="innertext" ></td><td class="generic" data-field="mod2" data-set="innertext" ></td>
-							<td class="generic" data-field="mod3" data-set="innertext" ></td><td class="generic" data-field="amount" data-set="innertext" ></td>
-							<td class="generic" data-field="id" data-set="innertext" ></td><td class="generic" data-field="age" data-set="innertext" ></td>
-							<td class="generic" data-field="diagnosis" data-set="innertext" ></td><td class="generic" data-field="description" data-set="innertext" ></td>
+							<td class="generic" data-field="code" data-set="innertext" ></td>
+							<td class="generic" data-field="date" data-set="innertext" ></td>
+							<td class="generic" data-field="amount" data-set="innertext" ></td>
+							<td class="generic" data-field="vat" data-set="innertext" ></td>
+							<td class="generic" data-field="cost_incl_vat" data-set="innertext" ></td>
+							<td class="generic" data-field="mod1" data-set="innertext" ></td>
+							<td class="generic" data-field="surname" data-set="innertext" ><span class="generic" data-field="name" data-set="innertext"></span></td>
+							<td class="generic" data-field="diagnosis" data-set="innertext" ></td>
+							<td class="generic" data-field="description" data-set="innertext" ></td>
 							<td ><button class="btn btn-default btn-xs btnTransactionViewAll">View All</button></td>
 						</tr>
 					</tbody>
@@ -358,187 +360,7 @@
 
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
 <div class="modal-rows">
-	<!-- Patient Modal Rows-->
-	<div class="modal fade" id="createPatient">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">New Patient</h4>
-				</div>
-				<!-- 
-					*If you have select a create task, you can use a combination of the generic controller and jquery forms to simplify
-					*the submitting of data to the database. Below is an example of how to use it. The input field names must
-					*be the same as the attribute names in the table you are creating in. In the script tags, there is a jquery.forms
-					*function for this form to make it use ajax. If your create requires multiple inserts, then you are gonna have to
-					*create a new controller and model function to handle the process the way you want.
-				-->				
-				<form class="form-horizontal" id="frmAddPatient" role="form" action="<?php echo URL; ?>generic/genericCreate" method="post" enctype="multipart/form-data"  >
-					<div class="modal-body">
-						<div id="feedback"></div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="Name">Name</label>
-							<div class="col-xs-10">
-								<input type="text" id="title" name="name" placeholder="Name" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="Surname">Surname</label>
-							<div class="col-xs-10">
-								<input type="text" name="surname" placeholder="Surname" class="form-control" />
-							</div>
-						</div>						
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="identification">ID number</label>
-							<div class="col-xs-10">
-								<input type="text" name="id_number" placeholder="ID number" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
-							<div class="col-xs-10">
-								<input type="date" name="dob" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="gender">Gender</label>
-							<div class="col-xs-10">
-								<select name="gender" class="form-control" required >
-									<option></option>
-									<option value="M">Male</option>
-									<option value="F">Female</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Phone</label>
-							<div class="col-xs-10">
-								<input type="text" name="phone" placeholder="Phone" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Email</label>
-							<div class="col-xs-10">
-								<input type="email" name="email" placeholder="email" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Dependednt code</label>
-							<div class="col-xs-10">
-								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control" />
-							</div>
-						</div>
-						<!-- div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
-							<div class="col-xs-10">
-								<input type="text" id="referring_doc" name="referring_doc" placeholder="Dr Name Surname" class="form-control" />
-							</div>
-						</div -->															
-						<!-- The genericCreate controller requires you to specify the table you are inserting to -->
-						<input type="hidden" name="table" value="<?php echo PREFIX; ?>user" >
-						<input type="hidden" name="table_sub" value="<?php echo PREFIX; ?>patient_user_details_tbls" >
-						<input type="hidden" name="fk" value="user_id" >
-						<input type="hidden" name="practice_id" value="<?php echo Session::get('practice_id'); ?>" />
-						<input type="hidden" name="insert_type" value="sub" />
-						<input type="hidden" name="user_account_type" value="Patient" />						
-						<input type="hidden" name="aid_holder_id" value="<?php echo $this->aid_holder_id; ?>" >
-					</div>
-					<div class="modal-footer">
-						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save</button>
-					</div>
-				</form>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
 
-	<div class="modal fade" id="editPatient">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">Edit patient</h4>
-				</div>
-				<!-- 
-					*If you have select a edit task, you can use a combination of the generic controller and jquery forms to simplify
-					*the submitting of data to the database. Below is an example of how to use it. The input field names must
-					*be the same as the attribute names in the table you are updating in. In the script tags, there is a jquery.forms
-					*function for this form to make it use ajax. If your update requires multiple update in multiple tables, then you are gonna have to
-					*create a new controller and model function to handle the process the way you want.
-				-->	<!--doctorsEditTarget-->
-				<form class="form-horizontal" id="frmEditpatient" role="form" action="<?php echo URL; ?>generic/genericUpdate" method="post" enctype="multipart/form-data"  >
-					<div class="patientsEditTarget">
-						<div class="modal-body patientsEditDesign">
-							<div id="feedback"></div>
-							<div class="form-group">
-							<label class="col-xs-2 control-label" for="Name">Name</label>
-							<div class="col-xs-10">
-								<input type="text" name="name" placeholder="Name" class="form-control generic" data-field="name" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="identification">ID number</label>
-							<div class="col-xs-10">
-								<input type="text" name="id_number" placeholder="id_number" class="form-control generic" data-field="id_number" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
-							<div class="col-xs-10">
-								<input type="date" name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control generic" data-field="date_of_birth" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="gender">Gender</label>
-							<div class="col-xs-10">
-								<input type="text" id="gender" name="gender" placeholder="gender" class="form-control generic" data-field="gender" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Email</label>
-							<div class="col-xs-10">
-								<input type="email" id="email" name="email" placeholder="email" class="form-control generic" data-field="email" data-set="value" />
-							</div>
-						</div>						
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Phone</label>
-							<div class="col-xs-10">
-								<input type="text" name="phone" placeholder="Phone" class="form-control generic" data-field="phone" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Diagnosis</label>
-							<div class="col-xs-10">
-								<input type="text" id="diagnosis" name="diagnosis" placeholder="diagnosis" class="form-control generic" data-field="diagnosis" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Dependednt code</label>
-							<div class="col-xs-10">
-								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control generic" data-field="dependent_code" data-set="value"/>
-							</div>
-						</div>
-						<!--div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
-							<div class="col-xs-10">
-								<input type="text" id="referring_doc" name="referring_doc" placeholder="Referring Dr" class="form-control generic" data-field="referring_doc" data-set="value"/>
-							</div>
-						</div-->															
-							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" name="table" value="<?php echo PREFIX; ?>patient">
-							<input type="hidden" name="where" value="patient_id = " class="generic" data-field="patient_id" data-set="value">
-						</div>
-					</div>	
-					<div class="modal-footer">
-						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save</button>
-					</div>
-				</form>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
 </div><!-- /.modal rows-->
 <div class="modal-rows">
 
@@ -771,7 +593,7 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="diagnosis">Diagnosis</label>
 							<div class="col-xs-10">
-								<select class="selectpicker form-control diagnosis_select" data-live-search="true" >
+								<select class="selectpicker form-control diagnosis_select" data-live-search="true" name="diagnosis[]" >
 								</select>
 							</div>
 						</div>
@@ -825,16 +647,30 @@
 							</div>
 						</div>												
 						<div class="form-group">
-							<label class="col-xs-2 control-label" for="Name">Date</label>
+							<label class="col-xs-2 control-label" for="Name">Date|Time</label>
 							<div class="col-xs-10">
-								<input type="date" name="date" placeholder="Date" class="form-control current-date" value="<?php echo date("Y-m-d"); ?>" />
+							  <div id="datetimepicker2" class="input-append">
+							    <div class="input-group">
+							    	<span class="input-group-btn">
+							    		<button class="add-on btn btn-default" type="button">
+							    			<span class="glyphicon glyphicon-calendar"></span>
+							    		</button>
+							    	</span>
+							    	<input class="form-control" data-format="MM/dd/yyyy HH:mm:ss PP" type="text" required ></input>
+							    </div>
+							  </div>		
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="diagnosis">Diagnosis</label>
 							<div class="col-xs-10">
-								<select name="diagnosis" class="selectpicker form-control diagnosis_select" data-live-search="true" multiple id="diagnosis_select" >
+								<select name="diagnosis[]" class="selectpicker form-control diagnosis_select" data-live-search="true" multiple id="diagnosis_select" data-showContent="false" >
 								</select>
+								<table class="table table-hover table-bordered">
+									<thead><tr><th>#</th><th>Code</th><th>Description</th></thead>
+									<tbody class="diagContainer">
+									</tbody>
+								</table>
 							</div>
 						</div>						
 						<div class="form-group">
@@ -847,9 +683,21 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="cell">Amount</label>
 							<div class="col-xs-10">
-								<input type="text" class="form-control amount_target" name="amount" placeholder="0.00" class="form-control" />
+								<input type="text" class="form-control amount_target" name="amount" placeholder="0.00" class="form-control" required />
 							</div>
-						</div>						
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="cell">Vat</label>
+							<div class="col-xs-10">
+								<input type="text" class="form-control vat_target" name="vat" placeholder="0.00" class="form-control" required disabled />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label" for="cell">Cost Incl Vat</label>
+							<div class="col-xs-10">
+								<input type="text" class="form-control cost_incl_vat_target" name="cost_incl_vat" placeholder="0.00" class="form-control" required disabled/>
+							</div>
+						</div>																		
 						<div class="form-group">
 							<label class="col-xs-2 control-label" for="gender">Description</label>
 							<div class="col-xs-10">
@@ -1060,103 +908,24 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-	<div class="modal fade" id="editPatient">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">Edit patient</h4>
-				</div>
-				<!-- 
-					*If you have select a edit task, you can use a combination of the generic controller and jquery forms to simplify
-					*the submitting of data to the database. Below is an example of how to use it. The input field names must
-					*be the same as the attribute names in the table you are updating in. In the script tags, there is a jquery.forms
-					*function for this form to make it use ajax. If your update requires multiple update in multiple tables, then you are gonna have to
-					*create a new controller and model function to handle the process the way you want.
-				-->	<!--doctorsEditTarget-->
-				<form class="form-horizontal" id="frmEditpatient" role="form" action="<?php echo URL; ?>generic/genericUpdate" method="post" enctype="multipart/form-data"  >
-					<div class="patientsEditTarget">
-						<div class="modal-body patientsEditDesign">
-							<div id="feedback"></div>
-							<div class="form-group">
-							<label class="col-xs-2 control-label" for="Name">Name</label>
-							<div class="col-xs-10">
-								<input type="text" name="name" placeholder="Name" class="form-control generic" data-field="name" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="identification">ID number</label>
-							<div class="col-xs-10">
-								<input type="text" name="id_number" placeholder="id_number" class="form-control generic" data-field="id_number" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="dob">Date of birth</label>
-							<div class="col-xs-10">
-								<input type="date" name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control generic" data-field="date_of_birth" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="gender">Gender</label>
-							<div class="col-xs-10">
-								<input type="text" id="gender" name="gender" placeholder="gender" class="form-control generic" data-field="gender" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Email</label>
-							<div class="col-xs-10">
-								<input type="email" id="email" name="email" placeholder="email" class="form-control generic" data-field="email" data-set="value" />
-							</div>
-						</div>						
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Cell</label>
-							<div class="col-xs-10">
-								<input type="text" id="cell" name="cell" placeholder="cell" class="form-control generic" data-field="cell" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="phone">Diagnosis</label>
-							<div class="col-xs-10">
-								<input type="text" id="diagnosis" name="diagnosis" placeholder="diagnosis" class="form-control generic" data-field="diagnosis" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="drpr">Dependednt code</label>
-							<div class="col-xs-10">
-								<input type="text" id="dependent_code" name="dependent_code" placeholder="dependent_code" class="form-control generic" data-field="dependent_code" data-set="value"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-2 control-label" for="project_name">Referring Dr</label>
-							<div class="col-xs-10">
-								<input type="text" id="referring_doc" name="referring_doc" placeholder="Referring Dr" class="form-control generic" data-field="referring_doc" data-set="value"/>
-							</div>
-						</div>															
-							<!-- The genericCreate controller requires you to specify the table you are inserting to and the where clause-->
-							<input type="hidden" name="table" value="<?php echo PREFIX; ?>patient">
-							<input type="hidden" name="where" value="patient_id = " class="generic" data-field="patient_id" data-set="value">
-						</div>
-					</div>	
-					<div class="modal-footer">
-						<img src="<?php echo URL;?>public/img/loading.gif" class="loadingImg loader1" >
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save</button>
-					</div>
-				</form>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
 </div><!-- /.modal rows-->
 <input type="hidden" id="aid_holder_id" value="<?php echo $this->aid_holder_id; ?>" >
+<input type="hidden" id="vat_percentage" value="14" >
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
 <script type="text/javascript" src="<?php echo URL; ?>public/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>public/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/generic.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/use_aid_holder.js"></script>
 <script>
 
-	var now = new Date();
-    $(".current-date").val(now);
-
+$(function() {
+    $('#datetimepicker2').datetimepicker({
+		language: 'en',
+		pick12HourFormat: true
+    });
+});
 
 $(".btnEmail").on("click", function (){
 	$(".email_container").slideDown("slow");

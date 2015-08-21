@@ -57,23 +57,9 @@ class Login extends Controller
         $login_successful = $login_model->login($generic_model);
         
         // check login status
-        if($login_successful === 0){
-            // if account not active, go to the verification page.
-            //header('location: ' . URL . 'login');
-            //echo "login/verify";
-            echo "[error]";
-        } elseif ($login_successful) {
-            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-           //header('location: ' . URL);
+        if ($login_successful) {
             echo "Success";
 	  
-		//echo Session::get('user_logged_in');
-		//return false;
-        } else {
-            // if NO, then move user to login/index (login form) again
-            echo "[error]";
-            //print_r($_SESSION["feedback_negative"]);
-            //echo "Error";
         }
     }
     

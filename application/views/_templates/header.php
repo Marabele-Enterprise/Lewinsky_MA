@@ -50,8 +50,7 @@
             <div class="navbar-header">
               <!-- Logo Starts -->
               <a class="navbar-brand" href="#home">
-              	<h2><b style="color: rgb(33, 171, 202);">Medi</b>Suite</h2>
-              	<!--img src="<?php echo URL; ?>public/assets/images/logo.png" alt="logo" -->
+              	<img src="<?php echo URL; ?>public/img/logo.png" alt="logo" class="logo" >
               </a>
               <!-- #Logo Ends -->
 
@@ -80,6 +79,19 @@
       </div>
     </div>
 <!-- #Header Starts -->
+
+<style type="text/css">
+.logo{
+    width: 100px;
+    top: -5px;
+    position: absolute;
+}
+
+.data_holder{
+	display: none;
+}
+</style>
+
 <?php 
 
 function getAccountMenu($loginStat,$userType, $isHome)
@@ -115,11 +127,10 @@ function getAccountMenu($loginStat,$userType, $isHome)
 					<li><a href="'.URL.'index/doctors" class="">Doctors</a></li>
 					<li><a href="'.URL.'index/medical_aids" class="">Medical Aids</a></li>
 					<li id="patients"><a href="'.URL.'index/patients" class="" title="Patient Accounts">Patients</a></li>
-					<li><a href="'.URL.'index/aid_holder" class="" title="Medical Aid Holder">Customers</a></li>
-					
 					<li id="reports" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
+							<li><a href="'.URL.'report/create_batch" class="">Create Batch</a></li>
 							<li><a href="'.URL.'index/diagnosis" class="">Diagnosis</a></li>
 							<li><a href="'.URL.'index/tariff_codes" class="">Tariff Codes</a></li>					
 							<li id="icd_10"><a href="'.URL.'help/icd_10" class="" title="ICD 10 Codes">ICD 10 Codes</a></li>

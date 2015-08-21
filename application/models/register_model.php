@@ -79,7 +79,7 @@ class RegisterModel
             ':user_account_type' => $user_account_type));
         $count =  $query->rowCount();
         if ($count != 1) {
-            echo FEEDBACK_ACCOUNT_CREATION_FAILED;
+            echo "User insert error";
             return false;
         }
         
@@ -87,7 +87,7 @@ class RegisterModel
         $query = $this->db->prepare("SELECT user_id FROM ".PREFIX."user WHERE email = :email");
         $query->execute(array(':email' => $email));
         if ($query->rowCount() != 1) {
-            echo FEEDBACK_UNKNOWN_ERROR;
+            echo "The user_id could not be seleced";
             return false;
         }
         $result_user_row = $query->fetch();
@@ -106,15 +106,15 @@ class RegisterModel
 
         $count =  $query->rowCount();
         if ($count != 1) {
-            echo "Practice Creation Error: ".FEEDBACK_ACCOUNT_CREATION_FAILED;
+            echo "Account creation failed: ".FEEDBACK_ACCOUNT_CREATION_FAILED;
             return false;
         }
 
-        // get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
+        // get practice_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
         $query = $this->db->prepare("SELECT practice_id FROM ".PREFIX."practice WHERE creator_id = :user_id ORDER BY practice_id DESC LIMIT 1");
         $query->execute(array(':user_id' => $user_id));
         if ($query->rowCount() != 1) {
-            echo FEEDBACK_UNKNOWN_ERROR;
+            echo "Unable to get practice id";
             return false;
         }
         $result_practice_row = $query->fetch();
@@ -130,7 +130,7 @@ class RegisterModel
 
         Session::set("user_id", $user_id);
 
-        //return true;
+        return true;
 
         $body = "Thank you ".$name." for using ".SITENAME.".";
         $body .= "\n\nYour verification code is: ".$user_verification_code;
@@ -164,93 +164,12 @@ class RegisterModel
             $query = $this->db->prepare("DELETE FROM ".PREFIX."user WHERE user_id = :last_inserted_id");
             $query->execute(array(':last_inserted_id' => $user_id));
             echo "Sorry, we could not send you a verification email. Your account has NOT been created.";
+            
             $generic_model->logActionPHP("Registration email Send Failed", "Register", "A");
             return false;
         }
         
-        // default return, returns only true of really successful (see above)
-        return false;
     }
-
-    /**
-     * send the password reset mail
-     * @param array $request username
-     * @return array $response
-     */
-    public function bulk_emails($email)
-    {
-        $body = "Greetings \nDear Marabele Business Club member.";
-        $body .= "\n\nYou are invited to the marabele business club pitch session.";
-        $body .= "\nThe best pitch will win R1000 and would also stand a chance to get investment from BeBold.org.za";
-        $body .= "\nPlease note that everyone attending this session would be required to sign a Non-Disclosure agreement to protect the entrepreneurs business idea.";
-        $body .= "\nIf you have an idea to pitch, please RSVP to info@marabele.com if you have not recieved a call from us. We welcome any innovative idea.";
-        $body .= "\nBelow is the links to the poster and scoresheet that will be used to judge the pitches: ";
-        $body .= "\n"."http://marabele.com/public/img/poster.jpg";
-        $body .= "\n"."http://marabele.com/public/img/score.pdf";
-        $body .= "\n\nThe session will take place as follows:";
-        $body .= "\nDate: 23 July 2015 (Thursday)";
-        $body .= "\nVenue: Conference 100 (Sanlam Auditorium)";
-        $body .= "\nTime: 17:00 - 19:00";
-        $body .= "\n\nWe look forward to seeing you there.";        
-        $body .= "\n\nKind Regards";
-        $body .= "\nMarabele Business Club";
-
-        //  NOW EMAIL THE NEW DETAILS TO THE USER.
-        $request = array(
-            'from' => "businessclub@marabele.com",
-            'fromName' => "Marabele Business Club",
-            'subject' => "Marabele Business Club Pitch Session",
-            'body' => $body,
-            'address' => [$email]
-        );
-
-        // create PHPMailer object here. This is easily possible as we auto-load the according class(es) via composer
-        $mail = new PHPMailer;
-
-        // please look into the config/config.php for much more info on how to use this!
-        if (EMAIL_USE_SMTP) {
-            // Set mailer to use SMTP
-            $mail->IsSMTP();
-            //useful for debugging, shows full SMTP errors, config this in config/config.php
-            $mail->SMTPDebug = PHPMAILER_DEBUG_MODE;
-            // Enable SMTP authentication
-            $mail->SMTPAuth = EMAIL_SMTP_AUTH;
-            // Enable encryption, usually SSL/TLS
-            if (defined('EMAIL_SMTP_ENCRYPTION')) {
-                $mail->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
-            }
-            // Specify host server
-            $mail->Host = EMAIL_SMTP_HOST;
-            $mail->Username = EMAIL_SMTP_USERNAME;
-            $mail->Password = EMAIL_SMTP_PASSWORD;
-            $mail->Port = EMAIL_SMTP_PORT;
-        } else {
-            $mail->IsMail();
-        }
-
-        // build the email
-        foreach ($request["address"] as $key => $address) {
-            $mail->AddAddress($address);
-        }
-            $mail->AddAttachment("http://marabele.com/public/img/poster.jpg");
-            $mail->AddAttachment("http://marabele.com/public/img/score.pdf");
-
-
-        $mail->From = $request["from"];
-        $mail->FromName = $request["fromName"];
-        $mail->Subject = $request["subject"];//EMAIL_PASSWORD_RESET_SUBJECT;
-        //$link = EMAIL_PASSWORD_RESET_URL . '/' . urlencode($user_name) . '/' . urlencode($user_password_reset_hash);
-        $mail->Body = $request["body"];
-
-        // send the mail
-        if($mail->Send()) {
-            $_SESSION["feedback_positive"][] = FEEDBACK_PASSWORD_RESET_MAIL_SENDING_SUCCESSFUL;
-            return true;
-        } else {
-            echo FEEDBACK_PASSWORD_RESET_MAIL_SENDING_ERROR . $mail->ErrorInfo;
-            return false;
-        }           
-    } 
 
     /**
      * send the password reset mail

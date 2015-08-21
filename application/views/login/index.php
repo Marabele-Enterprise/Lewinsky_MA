@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label for="email" class="col-md-3 control-label">Email</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" required name="email" placeholder="Email Address" required>
+                                    <input type="email" class="form-control" required name="email" placeholder="Email Address" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -103,12 +103,14 @@ var options = {
     }, uploadProgress: function(event, position, total, percentComplete){
         console.log("uploadProgress");
     }, success: function(response){
-
-        $("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Login Success!</div>");
-        
-        $('form')[0].reset();
-        
-        window.location = $("#URLholder").val()+"index/welcome";
+        console.log(response);
+        if(response == "Success" || response == "success"){
+            $("#feedback").append("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Login Success!</div>");
+            window.location = $("#URLholder").val()+"index/welcome";            
+        }else{
+            $("#feedback").append("<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+response+".</div>");            
+        }
+    
         //This code segment removes the feedback automatically
         /*var delay = 15666;
         setTimeout(function() {

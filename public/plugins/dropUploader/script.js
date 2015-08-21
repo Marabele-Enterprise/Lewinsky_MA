@@ -110,7 +110,7 @@ function addItems(output){
 		type: "POST",
 		//dataType: "json",
 		url: $("#URLholder").val()+"/generic/insertExcel",
-		data: {data:output},
+		data: {data:output, table: $(".excelTable").val()},
 		success: function(data){
 			console.log(data);
 		},

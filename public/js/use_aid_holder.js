@@ -1,19 +1,35 @@
 $('#Transactions').css("opacity", 1);
 
-$('.selectpicker').selectpicker('render');
+$('.selectpicker').selectpicker('render').change(function(){
+	$(".diagContainer").html("");
+	var selected_diag = $(this).val();
+  	var j = 0;
+	for (var i = selected_diag.length - 1; i >= 0; i--) {
+		j++;
+		//console.log(selected_diag[i]);	
+		var selector = ".diag_"+selected_diag[i].replace(".", "_");
+		descriptions = $(selector).attr("data-desc");
+		code = $(selector).attr("data-code");		
+		
+		$(".diagContainer").append('<tr class="diagDesign"><th scope="row" >'+j+'</th><td >'+code+'</td><td >'+descriptions+'</td></tr>').children(':last').hide().fadeIn(1666);
+	};
+});
+
 $("div.diagnosis_select").find(".input-block-level").on("keyup", function(){
 	var diag_desc = $(this).val();
-	if(diag_desc.length >= 2){
+	if(diag_desc.length >= 3){
+		
 		var data = {
 			"table": 'ms_icd10_diagnosis',
 			"fields": '*',
-			"where": "description LIKE '%"+diag_desc+"%' OR name LIKE '%"+diag_desc+"%'"
+			"where": "description LIKE '%"+diag_desc+"%' OR name LIKE '%"+diag_desc+"%'",
+			"extra": "ORDER BY description ASC LIMIT 10"
 		};
 		
 		Generic.genericAction("get", data, function(response){
 			//$("select.diagnosis_select").children().remove();
 			var action_list = document.getElementById("diagnosis_select");
-
+			
 			// Remember selected items.
 			var is_selected = [];
 			for (var i = 0; i < action_list.options.length; ++i)
@@ -31,22 +47,33 @@ $("div.diagnosis_select").find(".input-block-level").on("keyup", function(){
 			    }
 			}
 
-
-			$('.selectpicker').selectpicker('refresh');
+			//$('.selectpicker').selectpicker('refresh');
 
 			response = JSON.parse(response);
 			//console.log(response);
 			for (var i = response.length - 1; i >= 0; i--) {
 				//console.log("Row "+i);
-				//console.log(response[i]);
-				$("select.diagnosis_select").append("<option value='"+response[i].icd_diag_sub2_id+"' >"+response[i].name+" "+response[i].description+"</option>");
+				//console.log(response[i]);var res = str.replace("Microsoft", "W3Schools");
+				$("select.diagnosis_select").append("<option class='diag_"+response[i].id+"' data-code='"+response[i].name+"' data-desc='"+response[i].description+"' value='"+response[i].id+"' >"+response[i].name+" "+response[i].description+"</option>");
 			};
 
 			$('.selectpicker').selectpicker('refresh');
+
 		});
 	}
 });
 
+function updateCosts(amount){
+	var amount = parseFloat(amount);
+	var vat = (parseFloat($("#vat_percentage").val())/100)*amount;
+	var cost_incl_vat = amount + vat;
+	$(".vat_target").val(vat);
+	$(".cost_incl_vat_target").val(cost_incl_vat);
+}
+
+$(".amount_target").on("change", function(){
+	updateCosts($(this).val());
+});
 
 $('.slct_tarrif_code').selectpicker('render').change(function(){
 	//console.log("+++> "+$(this).html());
@@ -54,6 +81,7 @@ $('.slct_tarrif_code').selectpicker('render').change(function(){
 	new_amount = $(".pc_"+$(this).val()).attr("data-cost");
 	$('.amount_target').val(new_amount+'.00');
 	$('.desc_target').val(new_descriptions);
+	updateCosts(new_amount);
 });
 
 $(".slct_tarrif_code").find(".input-block-level").on("keyup", function(){

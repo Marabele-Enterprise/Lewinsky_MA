@@ -15,39 +15,31 @@
 	written in script tags. See the function refreshTariffCodesView() bellow to see how to 
 	generate the view.
  -->
-<div class="container-fluid" >       
-	<div class="row tariff_codesContainer">
-		<!-- .tariff_codesContainer is the container the generic class will print in -->
-		<div class="tariff_codeDesign col-xs-12 col-sm-4 col-md-4 col-lg-3">
-			<!-- 
-				.tariff_codeDesign is the design for each row in the database. The generic class will print data 
-				in the tags that have class="generic". The attribute data-field tells the system what field
-				from the database you want to print in that tag. The attribute data-set tells it what to print
-				to. Possible values for dataset=(innertext, value, src, href, ...).
-			-->
-			<div class="thumbnail">
-				<table class="table table-bordered">
-					<tr class="active"><td><b>Code</b></td><td class="generic" data-field="code" data-set="innertext"></td></tr>
-					<tr><td><b>Description</b></td><td class="generic" data-field="description" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Private</b></td><td class="generic" data-field="private" data-set="innertext"></td></tr>
-					<tr><td><b>Med Aid 2010</b></td><td class="generic" data-field="med_aid_2010" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>IOD</b></td><td class="generic" data-field="iod" data-set="innertext"></td></tr>
-					<tr><td><b>Discovery</b></td><td class="generic" data-field="discovery" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Rate_5</b></td><td class="generic" data-field="rate_5" data-set="innertext"></td></tr>
-					<tr><td><b>Rate_7</b></td><td class="generic" data-field="rate_7" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Rate_8</b></td><td class="generic" data-field="rate_8" data-set="innertext"></td></tr>
-					<tr><td><b>Rate_9</b></td><td class="generic" data-field="rate_9" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Material</b></td><td class="generic" data-field="material" data-set="innertext"></td></tr>
-					<tr><td><b>Mod Minutes</b></td><td class="generic" data-field="modminutes" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Matpic</b></td><td class="generic" data-field="matpic" data-set="innertext"></td></tr>
-					<tr><td><b>Units</b></td><td class="generic" data-field="units" data-set="innertext"></td></tr>
-					<tr class="active"><td><b>Cf Type</b></td><td class="generic" data-field="cf_type" data-set="innertext"></td></tr>
-				</table>
-				<input type="hidden" value="" class="tariff_code_id_holder generic" data-field="tariff_code_id" data-set="value" />
-				<button class="btn btn-default btnEditTariffCode btn-sm" type="button" >Edit</button>
-				<button class="btn btn-default btnDeleteTariffCode btn-sm" type="button" >Delete</button>
-			</div>
-		</div>	
+<div class="container-fluid" >       	
+	<div class="row">
+		<table class="table table-hover">
+			<thead><tr><th>#</th><th>Name</th><th>Reg Date</th><th>Type</th><th>Phone</th><th></th><th></th></tr></thead>
+			<tbody>
+				<?php $i = 0;
+					foreach ($this->rows as $key => $row) { $i++; ?>
+					<tr class="designBlock">
+						<th scope="row"><?php echo $i; ?></th>
+						<td class="generic searchable" ><?php echo $row->procedure_code; ?></td>
+						<td class="generic searchable" ><?php echo $row->description; ?></td>
+						<td class="generic searchable" ><?php echo $row->practice_type; ?></td>
+						<td class="generic searchable" ><?php echo $row->rcf; ?></td>
+						<td class="generic searchable" ><?php echo $row->dh_rate; ?></td>
+						<td class="generic searchable" ><?php echo $row->units; ?></td>
+						<td >
+							<input type="hidden" value="<?php echo $row->tariff_code_id; ?>" class="tariff_code_id_holder" />
+							<button class="btn btn-default btnEditDoctor btn-xs" type="button" >Edit</button>
+						</td>
+						<td ><button class="btn btn-default btnDeleteDoctor btn-xs" type="button" >Delete</button></td>
+						<td ></td>
+					</tr>				
+				<?php }?>
+			</tbody>
+		</table> 
 	</div>
 </div>
 <!-- This section is for bootstrap modal popups, check out bootstrap modal works -->
@@ -92,13 +84,14 @@
 							<div id="drop">
 								Drop an XLS file here to import product, please note that the format in file should be
 								<br/>
-								[ Product Name | Brandname | Description | Size | Category ]
+								[ Field | Field | Field | Field | Field ]
 								<br/>
 								[ Values  |  Values  |  Values |  Values  |  Values ]
 							</div>
 							<!--Use Web Workers: (when available) --><input type="checkbox" name="useworker" checked style="visibility:hidden;">
 							<!--Use readAsBinaryString: (when available)--><input type="checkbox" name="userabs" checked style="visibility:hidden;">
 							<input type="checkbox" name="xferable" checked style="visibility:hidden;">
+							<input type="hidden" class="excelTable" value="tariff_code" />
 							<pre id="out" style="display: none"></pre>
 							<br/>
 							

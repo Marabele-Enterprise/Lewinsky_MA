@@ -85,10 +85,30 @@ class Register extends Controller
             Session::set("value_array", $_POST);
             Session::set("error_array", Form::getErrorArray());
             //header('location: ' . URL . 'login/register');
-            print_r($_SESSION["feedback_negative"]);
-            echo "Error";
+            echo "This is odd, Register Error. If the problem persists, contact support@nuvemed.com.";
         }
     }
+
+   /**
+    * The register action, when you do register/register
+    */
+    function update(){
+        $register_model = $this->loadModel('Register');
+        $generic_model = $this->loadModel('Generic');
+        $registration_successful = $register_model->updateUser($generic_model);
+        
+        if($registration_successful === 0){
+            // if account not active, go to the verification page.
+            echo "Success";
+        }elseif ($registration_successful == true) {
+            echo "Success";
+        } else {
+            Session::set("value_array", $_POST);
+            Session::set("error_array", Form::getErrorArray());
+            //header('location: ' . URL . 'login/register');
+            echo "Error";
+        }
+    }    
     /**
     * Register with cookie
     */
