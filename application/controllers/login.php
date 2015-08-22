@@ -12,7 +12,7 @@ class Login extends Controller
      */
     function __construct()
     {
-	//Session::set('session_id', $this->generateRandomString(15));
+    //Session::set('session_id', $this->generateRandomString(15));
         parent::__construct();
     }
     
@@ -59,7 +59,7 @@ class Login extends Controller
         // check login status
         if ($login_successful) {
             echo "Success";
-	  
+      
         }
     }
     

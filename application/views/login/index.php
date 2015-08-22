@@ -50,8 +50,8 @@
                                 <!-- Button -->                                        
                                 <div class="col-md-9">
                                     <a href="<?php echo URL; ?>register/index">Register</a>
-			                        |
-			                        <a href="<?php echo URL; ?>login/requestpasswordreset">Forgot my Password</a>                        
+                                    |
+                                    <a href="<?php echo URL; ?>login/requestpasswordreset">Forgot my Password</a>                        
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
 }
 
 .remember-me-checkbox{
-	width: 15px;
+    width: 15px;
 }
 </style>
 
@@ -120,10 +120,10 @@ var options = {
     }, complete: function(response){
         $(".loading").fadeOut("fast");
         console.log("Complete. response: "+response.responseText);
-    }, error: function(){
+    }, error: function(response){
         $("#createDoctor").modal("hide");
-        
-        $("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Unable to delete item.</div>");
+        console.log(response);
+        $("#feedback").append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Server responded with an error.</div>");
         
         //clear all fields
         $('form')[0].reset();

@@ -127,80 +127,80 @@ class LoginModel
 
         // check if hash of provided password matches the hash in the database
         if (password_verify($_POST['password'], $result->user_password_hash)) {
-    		// login process, write the user data into session
-    		Session::init();
-    		Session::set('user_logged_in', true);
-    		Session::set('user_id', $result->user_id);
-    		Session::set('name', $result->name);
-    		Session::set('surname', $result->surname);
-    		Session::set('email', $result->email);
-    		Session::set('user_account_type', $result->user_account_type);
-    		Session::set('user_provider_type', 'DEFAULT');
+            // login process, write the user data into session
+            Session::init();
+            Session::set('user_logged_in', true);
+            Session::set('user_id', $result->user_id);
+            Session::set('name', $result->name);
+            Session::set('surname', $result->surname);
+            Session::set('email', $result->email);
+            Session::set('user_account_type', $result->user_account_type);
+            Session::set('user_provider_type', 'DEFAULT');
             Session::set('practice_number', $result->practice_number);
             Session::set('practice_id', $result->practice_id);
 
-    		// put native avatar path into session
-    		/*Session::set('user_avatar_file', $this->getUserAvatarFilePath());
-    		Session::set('user_avatar_xsmall', $this->getUserAvatarFilePath());
-    		Session::set('user_avatar_small', $this->getUserAvatarFilePath());
-    		Session::set('user_avatar_medium', $this->getUserAvatarFilePath());
-    		Session::set('user_avatar_large', $this->getUserAvatarFilePath());
-    		Session::set('user_avatar_xlarge', $this->getUserAvatarFilePath());*/
-    		// put Gravatar URL into session
-    		//$this->setGravatarImageUrl($result->email, AVATAR_SIZE);
-    		
-    		// reset the failed login counter for that user (if necessary)
-    		if ($result->user_last_failed_login > 0) {
-    			$sql = "UPDATE ".PREFIX."user SET user_failed_logins = 0, user_last_failed_login = NULL
-    			WHERE user_id = :user_id AND user_failed_logins != 0";
-    			$sth = $this->db->prepare($sql);
-    			$sth->execute(array(':user_id' => $result->user_id));
-    		}
-    		
-    		// generate integer-timestamp for saving of last-login date
-    		$user_last_login_timestamp = time();
-    		// write timestamp of this login into database (we only write "real" logins via login form into the
-    		// database, not the session-login on every page request
-    		$sql = "UPDATE ".PREFIX."user SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
-    		$sth = $this->db->prepare($sql);
-    		$sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
-    		
-    		// if user has checked the "remember me" checkbox, then write cookie
-    		if (isset($_POST['rememberme'])) {
-    			// generate 64 char random string
-    			$random_token_string = hash('sha256', mt_rand());
-    			
-    			// write that token into database
-    			$sql = "UPDATE ".PREFIX."user SET user_rememberme_token = :user_rememberme_token WHERE user_id = :user_id";
-    			$sth = $this->db->prepare($sql);
-    			$sth->execute(array(':user_rememberme_token' => $random_token_string, ':user_id' => $result->user_id));
-    			
-    			// generate cookie string that consists of user id, random string and combined hash of both
-    			$cookie_string_first_part = $result->user_id . ':' . $random_token_string;
-    			$cookie_string_hash = hash('sha256', $cookie_string_first_part);
-    			$cookie_string = $cookie_string_first_part . ':' . $cookie_string_hash;
-    			
-    			// set cookie
-    			setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);
-    		}	
-    		$generic_model->logActionPHP("Login Successful", "Login", "A");
-    		// return true to make clear the login was successful
-    		return true;
-    	} else {
-    		// increment the failed login counter for that user
-    		$sql = "UPDATE ".PREFIX."user
-    			SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
-    			WHERE email = :email";
-    		$sth = $this->db->prepare($sql);
-    		$sth->execute(array(':email' => $_POST['email'], ':user_last_failed_login' => time() ));
-    		// feedback message
-    		//echo FEEDBACK_PASSWORD_WRONG;
-    		echo "Email or Password is incorrect.";
-    		
-    		$generic_model->logActionPHP("Login Failed", "Login", "A");
-    		//$generic_model->logActionPHP(md5($_POST["password"]), "Login", "A");
-    		return false;
-    	}
+            // put native avatar path into session
+            /*Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+            Session::set('user_avatar_xsmall', $this->getUserAvatarFilePath());
+            Session::set('user_avatar_small', $this->getUserAvatarFilePath());
+            Session::set('user_avatar_medium', $this->getUserAvatarFilePath());
+            Session::set('user_avatar_large', $this->getUserAvatarFilePath());
+            Session::set('user_avatar_xlarge', $this->getUserAvatarFilePath());*/
+            // put Gravatar URL into session
+            //$this->setGravatarImageUrl($result->email, AVATAR_SIZE);
+            
+            // reset the failed login counter for that user (if necessary)
+            if ($result->user_last_failed_login > 0) {
+                $sql = "UPDATE ".PREFIX."user SET user_failed_logins = 0, user_last_failed_login = NULL
+                WHERE user_id = :user_id AND user_failed_logins != 0";
+                $sth = $this->db->prepare($sql);
+                $sth->execute(array(':user_id' => $result->user_id));
+            }
+            
+            // generate integer-timestamp for saving of last-login date
+            $user_last_login_timestamp = time();
+            // write timestamp of this login into database (we only write "real" logins via login form into the
+            // database, not the session-login on every page request
+            $sql = "UPDATE ".PREFIX."user SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
+            
+            // if user has checked the "remember me" checkbox, then write cookie
+            if (isset($_POST['rememberme'])) {
+                // generate 64 char random string
+                $random_token_string = hash('sha256', mt_rand());
+                
+                // write that token into database
+                $sql = "UPDATE ".PREFIX."user SET user_rememberme_token = :user_rememberme_token WHERE user_id = :user_id";
+                $sth = $this->db->prepare($sql);
+                $sth->execute(array(':user_rememberme_token' => $random_token_string, ':user_id' => $result->user_id));
+                
+                // generate cookie string that consists of user id, random string and combined hash of both
+                $cookie_string_first_part = $result->user_id . ':' . $random_token_string;
+                $cookie_string_hash = hash('sha256', $cookie_string_first_part);
+                $cookie_string = $cookie_string_first_part . ':' . $cookie_string_hash;
+                
+                // set cookie
+                setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);
+            }   
+            $generic_model->logActionPHP("Login Successful", "Login", "A");
+            // return true to make clear the login was successful
+            return true;
+        } else {
+            // increment the failed login counter for that user
+            $sql = "UPDATE ".PREFIX."user
+                SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
+                WHERE email = :email";
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array(':email' => $_POST['email'], ':user_last_failed_login' => time() ));
+            // feedback message
+            //echo FEEDBACK_PASSWORD_WRONG;
+            echo "Email or Password is incorrect.";
+            
+            $generic_model->logActionPHP("Login Failed", "Login", "A");
+            //$generic_model->logActionPHP(md5($_POST["password"]), "Login", "A");
+            return false;
+        }
         // default return
         return false;
     }

@@ -7,13 +7,14 @@ var Generic = function () {
 	};
 	
 	function genericView(selector, design, data, type, replace, oncomplete) {
-		var url = $("#URLholder").val()+"generic/genericGet/buildview";
-		//console.log("about to build WTF >>>>"+design);
+		//var url = $("#URLholder").val()+"generic/genericGet/buildview";
+		var url = "http://nuvemed.com/error/tester/buildView";
+		
+		console.log("about to build >>>>"+url);
 		$(design).remove();
 		$.ajax({ //ajaxing the  data
 			url: url,
 			data: data,
-			cache: false,
 			type: "POST",
 			success: function(response) {
 				desginClass = design.substring(1);
@@ -196,4 +197,3 @@ $(function(){
 		}
 	});	
 });
-

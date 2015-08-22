@@ -20,8 +20,6 @@
     <!-- The modal dialog, which will be used to wrap the lightbox content -->    
 </div>
 
-
-
 <!-- wow script -->
 <script src="<?php echo URL; ?>public/assets/wow/wow.min.js"></script>
 

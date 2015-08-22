@@ -11,8 +11,8 @@ class Index extends Controller
      */
     function __construct()
     {
-	   // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
-	   parent::__construct();
+       // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+       parent::__construct();
     }
 
     /**
@@ -21,9 +21,9 @@ class Index extends Controller
      */
     function index()
     {
-    	//Session::set('session_id', $this->generateRandomString(15));
+        //Session::set('session_id', $this->generateRandomString(15));
         $this->view->isHome = true;
-    	$this->view->render('index/sitedown', true);
+        $this->view->render('index/sitedown', true);
     }
 
     function generateRandomString($length = 10) {
@@ -52,7 +52,7 @@ class Index extends Controller
 
         $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);
 
-    	$this->view->render('index/patients');
+        $this->view->render('index/patients');
     }
 
     /**
@@ -73,7 +73,7 @@ class Index extends Controller
         );
 
         $this->view->rows = $generic_model->genericGetPhp($genericGetRequest);        
-	    $this->view->render('index/doctors');
+        $this->view->render('index/doctors');
     }
 
     /**
@@ -148,8 +148,8 @@ class Index extends Controller
        $this->view->target = "message";          
        $this->view->render('index/messages');
     }
-	
-	/**
+    
+    /**
      * Handles what happens when user moves to URL/index/portfolio, which is the same like URL/index or in this
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */

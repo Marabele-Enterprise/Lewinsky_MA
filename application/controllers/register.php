@@ -12,7 +12,7 @@ class Register extends Controller
      */
     function __construct()
     {
-	//Session::set('session_id', $this->generateRandomString(15));
+    //Session::set('session_id', $this->generateRandomString(15));
         parent::__construct();
     }
     
